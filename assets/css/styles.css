@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;1,400;1,700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.form-input {
+    @apply flex items-center w-full p-3 mb-5 text-base font-normal border-2 rounded placeholder-stone-400 text-stone-600 border-stone-400 focus:outline-none  focus:border-teal-500 bg-stone-100 focus-within:border-teal-500 
+}
+
+.form-btn {
+    @apply inline-block w-min px-8 py-2 text-sm font-bold transition duration-150 ease-in-out rounded focus:outline-none border-2 border-stone-500
+}
