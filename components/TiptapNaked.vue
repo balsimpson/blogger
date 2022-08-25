@@ -8,7 +8,7 @@
         <div class="flex flex-wrap items-center gap-3 rounded">
           <IconHeadingH1
             @click="editor.chain().focus().toggleHeading({ level: 1 }).run()"
-            class="hover:text-teal-500"
+            class="cursor-pointer hover:text-teal-500"
             :class="[
               editor.isActive('heading', { level: 1 })
                 ? 'is-active text-teal-500'
@@ -18,100 +18,131 @@
 
           <IconHeadingH2
             @click="editor.chain().focus().toggleHeading({ level: 2 }).run()"
-            class="hover:text-blue-500"
+            class="cursor-pointer hover:text-teal-500"
             :class="[
               editor.isActive('heading', { level: 2 })
-                ? 'is-active text-blue-500'
+                ? 'is-active text-teal-500'
                 : 'text-neutral-400',
             ]"
           />
 
           <IconHeadingH3
             @click="editor.chain().focus().toggleHeading({ level: 3 }).run()"
-            class="hover:text-blue-500"
+            class="cursor-pointer hover:text-teal-500"
             :class="[
               editor.isActive('heading', { level: 3 })
-                ? 'is-active text-blue-500'
+                ? 'is-active text-teal-500'
                 : 'text-neutral-400',
             ]"
           />
 
           <IconBold
             @click="editor.chain().focus().toggleBold().run()"
-            class="hover:text-blue-500"
+            class="cursor-pointer hover:text-teal-500"
             :class="[
               editor.isActive('bold')
-                ? 'is-active text-blue-500'
+                ? 'is-active text-teal-500'
                 : 'text-neutral-400',
             ]"
           />
 
           <IconItalic
             @click="editor.chain().focus().toggleItalic().run()"
-            class="hover:text-blue-500"
+            class="cursor-pointer hover:text-teal-500"
             :class="[
               editor.isActive('italic')
-                ? 'is-active text-blue-500'
+                ? 'is-active text-teal-500'
                 : 'text-neutral-400',
             ]"
           />
 
           <IconQuote
             @click="editor.chain().focus().toggleBlockquote().run()"
-            class="hover:text-blue-500"
+            class="cursor-pointer hover:text-teal-500"
             :class="[
               editor.isActive('blockquote')
-                ? 'is-active text-blue-500'
+                ? 'is-active text-teal-500'
                 : 'text-neutral-400',
             ]"
           />
 
           <IconCode
             @click="editor.chain().focus().toggleCode().run()"
-            class="hover:text-blue-500"
+            class="cursor-pointer hover:text-teal-500"
             :class="[
               editor.isActive('code')
-                ? 'is-active text-blue-500'
+                ? 'is-active text-teal-500'
                 : 'text-neutral-400',
             ]"
           />
 
           <IconCodeBlock
             @click="editor.chain().focus().toggleCodeBlock().run()"
-            class="hover:text-blue-500"
+            class="cursor-pointer hover:text-teal-500"
             :class="[
               editor.isActive('codeBlock')
-                ? 'is-active text-blue-500'
+                ? 'is-active text-teal-500'
                 : 'text-neutral-400',
             ]"
           />
 
           <IconHighlight
             @click="editor.chain().focus().toggleHighlight().run()"
-            class="hover:text-blue-500"
+            class="cursor-pointer hover:text-teal-500"
             :class="[
               editor.isActive('highlight')
-                ? 'is-active text-blue-500'
+                ? 'is-active text-teal-500'
                 : 'text-neutral-400',
             ]"
           />
 
+
+        </div>
+          <div class="flex mt-2 space-x-3">
+            <IconAlignLeft
+              @click="editor.chain().focus().setTextAlign('left').run()"
+              class="cursor-pointer hover:text-teal-500"
+              :class="[
+                editor.isActive({ textAlign: 'left' })
+                  ? 'is-active text-teal-500'
+                  : 'text-neutral-400',
+              ]"
+            />
+            <IconAlignMiddle
+              @click="editor.chain().focus().setTextAlign('center').run()"
+              class="cursor-pointer hover:text-teal-500"
+              :class="[
+                editor.isActive({ textAlign: 'center' })
+                  ? 'is-active text-teal-500'
+                  : 'text-neutral-400',
+              ]"
+            />
+            <IconAlignRight
+              @click="editor.chain().focus().setTextAlign('right').run()"
+              class="cursor-pointer hover:text-teal-500"
+              :class="[
+                editor.isActive({ textAlign: 'right' })
+                  ? 'is-active text-teal-500'
+                  : 'text-neutral-400',
+              ]"
+            />
+
           <IconYoutube
             @click="showAddYTLink = !showAddYTLink"
-            class="relative hover:text-blue-500"
+            class="relative cursor-pointer hover:text-teal-500"
             :class="[
-              showAddYTLink ? 'is-active text-blue-500' : 'text-neutral-400',
+              showAddYTLink ? 'is-active text-teal-500' : 'text-neutral-400',
             ]"
           />
 
           <label
-            class="flex flex-col items-center transition-colors cursor-pointer hover:text-neutral-400 "
+            class="flex flex-col items-center transition-colors cursor-pointer "
           >
             <IconImageAdd
               :class="[
                 editor.isActive('image')
-                  ? 'is-active text-blue-500'
-                  : 'text-neutral-400',
+                  ? 'is-active text-teal-500'
+                  : 'text-neutral-400 hover:text-teal-500',
               ]"
             />
             <input
@@ -121,61 +152,31 @@
               class="sr-only"
             />
           </label>
-
-          <div class="inline-flex space-x-3">
-            <IconAlignLeft
-              @click="editor.chain().focus().setTextAlign('left').run()"
-              class="hover:text-blue-500"
-              :class="[
-                editor.isActive({ textAlign: 'left' })
-                  ? 'is-active text-blue-500'
-                  : 'text-neutral-400',
-              ]"
-            />
-            <IconAlignMiddle
-              @click="editor.chain().focus().setTextAlign('center').run()"
-              class="hover:text-blue-500"
-              :class="[
-                editor.isActive({ textAlign: 'center' })
-                  ? 'is-active text-blue-500'
-                  : 'text-neutral-400',
-              ]"
-            />
-            <IconAlignRight
-              @click="editor.chain().focus().setTextAlign('right').run()"
-              class="hover:text-blue-500"
-              :class="[
-                editor.isActive({ textAlign: 'right' })
-                  ? 'is-active text-blue-500'
-                  : 'text-neutral-400',
-              ]"
-            />
           </div>
-        </div>
       </div>
       <div class="flex flex-col items-center justify-around p-4 space-y-2">
         <div class="flex justify-between space-x-3">
           <IconUndo
               @click="editor.chain().focus().undo().run()"
-              class="hover:text-blue-500"
+              class="cursor-pointer hover:text-teal-500"
               :class="[
                 editor.isActive({ textAlign: 'right' })
-                  ? 'is-active text-blue-500'
+                  ? 'is-active text-teal-500'
                   : 'text-neutral-400',
               ]"
             />
           <IconRedo
               @click="editor.chain().focus().redo().run()"
-              class="hover:text-blue-500"
+              class="cursor-pointer hover:text-teal-500"
               :class="[
                 editor.isActive({ textAlign: 'right' })
-                  ? 'is-active text-blue-500'
+                  ? 'is-active text-teal-500'
                   : 'text-neutral-400',
               ]"
             />
         </div>
         <div class="flex items-center space-x-1 text-sm">
-          <span class="text-sm font-bold text-center text-blue-400">{{
+          <span class="text-sm font-bold text-center text-teal-600">{{
             editor.storage.characterCount.words()
           }}</span>
           <span class="text-sm">words</span>
@@ -223,42 +224,42 @@
         :tippy-options="{ duration: 100 }"
         v-if="editor"
       >
-        <TipTapHeading1
-          @click="editor.chain().focus().toggleHeading({ level: 1 }).run()"
-          class="hover:text-blue-500"
-          :class="[
-            editor.isActive('heading', { level: 1 })
-              ? 'is-active text-blue-500'
-              : 'text-neutral-400',
-          ]"
-        />
-        <TipTapBold
-          @click="editor.chain().focus().toggleBold().run()"
-          class="hover:text-blue-500"
-          :class="[
-            editor.isActive('bold')
-              ? 'is-active text-blue-500'
-              : 'text-neutral-400',
-          ]"
-        />
-        <TipTapCode
-          @click="editor.chain().focus().toggleCode().run()"
-          class="hover:text-blue-500"
-          :class="[
-            editor.isActive('code')
-              ? 'is-active text-blue-500'
-              : 'text-neutral-400',
-          ]"
-        />
-        <TipTapHighlight
-          @click="editor.chain().focus().toggleHighlight().run()"
-          class="hover:text-blue-500"
-          :class="[
-            editor.isActive('highlight')
-              ? 'is-active text-blue-500'
-              : 'text-neutral-400',
-          ]"
-        />
+        <IconHeadingH2
+            @click="editor.chain().focus().toggleHeading({ level: 2 }).run()"
+            class="hover:text-blue-500"
+            :class="[
+              editor.isActive('heading', { level: 2 })
+                ? 'is-active text-teal-500'
+                : 'text-neutral-400',
+            ]"
+          />
+        <IconBold
+            @click="editor.chain().focus().toggleBold().run()"
+            class="hover:text-blue-500"
+            :class="[
+              editor.isActive('bold')
+                ? 'is-active text-teal-500'
+                : 'text-neutral-400',
+            ]"
+          />
+        <IconCode
+            @click="editor.chain().focus().toggleCode().run()"
+            class="hover:text-blue-500"
+            :class="[
+              editor.isActive('code')
+                ? 'is-active text-teal-500'
+                : 'text-neutral-400',
+            ]"
+          />
+        <IconHighlight
+            @click="editor.chain().focus().toggleHighlight().run()"
+            class="hover:text-blue-500"
+            :class="[
+              editor.isActive('highlight')
+                ? 'is-active text-teal-500'
+                : 'text-neutral-400',
+            ]"
+          />
       </bubble-menu>
     </div>
 

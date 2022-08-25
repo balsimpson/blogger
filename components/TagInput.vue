@@ -1,6 +1,6 @@
 <template>
   <div class="max-w-3xl">
-    <div class="flex flex-wrap items-center justify-center md:justify-start">
+    <div class="flex flex-wrap items-start justify-start md:justify-start">
       <div v-for="(tag, index) in tags" :key="tag" class="space-x-2">
         <div
           class="flex items-center h-5 p-1 m-1 border border-gray-400 rounded-lg "
@@ -34,7 +34,7 @@
           rounded-full
           text-center
           focus:outline-none
-          border border-stone-300
+          border border-teal-400
           text-gray-400
           bg-transparent
           placeholder-gray-400
@@ -44,16 +44,17 @@
         @keydown="addTag"
       />
     </div>
-    <div class="h-12 max-w-xl mx-auto text-center tag-info">
+    <div class="h-12 max-w-xl pl-1 text-center tag-info">
       <div
         v-show="suggestedTags.length && newtag.length"
-        class="flex items-center justify-center space-x-2"
+        class="flex items-center justify-start space-x-2"
       >
         <div
           @click="suggestionClicked(tag)"
           v-for="(tag, index) in suggestedTags"
           :key="index"
           class="
+          cursor-pointer
             inline-flex
             text-[12px]
             px-3
@@ -61,7 +62,7 @@
             border
             rounded-full
             border-gray-400
-            mt-2
+            mt-2 hover:bg-teal-600 hover:text-teal-100
           "
         >
           {{ tag }}
