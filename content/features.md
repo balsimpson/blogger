@@ -1,7 +1,9 @@
 ---
 title: A better way to start your project
-subtitle: Get started
+subtitle: BLOG STARTER TEMPLATE
 description: With a few clicks, get your project up and running. With built-in authentication, a simple API, and a beautiful, responsive front-end, you can start building your project right away.
+cta: github
+cta_link: https://github.com/balsimpson/blogger
 features:
   - title: "Built on Nuxt 3"
     description: "Nuxt 3 has been re-architected with a smaller core and optimized for faster performance and better developer experience."

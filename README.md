@@ -9,3 +9,23 @@ npm install -D @tailwindcss/typography
 # update tailwind.config.js
 plugins: [require('@tailwindcss/typography'),],
 ```
+
+## Install @iconify-prerendered
+```
+npm i @iconify-prerendered/vue-fa6-solid
+npm i @iconify-prerendered/vue-fa6-regular
+npm i @iconify-prerendered/vue-fa6-brands
+```
+
+```
+<script setup>
+import { IconAccount } from '@iconify-prerendered/vue-mdi' 
+</script>
+
+<template>
+<a>
+  <IconAccount/>
+  Go to account
+</a>
+</template>
+```

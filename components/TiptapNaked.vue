@@ -2,20 +2,21 @@
   <!-- <editor-content :editor="editor" /> -->
   <div v-if="editor" class="flex flex-col h-full">
     <div
-      class="sticky top-0 z-20 flex justify-between prose-sm prose bg-white text-neutral-400 sm:prose lg:prose-lg xl:prose-2xl focus:outline-none "
+      class="sticky top-0 z-20 flex justify-between prose-sm prose bg-white border-b text-neutral-400 sm:prose lg:prose-lg xl:prose-2xl focus:outline-none "
     >
-      <div class="px-2">
-        <div class="flex flex-wrap items-center gap-3 p-2 rounded sm:gap-5">
-          <TipTapHeading1
+      <div class="p-2">
+        <div class="flex flex-wrap items-center gap-3 rounded">
+          <IconHeadingH1
             @click="editor.chain().focus().toggleHeading({ level: 1 }).run()"
-            class="hover:text-blue-500"
+            class="hover:text-teal-500"
             :class="[
               editor.isActive('heading', { level: 1 })
-                ? 'is-active text-blue-500'
+                ? 'is-active text-teal-500'
                 : 'text-neutral-400',
             ]"
           />
-          <TipTapHeading2
+
+          <IconHeadingH2
             @click="editor.chain().focus().toggleHeading({ level: 2 }).run()"
             class="hover:text-blue-500"
             :class="[
@@ -24,7 +25,8 @@
                 : 'text-neutral-400',
             ]"
           />
-          <TipTapHeading3
+
+          <IconHeadingH3
             @click="editor.chain().focus().toggleHeading({ level: 3 }).run()"
             class="hover:text-blue-500"
             :class="[
@@ -34,7 +36,7 @@
             ]"
           />
 
-          <TipTapBold
+          <IconBold
             @click="editor.chain().focus().toggleBold().run()"
             class="hover:text-blue-500"
             :class="[
@@ -44,7 +46,7 @@
             ]"
           />
 
-          <TipTapItalic
+          <IconItalic
             @click="editor.chain().focus().toggleItalic().run()"
             class="hover:text-blue-500"
             :class="[
@@ -54,28 +56,7 @@
             ]"
           />
 
-          <TipTapCode
-            @click="editor.chain().focus().toggleCode().run()"
-            class="hover:text-blue-500"
-            :class="[
-              editor.isActive('code')
-                ? 'is-active text-blue-500'
-                : 'text-neutral-400',
-            ]"
-          />
-
-          <TipTapCodeBlock
-            @click="editor.chain().focus().toggleCodeBlock().run()"
-            class="hover:text-blue-500"
-            :class="[
-              editor.isActive('codeBlock')
-                ? 'is-active text-blue-500'
-                : 'text-neutral-400',
-            ]"
-          />
-
-          <!-- blockquote -->
-          <TipTapBlockquote
+          <IconQuote
             @click="editor.chain().focus().toggleBlockquote().run()"
             class="hover:text-blue-500"
             :class="[
@@ -85,8 +66,27 @@
             ]"
           />
 
-          <!-- highlight -->
-          <TipTapHighlight
+          <IconCode
+            @click="editor.chain().focus().toggleCode().run()"
+            class="hover:text-blue-500"
+            :class="[
+              editor.isActive('code')
+                ? 'is-active text-blue-500'
+                : 'text-neutral-400',
+            ]"
+          />
+
+          <IconCodeBlock
+            @click="editor.chain().focus().toggleCodeBlock().run()"
+            class="hover:text-blue-500"
+            :class="[
+              editor.isActive('codeBlock')
+                ? 'is-active text-blue-500'
+                : 'text-neutral-400',
+            ]"
+          />
+
+          <IconHighlight
             @click="editor.chain().focus().toggleHighlight().run()"
             class="hover:text-blue-500"
             :class="[
@@ -96,8 +96,7 @@
             ]"
           />
 
-          <!-- YouTube -->
-          <TipTapYoutube
+          <IconYoutube
             @click="showAddYTLink = !showAddYTLink"
             class="relative hover:text-blue-500"
             :class="[
@@ -108,27 +107,13 @@
           <label
             class="flex flex-col items-center transition-colors cursor-pointer hover:text-neutral-400 "
           >
-            <div
-              class=""
+            <IconImageAdd
               :class="[
                 editor.isActive('image')
                   ? 'is-active text-blue-500'
                   : 'text-neutral-400',
               ]"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                width="24"
-                height="24"
-              >
-                <path fill="none" d="M0 0h24v24H0z" />
-                <path
-                  fill="currentColor"
-                  d="M21 15v3h3v2h-3v3h-2v-3h-3v-2h3v-3h2zm.008-12c.548 0 .992.445.992.993V13h-2V5H4v13.999L14 9l3 3v2.829l-3-3L6.827 19H14v2H2.992A.993.993 0 0 1 2 20.007V3.993A1 1 0 0 1 2.992 3h18.016zM8 7a2 2 0 1 1 0 4 2 2 0 0 1 0-4z"
-                />
-              </svg>
-            </div>
+            />
             <input
               @change="uploadImage"
               type="file"
@@ -137,80 +122,95 @@
             />
           </label>
 
-          <TipTapTextAlignLeft
-            @click="editor.chain().focus().setTextAlign('left').run()"
-            class="hover:text-blue-500"
-            :class="[
-              editor.isActive({ textAlign: 'left' })
-                ? 'is-active text-blue-500'
-                : 'text-neutral-400',
-            ]"
-          />
-
-          <TipTapTextAlignCenter
-            @click="editor.chain().focus().setTextAlign('center').run()"
-            class="hover:text-blue-500"
-            :class="[
-              editor.isActive({ textAlign: 'center' })
-                ? 'is-active text-blue-500'
-                : 'text-neutral-400',
-            ]"
-          />
-
-          <TipTapTextAlignRight
-            @click="editor.chain().focus().setTextAlign('right').run()"
-            class="hover:text-blue-500"
-            :class="[
-              editor.isActive({ textAlign: 'right' })
-                ? 'is-active text-blue-500'
-                : 'text-neutral-400',
-            ]"
-          />
-
-          <div class="text-sm">
-            <span class="font-bold text-blue-400">{{
-              editor.storage.characterCount.words()
-            }}</span>
-            words
+          <div class="inline-flex space-x-3">
+            <IconAlignLeft
+              @click="editor.chain().focus().setTextAlign('left').run()"
+              class="hover:text-blue-500"
+              :class="[
+                editor.isActive({ textAlign: 'left' })
+                  ? 'is-active text-blue-500'
+                  : 'text-neutral-400',
+              ]"
+            />
+            <IconAlignMiddle
+              @click="editor.chain().focus().setTextAlign('center').run()"
+              class="hover:text-blue-500"
+              :class="[
+                editor.isActive({ textAlign: 'center' })
+                  ? 'is-active text-blue-500'
+                  : 'text-neutral-400',
+              ]"
+            />
+            <IconAlignRight
+              @click="editor.chain().focus().setTextAlign('right').run()"
+              class="hover:text-blue-500"
+              :class="[
+                editor.isActive({ textAlign: 'right' })
+                  ? 'is-active text-blue-500'
+                  : 'text-neutral-400',
+              ]"
+            />
           </div>
         </div>
       </div>
-      <div class="flex flex-col items-center justify-around px-4">
-        <div class="flex justify-between">
-          <TipTapUndo @click="editor.chain().focus().undo().run()" />
-          <TipTapRedo @click="editor.chain().focus().redo().run()" />
+      <div class="flex flex-col items-center justify-around p-4 space-y-2">
+        <div class="flex justify-between space-x-3">
+          <IconUndo
+              @click="editor.chain().focus().undo().run()"
+              class="hover:text-blue-500"
+              :class="[
+                editor.isActive({ textAlign: 'right' })
+                  ? 'is-active text-blue-500'
+                  : 'text-neutral-400',
+              ]"
+            />
+          <IconRedo
+              @click="editor.chain().focus().redo().run()"
+              class="hover:text-blue-500"
+              :class="[
+                editor.isActive({ textAlign: 'right' })
+                  ? 'is-active text-blue-500'
+                  : 'text-neutral-400',
+              ]"
+            />
+        </div>
+        <div class="flex items-center space-x-1 text-sm">
+          <span class="text-sm font-bold text-center text-blue-400">{{
+            editor.storage.characterCount.words()
+          }}</span>
+          <span class="text-sm">words</span>
         </div>
       </div>
-      <!-- <div class="flex flex-wrap items-center justify-center gap-3 p-2 rounded">
-        <span class="inline-block space-x-3"> </span>
-      </div> -->
 
-      <!-- undo -->
-      <!-- <div class="flex p-2 space-x-3 rounded">
-      </div> -->
     </div>
 
-    <div class="relative flex-grow h-full overflow-y-scroll prose-sm prose sm:prose lg:prose-lg xl:prose-2xl">
-      <editor-content :editor="editor" class="h-full"/>
+    <div
+      class="relative flex-grow h-full overflow-y-scroll prose-sm prose sm:prose lg:prose-lg xl:prose-2xl "
+    >
+      <editor-content :editor="editor" class="h-full" />
       <div
         v-if="showAddYTLink"
+        @keydown.esc="showAddYTLink = !showAddYTLink"
         class="absolute top-0 z-10 w-full p-2 pb-4 bg-white shadow-xl"
+        tabindex="0"
       >
         <div class="relative px-2">
-          <label class="text-sm text-stone-500">Paste a YouTube Link
-            
+          <label class="text-sm text-stone-500"
+            >Paste a YouTube Link
+
             <input
-            v-model="ytLink"
-            type="text"
-            class="form-input"
-            placeholder="https://www.youtube.com/watch?v=aRx4-fsJ5uE"
-          />
-          <button
-            @click="addVideo"
-            class="absolute px-3 py-1 text-sm font-semibold uppercase bg-white rounded top-1/2 right-3 "
-          >
-            add
-          </button>
+              v-model="ytLink"
+              v-focus
+              type="url"
+              class="form-input"
+              placeholder="https://www.youtube.com/watch?v=aRx4-fsJ5uE"
+            />
+            <button
+              @click="addVideo"
+              class="absolute px-3 py-1 text-sm font-semibold uppercase bg-white rounded top-1/2 right-3 "
+            >
+              add
+            </button>
           </label>
         </div>
       </div>
@@ -218,7 +218,7 @@
 
     <div class="relative">
       <bubble-menu
-        class="flex items-center px-2 py-1 space-x-2 bg-white border rounded shadow border-stone-300 "
+        class="flex items-center px-2 py-1 space-x-2 bg-black border rounded shadow border-stone-300 "
         :editor="editor"
         :tippy-options="{ duration: 100 }"
         v-if="editor"
@@ -278,7 +278,7 @@ import StarterKit from "@tiptap/starter-kit";
 import Placeholder from "@tiptap/extension-placeholder";
 import Image from "@tiptap/extension-image";
 import Code from "@tiptap/extension-code";
-import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
+// import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
 import Document from "@tiptap/extension-document";
 import Highlight from "@tiptap/extension-highlight";
 // import Blockquote from "@tiptap/extension-blockquote";
@@ -287,12 +287,38 @@ import CharacterCount from "@tiptap/extension-character-count";
 import { BubbleMenu, useEditor, EditorContent } from "@tiptap/vue-3";
 // import { lowlight } from "lowlight/lib/core";
 import { lowlight } from "lowlight/lib/common.js";
+import {
+  IconHeadingH1,
+  IconHeadingH2,
+  IconHeadingH3,
+  IconBold,
+  IconItalic,
+  IconQuote,
+  IconCode,
+} from "@iconify-prerendered/vue-gridicons";
+
+import {
+  IconHighlight,
+  IconAlignLeft,
+  IconAlignRight,
+  IconAlignMiddle,
+  IconAlignJustify,
+  IconUndo,
+  IconRedo,
+  IconImageAdd,
+  IconCodeBlock
+} from "@iconify-prerendered/vue-bx";
+import { IconYoutube } from "@iconify-prerendered/vue-bxl";
 
 const props = defineProps(["content"]);
 const emit = defineEmits();
 const showAddYTLink = ref("");
 const ytLink = ref("");
-const runtimeConfig = useRuntimeConfig()
+const runtimeConfig = useRuntimeConfig();
+
+const vFocus = {
+  mounted: (el) => el.focus(),
+};
 
 const CustomDocument = Document.extend({
   content: "heading block*",
@@ -321,10 +347,10 @@ const editor = useEditor({
     Youtube.configure({
       width: "100%",
     }),
-    CodeBlockLowlight.configure({
-      lowlight,
-      languageClassPrefix: "language-",
-    }),
+    // CodeBlockLowlight.configure({
+    //   lowlight,
+    //   languageClassPrefix: "language-",
+    // }),
     // TextAlign.configure({
     //   types: ["heading", "paragraph"],
     // }),
@@ -344,7 +370,7 @@ const editor = useEditor({
   editorProps: {
     attributes: {
       class:
-        "prose prose-sm sm:prose lg:prose-lg xl:prose-2xl focus:outline-none p-5 ",
+        "prose prose-sm sm:prose lg:prose-lg xl:prose-2xl focus:outline-none p-5 overflow-y-scroll",
     },
   },
   content: props.content,
@@ -400,8 +426,8 @@ const addVideo = (url) => {
 const saveDoc = (status) => {
   const json = editor.value.getJSON();
   const words = json.content[0].content[0].text;
-  console.log(words)
-  console.log(words.length)
+  console.log(words);
+  console.log(words.length);
   // if (words.length > 3) {
   //   console.log(words);
   //   json.title = words;
@@ -432,7 +458,7 @@ const saveDoc = (status) => {
 
 <style>
 .ProseMirror {
-  height: auto;
+  height: inherit;
   /* min-height: 60vh; */
   background: #ffffff;
   /* height: 100%;

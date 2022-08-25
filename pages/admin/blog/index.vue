@@ -1,41 +1,33 @@
 <template>
   <div class="flex flex-col h-screen">
-    <div class="max-w-3xl p-4 mx-auto text-left">
+    <div class="max-w-3xl p-6 mt-12 text-left">
+      
+
+      
       <!-- <div class="text-5xl font-extrabold tracking-tight font-arvo">Welcome</div> -->
       <!-- a compose button with an icon -->
       <NuxtLink
         to="/admin/blog/compose"
-        class="inline-flex items-center h-10 px-5 text-indigo-100 transition-colors duration-150 bg-blue-700 rounded-lg focus:shadow-outline hover:bg-blue-800 "
+        class="inline-flex items-center h-10 px-5 text-indigo-100 transition-colors duration-150 bg-teal-700 rounded-lg focus:shadow-outline hover:bg-teal-800 "
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="w-6 h-6"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          stroke-width="2"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
-          />
-        </svg>
-        <span class="ml-3">Compose</span>
+        <IconPlus />
+        <span class="ml-3">Add Blog Post</span>
       </NuxtLink>
     </div>
-    <div class="flex-grow max-w-3xl p-4 mx-auto overflow-y-auto">
+    <div class="flex-grow p-6">
       <div>Posts</div>
+
+      <AppTable :items="posts" />
       <!-- <pre>{{ postsHTML }}</pre> -->
-      <div v-if="postsHTML.length" class="space-y-4">
+      <!-- <div v-if="postsHTML.length" class="space-y-4">
         <div
           v-for="post in posts"
           class="p-6 bg-white border rounded border-stone-300"
-        >
-          <div class="mb-3 text-xs text-stone-400">
-            <!-- {{ formatDate(post.added_at) }} -->
+        > -->
+      <!-- <div class="mb-3 text-xs text-stone-400">
+            {{ formatDate(post.added_at) }}
           </div>
-          <!-- <div v-html="post.html" class="prose font-arvo max-h-[400px] overflow-hidden mb-6"></div> -->
+          <div v-html="post.html" class="prose font-arvo max-h-[400px] overflow-hidden mb-6"></div>
 
           <div class="mb-3 text-xs text-stone-400">
             <div>{{ post.uid }}</div>
@@ -43,14 +35,14 @@
             {{ new Date(post.published_at.seconds * 1000).toLocaleString() }}
           </div>
 
-          <div v-html="post.html" class="prose"></div>
+          <div v-html="post.html" class="prose"></div> -->
 
-          <div class="flex justify-between">
+      <!-- <div class="flex justify-between">
             <div class="flex-shrink-0">
               <NuxtLink
                 :to="{
                   name: 'admin-blog-edit',
-                  params: { post: JSON.stringify(post.content) },
+                  params: { post: JSON.stringify(post) },
                 }"
                 class="inline-flex items-center px-4 py-2 text-sm font-medium leading-5 text-white transition duration-150 ease-in-out bg-indigo-600 border border-transparent rounded-md hover:bg-indigo-500 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-700 active:bg-indigo-700 "
               >
@@ -65,11 +57,11 @@
                 Delete
               </button>
             </div>
-          </div>
+          </div> -->
 
-          <!-- <div>{{post}}</div> -->
-          <!-- <div v-html="post.status"></div> -->
-          <!-- <NuxtLink :to="'/admin/blog/' + post.slug.toLowerCase() + '-' + post.uid">
+      <!-- <div>{{post}}</div> -->
+      <!-- <div v-html="post.status"></div> -->
+      <!-- <NuxtLink :to="'/admin/blog/' + post.slug.toLowerCase() + '-' + post.uid">
             <button
               class="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700 "
             >
@@ -77,12 +69,12 @@
             </button>
           </NuxtLink> -->
 
-          <!-- <NuxtLink :to="{ name: 'blog-slug', params: { slug: item.slug } }">
+      <!-- <NuxtLink :to="{ name: 'blog-slug', params: { slug: item.slug } }">
           source
           </NuxtLink> -->
-          <!-- <div>{{post}}</div> -->
-        </div>
-      </div>
+      <!-- <div>{{post}}</div> -->
+      <!-- </div>
+      </div> -->
       <!-- <div v-if="html">{{ html }}</div> -->
       <!-- <pre v-if="posts.length">{{ posts[0].content }}</pre> -->
     </div>
@@ -97,6 +89,9 @@ import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
 import Youtube from "@tiptap/extension-youtube";
 import { lowlight } from "lowlight/lib/common.js";
 import { toHtml } from "hast-util-to-html";
+import {
+  IconPlus,
+} from "@iconify-prerendered/vue-bx";
 
 import {
   addDoc,
@@ -170,12 +165,18 @@ function formatDate(val) {
   return `${day} ${month} ${year} ${hour}:${min}`;
 }
 
+const convertDate = (d) => {
+  const newDate = new Date(d.seconds * 1000);
+  return newDate.toLocaleString();
+};
+
 const deletePost = async (id) => {
   let res = await deleteDocFromFirestore("posts", id);
 };
 
 onMounted(async () => {
-  posts.value = await getDocsFromFirestore("posts");
+  posts.value = await getOrderedDocsFromFirestore("posts", "published_at");
   console.log(posts.value);
 });
 </script>
+

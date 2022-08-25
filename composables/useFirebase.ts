@@ -5,7 +5,7 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 
-import { addDoc, collection, getFirestore, getDocs, getDoc, doc, query, onSnapshot, writeBatch, deleteDoc, updateDoc } from "firebase/firestore"
+import { addDoc, collection, getFirestore, getDocs, getDoc, doc, query, onSnapshot, writeBatch, deleteDoc, updateDoc, orderBy, DocumentData, Query } from "firebase/firestore"
 
 export const createUser = async (email: string, password: string) => {
   const auth = getAuth();
@@ -119,14 +119,48 @@ export const addDocToFirestore = async (collectionName: string, doc: any) => {
 * Get documents from a collection
 * @param {String} collectionName - name of the collection
 * @returns {Array} array of items
-* @example getDocsFromFirestore('products')
+* @example getDocsFromFirestore('products', 'published_at')
 */
 export const getDocsFromFirestore = async (collectionName: string) => {
   try {
     const db = getFirestore();
     // const q = query(collection(db, collectionName), orderBy("release_date", "desc"));
     let items = [];
-    const q = query(collection(db, collectionName));
+    let q = query(collection(db, collectionName));
+
+    let res = await getDocs(q);
+    res.forEach((doc) => {
+      let newdoc = doc.data();
+      newdoc.uid = doc.id;
+      items.push(newdoc);
+    });
+    return items;
+  } catch (error) {
+    console.log('firebase-error', error);
+    return error;
+  }
+}
+
+/**
+* Get documents from a collection
+* @param {String} collectionName - name of the collection
+* @param {String} order - the property to order by
+* @returns {Array} array of items
+* @example getDocsFromFirestore('products', 'published_at')
+*/
+export const getOrderedDocsFromFirestore = async (collectionName: string, order: string) => {
+  try {
+    const db = getFirestore();
+    // const q = query(collection(db, collectionName), orderBy("release_date", "desc"));
+    let items = [];
+    let q: Query<DocumentData>;
+    
+    if (order) {
+      q = query(collection(db, collectionName), orderBy(order, "desc"));
+    } else {
+      q = query(collection(db, collectionName));
+    }
+
     let res = await getDocs(q);
     res.forEach((doc) => {
       let newdoc = doc.data();
