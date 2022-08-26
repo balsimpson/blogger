@@ -1,5 +1,7 @@
 # Blogger
 
+![image info](public/deployeddemoimage.png)
+
 A Nuxt 3 Blog Template styled with Tailwind CSS with Firebase integration. Comes with a Rich Text Editor from TipTap and image uploads with Cloudinary. 
 
 Deploy it on Vercel with a click.
