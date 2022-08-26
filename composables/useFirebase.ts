@@ -5,7 +5,7 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 
-import { addDoc, collection, getFirestore, getDocs, getDoc, doc, query, onSnapshot, writeBatch, deleteDoc, updateDoc, orderBy, DocumentData, Query } from "firebase/firestore"
+import { addDoc, collection, getFirestore, getDocs, getDoc, doc, query, onSnapshot, writeBatch, deleteDoc, updateDoc, orderBy, where, DocumentData, Query } from "firebase/firestore"
 
 export const createUser = async (email: string, password: string) => {
   const auth = getAuth();
@@ -32,7 +32,7 @@ export const signInUser = async (email: string, password: string) => {
     console.log(errorCode, errorMessage);
 
     if (errorCode === "auth/user-not-found") {
-      return "You are not authorised";
+      return "You are not authorised. Create a user in Firebase";
     }
     if (errorCode === "auth/wrong-password") {
       return "Wrong password";
@@ -154,7 +154,7 @@ export const getOrderedDocsFromFirestore = async (collectionName: string, order:
     // const q = query(collection(db, collectionName), orderBy("release_date", "desc"));
     let items = [];
     let q: Query<DocumentData>;
-    
+
     if (order) {
       q = query(collection(db, collectionName), orderBy(order, "desc"));
     } else {
@@ -194,20 +194,45 @@ export const getDocFromFirestore = async (collectionName: string, docId: string)
 }
 
 /**
+* Get a single document from a collection where slug
+* @param {String} collectionName - collection name
+* @param {String} slug - document id
+* @example getDocFromFirestoreWithSlug('posts', 'title-slug')
+*/
+export const getDocFromFirestoreWithSlug = async (collectionName: string, slug: string) => {
+  try {
+    const db = getFirestore();
+    const q = query(collection(db, collectionName), where("slug", "==", slug));
+    const querySnapshot = await getDocs(q);
+    let item: DocumentData;
+    querySnapshot.forEach((doc) => {
+      // doc.data() is never undefined for query doc snapshots
+      // console.log(doc.id, " => ", doc.data());
+      item = doc.data();
+      item.id = doc.id;
+    });
+    return item
+  } catch (error) {
+    console.log('getDocFromFirestore-error', error);
+    return error;
+  }
+}
+
+/**
  * Delete a document in a collection
  * @param  {string} collectionName - the name of the collection
  * @param  {string} docId - document id
  */
- export const deleteDocFromFirestore = async (collectionName: string, docId: string) => {
-	try {
+export const deleteDocFromFirestore = async (collectionName: string, docId: string) => {
+  try {
     const db = getFirestore();
-		const docRef = doc(db, collectionName, docId);
-		let res = await deleteDoc(docRef);
-		return res;
-	} catch (error) {
-		console.log('firebase-error', error);
-		return error;
-	}
+    const docRef = doc(db, collectionName, docId);
+    let res = await deleteDoc(docRef);
+    return res;
+  } catch (error) {
+    console.log('firebase-error', error);
+    return error;
+  }
 }
 
 /**
@@ -217,15 +242,15 @@ export const getDocFromFirestore = async (collectionName: string, docId: string)
  * @param {object} data - the data to update
  * @example updateDocInFirestore('products', '123', { title: "test", body: "test" })
  */
- export const updateDocInFirestore = async (collectionName: string, uid: string, data: any) => {
-	try {
+export const updateDocInFirestore = async (collectionName: string, uid: string, data: any) => {
+  try {
     const db = getFirestore();
-		let res = await updateDoc(doc(db, collectionName, uid), data);
-		return res;
-	} catch (error) {
-		console.log('updateDocInFirestore-error', error);
-		return error;
-	}
+    let res = await updateDoc(doc(db, collectionName, uid), data);
+    return res;
+  } catch (error) {
+    console.log('updateDocInFirestore-error', error);
+    return error;
+  }
 }
 
 export const batchWrite = async (collectionName: string, items: any[]) => {

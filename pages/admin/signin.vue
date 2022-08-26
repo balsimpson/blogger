@@ -5,7 +5,9 @@
         class="mt-6 text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-gray-400 to-gray-800 "
       >
         Sign in.
+
       </div>
+        <p class="text-gray-500">Create a user in your Firebase Project at <a href="https://console.firebase.com" class="text-yellow-500" target="_blank">Firebase Console</a></p>
 
       <div class="w-full mx-auto mt-12">
         <form @submit="login" class="space-y-4">
@@ -48,7 +50,7 @@
           </div>
 
           <div class="mt-1">
-            <div class="h-2 mb-4 text-sm text-brand-500">
+            <div class="h-2 mb-4 text-sm text-red-500">
               {{ loginErrorMsg }}
             </div>
             <button
@@ -89,9 +91,10 @@ const login = async () => {
       router.push("/admin");
     } else {
       loginErrorMsg.value = res;
+      btnText.value = "Sign in"
       setTimeout(() => {
         loginErrorMsg.value = "";
-      }, 2000);
+      }, 3000);
     }
   } catch (error) {
     console.log("error", error);

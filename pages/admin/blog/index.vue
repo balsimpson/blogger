@@ -85,8 +85,8 @@
 import { generateHTML } from "@tiptap/core";
 import StarterKit from "@tiptap/starter-kit";
 import Image from "@tiptap/extension-image";
-import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
 import Youtube from "@tiptap/extension-youtube";
+import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
 import { lowlight } from "lowlight/lib/common.js";
 import { toHtml } from "hast-util-to-html";
 import {

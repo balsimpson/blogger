@@ -16,8 +16,6 @@
           {{ features.description }}
         </p>
 
-        
-
         <a :href="features.cta_link" target="_blank" class="inline-flex px-3 py-1 mt-6 uppercase transition border-2 rounded border-stone-500 hover:bg-teal-600 hover:text-white hover:border-teal-500"><IconGithub/><span class="ml-3 text-base font-semibold tracking-normal">{{features.cta}}</span></a>
       </div>
 
