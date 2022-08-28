@@ -1,8 +1,10 @@
 <template>
   <!-- <editor-content :editor="editor" /> -->
-  <div v-if="editor" class="flex flex-col items-center w-full h-full">
+  <div v-if="editor" class="flex flex-col w-3/4 h-full border">
+    <!-- <div
+      class="sticky top-0 z-20 flex justify-between prose-sm prose bg-white border-b text-neutral-400 sm:prose lg:prose-lg xl:prose-2xl focus:outline-none " -->
     <div
-      class="sticky top-0 z-20 flex justify-between prose-sm prose bg-white border-b  text-neutral-400 sm:prose lg:prose-lg xl:prose-2xl focus:outline-none "
+      class="sticky top-0 z-20 flex justify-between bg-white border-b text-neutral-400 focus:outline-none "
     >
       <div class="p-2">
         <div class="flex flex-wrap items-center gap-3 rounded">
@@ -181,9 +183,11 @@
         </div>
       </div>
     </div>
-
+    
+    <!-- <div
+      class="relative flex-grow h-full overflow-y-scroll prose-sm prose sm:prose lg:prose-lg xl:prose-2xl " -->
     <div
-      class="relative flex-grow h-full overflow-y-scroll prose-sm prose  sm:prose lg:prose-lg xl:prose-2xl "
+      class="relative flex-grow h-full overflow-y-scroll "
     >
       <editor-content :editor="editor" class="h-full" />
       <div
@@ -205,7 +209,7 @@
             />
             <button
               @click="addVideo"
-              class="absolute px-3 py-1 text-sm font-semibold uppercase bg-white rounded  top-1/2 right-3 "
+              class="absolute px-3 py-1 text-sm font-semibold uppercase bg-white rounded top-1/2 right-3 "
             >
               add
             </button>
@@ -216,7 +220,7 @@
 
     <div class="relative">
       <bubble-menu
-        class="flex items-center px-2 py-1 space-x-2 bg-black border rounded shadow  border-stone-300 "
+        class="flex items-center px-2 py-1 space-x-2 bg-black border rounded shadow border-stone-300 "
         :editor="editor"
         :tippy-options="{ duration: 100 }"
         v-if="editor"
