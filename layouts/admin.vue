@@ -5,7 +5,7 @@
         <li>
           <NuxtLink
             to="/admin"
-            class="inline-flex items-center w-full px-4 py-2 mt-1 space-x-2 text-base transition duration-200 ease-in-out transform bg-black border rounded-lg text-stone-400 border-stone-700 hover:bg-stone-700 focus:shadow-outline "
+            class="inline-flex items-center w-full px-4 py-2 mt-1 mb-4 space-x-2 text-base transition duration-200 ease-in-out transform bg-black border rounded-lg text-stone-400 border-stone-700 hover:bg-stone-700 focus:shadow-outline "
           >
             <IconGridAlt />
             <span> Dashboard</span>
@@ -18,6 +18,26 @@
           >
             <IconBook />
             <span class="ml-4">Blog</span>
+          </NuxtLink>
+        </li>
+
+        <div class="py-2 my-2 mt-6 text-xs text-gray-500 border-b border-stone-700">Edit Homepage</div>
+        <li class="mb-3">
+          <NuxtLink
+            to="/admin/edit/hero"
+            class="inline-flex items-center w-full space-x-2 text-base font-bold transition duration-200 ease-in-out transform rounded-lg text-stone-500 border-stone-700 bg-gblack hover:text-teal-600 focus:shadow-outline"
+          >
+            <IconCube />
+            <span class="ml-4">Hero</span>
+          </NuxtLink>
+        </li>
+        <li>
+          <NuxtLink
+            to="/admin/edit/features"
+            class="inline-flex items-center w-full space-x-2 text-base font-bold transition duration-200 ease-in-out transform rounded-lg text-stone-500 border-stone-700 bg-gblack hover:text-teal-600 focus:shadow-outline"
+          >
+            <IconCube />
+            <span class="ml-4">Features</span>
           </NuxtLink>
         </li>
       </template>
@@ -40,7 +60,7 @@
       </template>
     </NavSidebar>
 
-    <div class="w-full h-screen mx-auto overflow-y-scroll bg-stone-200">
+    <div class="w-full h-screen mx-auto overflow-y-scroll bg-white">
       <!-- Main Content -->
       <slot />
     </div>
@@ -55,6 +75,7 @@ import {
   IconMenu,
   IconX,
   IconLogOut,
+  IconCube
 } from "@iconify-prerendered/vue-bx";
 const isSidebarActive = ref(false);
 const router = useRouter();

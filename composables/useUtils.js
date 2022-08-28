@@ -57,7 +57,11 @@ export const getPostDetails = (data) => {
     let title = data.find(element => element.type == "heading");
     title = title?.content[0]?.text || "";
     let description = data.find(element => element.type == "paragraph");
-    description = description?.content[0]?.text || "";
+
+    if (description && description.content) {
+      description = description?.content[0]?.text || "";
+    }
+
     let image = data.find(element => element.type == "image");
     image = image?.attrs?.src || ""
   
@@ -82,3 +86,27 @@ export const getYTLink = (link) => {
     return 'Invalid YouTube link'
   }
 }
+
+export const convertDate = (d) => {
+  const newDate = new Date(d.seconds * 1000);
+  let day = newDate.getDate();
+  let m = newDate.getMonth();
+  let y = newDate.getFullYear();
+
+  let months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+
+  return day + " " + months[m] + " " + y;
+};

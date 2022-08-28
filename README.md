@@ -10,11 +10,17 @@ Deploy it on Vercel with a click.
 
 ## Accessing Admin panel
 
-You can access your admin panel at <example.com>`/admin`.
+Once your app is deployed on Vercel, access the admin panel at your-site-name.vercel.app`/admin`.
 
-Create a user on Firebase and use those credentials to sign in.
-Note: If you have not added/used Firestore in your project, make sure to activate it by clicking the Get Started button.
+> Create a user on Firebase and use those credentials to sign in.
 
+> If you have not added/used Firestore in your project, make sure to activate it by clicking the `Create Database` button on Firestore Console.
+
+
+<br>
+
+
+## Install TipTap
 ```
 # install tiptap
 npm install @tiptap/vue-3 @tiptap/starter-kit @tiptap/extension-underline @tiptap/extension-text-align @tiptap/extension-placeholder @tiptap/extension-image @tiptap/extension-heading @tiptap/extension-code @tiptap/extension-character-count @tiptap/extension-bubble-menu @tiptap/extension-link @tiptap/extension-highlight @tiptap/extension-youtube @tiptap/extension-code-block-lowlight

@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col h-full border rounded-lg">
+    <div class="flex flex-col h-full bg-white border rounded-lg">
         <img v-if="image" :src="image" alt="" class="object-cover rounded-t-lg h-44">
         <div class="flex-grow p-4">
             <NuxtLink :to="'/blog/' + slug">

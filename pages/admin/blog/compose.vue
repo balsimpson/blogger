@@ -13,14 +13,14 @@
           <IconArchiveIn />
           <span class="ml-3">Save Draft</span>
         </div>
-        <div
+        <button
           @click.prevent="saveDoc('published')"
           class="inline-flex px-4 py-1 font-bold tracking-wide text-teal-800 transition bg-teal-500 border-2 border-teal-500 rounded cursor-pointer hover:bg-white hover:text-teal-500 "
           :class="[postDetails.title ? '' : 'opacity-50 pointer-events-none']"
         >
           <IconCloudUpload />
           <span class="ml-3" :class="[publishBtnText == 'Publishing...' ? 'pointer-events-none': '']">{{ publishBtnText }}</span>
-        </div>
+        </button>
       </div>
     </div>
   </div>

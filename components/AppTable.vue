@@ -57,9 +57,4 @@ const props = defineProps({
     required: true,
   },
 });
-
-const convertDate = (d) => {
-  const newDate = new Date(d.seconds * 1000);
-  return newDate.toLocaleString();
-};
 </script>

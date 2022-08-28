@@ -14,7 +14,7 @@
             <!-- sidebar items -->
             <div class="h-auto overflow-y-scroll">
               <nav class="space-y-6 bg-black">
-                <ul class="space-y-3">
+                <ul class="">
                   <slot name="items" />
                 </ul>
               </nav>

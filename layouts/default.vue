@@ -1,5 +1,5 @@
 <template>
-  <div class="max-w-4xl mx-auto ">
+  <div class="w-full mx-auto ">
     <div class="relative px-4 pt-6 sm:px-6 lg:px-8">
         <nav
           class="relative flex items-center justify-between sm:h-10 "
