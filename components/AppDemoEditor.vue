@@ -21,7 +21,7 @@
 
 
       <div class="mt-12 overflow-hidden border rounded-lg">
-        <TiptapNaked />
+        <TiptapNaked @update="docUpdated" />
       </div>
     </div>
   </div>
@@ -32,4 +32,8 @@ import { IconGithub } from '@iconify-prerendered/vue-bxl';
 const { data: editor } = await useAsyncData("editor", () =>
   queryContent("/editor").findOne()
 );
+
+const docUpdated = () => {
+  console.log()
+}
 </script>
