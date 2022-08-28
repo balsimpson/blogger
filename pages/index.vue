@@ -3,7 +3,7 @@
     <AppHero :hero="hero"/>
 
         
-    <!-- <AppDemoEditor /> -->
+    <AppDemoEditor />
 
     <AppCta />
     
