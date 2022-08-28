@@ -345,9 +345,9 @@ const editor = useEditor({
     // Blockquote,
     // BulletList,
     // ListItem,
-    Youtube.configure({
-      width: "100%",
-    }),
+    // Youtube.configure({
+    //   width: "100%",
+    // }),
     // CodeBlockLowlight.configure({
     //   lowlight,
     //   languageClassPrefix: "language-",
@@ -422,34 +422,6 @@ const addVideo = (url) => {
     ytLink.value = "";
     showAddYTLink.value = false;
   }
-};
-
-const saveDoc = (status) => {
-  const json = editor.value.getJSON();
-  const words = json.content[0].content[0].text;
-  console.log(words);
-  console.log(words.length);
-  // if (words.length > 3) {
-  //   console.log(words);
-  //   json.title = words;
-  //   json.slug = words.split(" ").slice(0, 5).join("-");
-  // } else {
-  //   json.title = "title";
-  //   json.slug = "slug";
-  // }
-  // json.status = status;
-  // json.added_at = serverTimestamp();
-
-  // emit("save", json);
-
-  console.log(json);
-  // let res = addDocToFirestore("posts", json);
-
-  // if (status == "published") {
-  //   editor.value.commands.setContent("");
-  // } else {
-  //   alert("Error saving document");
-  // }
 };
 
 // onBeforeUnmount(() => {
