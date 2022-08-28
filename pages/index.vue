@@ -1,16 +1,17 @@
 <template>
   <div class="min-h-screen py-0">
-    <AppHero :hero="hero"/>
+    <AppHero :hero="hero" />
 
-        
     <AppDemoEditor />
 
     <AppCta />
-    
+
     <div class="w-full py-12 mx-auto bg-sky-800">
-      <div class="flex flex-col items-center justify-center w-full max-w-4xl px-4 mx-auto text-center ">
+      <div
+        class="flex flex-col items-center justify-center w-full max-w-4xl px-4 mx-auto text-center "
+      >
         <h2
-          class="text-base font-semibold tracking-wide text-teal-300 uppercase "
+          class="text-base font-semibold tracking-wide text-teal-300 uppercase"
         >
           Admin Panel
         </h2>
@@ -23,15 +24,14 @@
           There are many variations of passages of Lorem Ipsum available but the
           majority have suffered alteration in some form.
         </p>
-          <img src="demo_admin_image.png" alt="" class="rounded-lg">
+        <img src="demo_admin_image.png" alt="" class="rounded-lg" />
       </div>
-
     </div>
-    
+
     <div class="py-12 mx-auto bg-teal-800">
       <div class="w-full max-w-4xl px-4 mx-auto text-center">
         <h2
-          class="text-base font-semibold tracking-wide text-teal-300 uppercase "
+          class="text-base font-semibold tracking-wide text-teal-300 uppercase"
         >
           The Blog
         </h2>
@@ -58,7 +58,6 @@
       </div>
     </div>
 
-    
     <AppFeatures />
     <!-- <AppCarousel /> -->
     <AppFooter />
@@ -71,11 +70,10 @@ const hero = ref();
 
 onMounted(async () => {
   hero.value = await getDocFromFirestore("content", "hero");
-  // posts.value = await getOrderedDocsFromFirestore("posts", "published_at");
+  posts.value = await getOrderedDocsFromFirestore("posts", "published_at");
   // const { pending, data: hero } = await useAsyncData("hero", async() =>
   //   // queryContent("/editor").findOne()
   //   await getDocFromFirestore("content", "hero")
   // );
-
 });
 </script>
