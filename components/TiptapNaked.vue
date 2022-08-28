@@ -270,7 +270,6 @@
 
 <script setup>
 // import Heading from "@tiptap/extension-heading";
-import Document from "@tiptap/extension-document";
 import Underline from "@tiptap/extension-underline";
 import ListItem from "@tiptap/extension-list-item";
 import BulletList from "@tiptap/extension-bullet-list";
@@ -285,6 +284,7 @@ import Highlight from "@tiptap/extension-highlight";
 // import Blockquote from "@tiptap/extension-blockquote";
 import Youtube from "@tiptap/extension-youtube";
 import CharacterCount from "@tiptap/extension-character-count";
+import Document from "@tiptap/extension-document";
 import { BubbleMenu, useEditor, EditorContent } from "@tiptap/vue-3";
 // import { lowlight } from "lowlight/lib/core";
 import { lowlight } from "lowlight/lib/common.js";
@@ -337,14 +337,14 @@ const editor = useEditor({
     Image,
     Link,
     // Code,
-    TextAlign.configure({
-      types: ["heading", "paragraph"],
-    }),
+    // TextAlign.configure({
+    //   types: ["heading", "paragraph"],
+    // }),
     Highlight,
     CharacterCount,
     // Blockquote,
-    BulletList,
-    ListItem,
+    // BulletList,
+    // ListItem,
     Youtube.configure({
       width: "100%",
     }),
@@ -356,17 +356,17 @@ const editor = useEditor({
     //   types: ["heading", "paragraph"],
     // }),
 
-    Placeholder.configure({
-      emptyEditorClass: "is-editor-empty",
-      placeholder: ({ node }) => {
-        // return "Write something …" + node.type.name;
-        if (node.type.name == "heading") {
-          return "What’s the title?";
-        } else {
-          return "Write something …";
-        }
-      },
-    }),
+    // Placeholder.configure({
+    //   emptyEditorClass: "is-editor-empty",
+    //   placeholder: ({ node }) => {
+    //     // return "Write something …" + node.type.name;
+    //     if (node.type.name == "heading") {
+    //       return "What’s the title?";
+    //     } else {
+    //       return "Write something …";
+    //     }
+    //   },
+    // }),
   ],
   editorProps: {
     attributes: {
