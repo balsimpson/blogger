@@ -1,8 +1,8 @@
 <template>
   <!-- <editor-content :editor="editor" /> -->
-  <div v-if="editor" class="flex flex-col h-full">
+  <div v-if="editor" class="flex flex-col items-center w-full h-full">
     <div
-      class="sticky top-0 z-20 flex justify-between prose-sm prose bg-white border-b text-neutral-400 sm:prose lg:prose-lg xl:prose-2xl focus:outline-none "
+      class="sticky top-0 z-20 flex justify-between prose-sm prose bg-white border-b  text-neutral-400 sm:prose lg:prose-lg xl:prose-2xl focus:outline-none "
     >
       <div class="p-2">
         <div class="flex flex-wrap items-center gap-3 rounded">
@@ -95,37 +95,35 @@
                 : 'text-neutral-400',
             ]"
           />
-
-
         </div>
-          <div class="flex mt-2 space-x-3">
-            <IconAlignLeft
-              @click="editor.chain().focus().setTextAlign('left').run()"
-              class="cursor-pointer hover:text-teal-500"
-              :class="[
-                editor.isActive({ textAlign: 'left' })
-                  ? 'is-active text-teal-500'
-                  : 'text-neutral-400',
-              ]"
-            />
-            <IconAlignMiddle
-              @click="editor.chain().focus().setTextAlign('center').run()"
-              class="cursor-pointer hover:text-teal-500"
-              :class="[
-                editor.isActive({ textAlign: 'center' })
-                  ? 'is-active text-teal-500'
-                  : 'text-neutral-400',
-              ]"
-            />
-            <IconAlignRight
-              @click="editor.chain().focus().setTextAlign('right').run()"
-              class="cursor-pointer hover:text-teal-500"
-              :class="[
-                editor.isActive({ textAlign: 'right' })
-                  ? 'is-active text-teal-500'
-                  : 'text-neutral-400',
-              ]"
-            />
+        <div class="flex mt-2 space-x-3">
+          <IconAlignLeft
+            @click="editor.chain().focus().setTextAlign('left').run()"
+            class="cursor-pointer hover:text-teal-500"
+            :class="[
+              editor.isActive({ textAlign: 'left' })
+                ? 'is-active text-teal-500'
+                : 'text-neutral-400',
+            ]"
+          />
+          <IconAlignMiddle
+            @click="editor.chain().focus().setTextAlign('center').run()"
+            class="cursor-pointer hover:text-teal-500"
+            :class="[
+              editor.isActive({ textAlign: 'center' })
+                ? 'is-active text-teal-500'
+                : 'text-neutral-400',
+            ]"
+          />
+          <IconAlignRight
+            @click="editor.chain().focus().setTextAlign('right').run()"
+            class="cursor-pointer hover:text-teal-500"
+            :class="[
+              editor.isActive({ textAlign: 'right' })
+                ? 'is-active text-teal-500'
+                : 'text-neutral-400',
+            ]"
+          />
 
           <IconYoutube
             @click="showAddYTLink = !showAddYTLink"
@@ -136,7 +134,7 @@
           />
 
           <label
-            class="flex flex-col items-center transition-colors cursor-pointer "
+            class="flex flex-col items-center transition-colors cursor-pointer"
           >
             <IconImageAdd
               :class="[
@@ -152,28 +150,28 @@
               class="sr-only"
             />
           </label>
-          </div>
+        </div>
       </div>
       <div class="flex flex-col items-center justify-around p-4 space-y-2">
         <div class="flex justify-between space-x-3">
           <IconUndo
-              @click="editor.chain().focus().undo().run()"
-              class="cursor-pointer hover:text-teal-500"
-              :class="[
-                editor.isActive({ textAlign: 'right' })
-                  ? 'is-active text-teal-500'
-                  : 'text-neutral-400',
-              ]"
-            />
+            @click="editor.chain().focus().undo().run()"
+            class="cursor-pointer hover:text-teal-500"
+            :class="[
+              editor.isActive({ textAlign: 'right' })
+                ? 'is-active text-teal-500'
+                : 'text-neutral-400',
+            ]"
+          />
           <IconRedo
-              @click="editor.chain().focus().redo().run()"
-              class="cursor-pointer hover:text-teal-500"
-              :class="[
-                editor.isActive({ textAlign: 'right' })
-                  ? 'is-active text-teal-500'
-                  : 'text-neutral-400',
-              ]"
-            />
+            @click="editor.chain().focus().redo().run()"
+            class="cursor-pointer hover:text-teal-500"
+            :class="[
+              editor.isActive({ textAlign: 'right' })
+                ? 'is-active text-teal-500'
+                : 'text-neutral-400',
+            ]"
+          />
         </div>
         <div class="flex items-center space-x-1 text-sm">
           <span class="text-sm font-bold text-center text-teal-600">{{
@@ -182,11 +180,10 @@
           <span class="text-sm">words</span>
         </div>
       </div>
-
     </div>
 
     <div
-      class="relative flex-grow h-full overflow-y-scroll prose-sm prose sm:prose lg:prose-lg xl:prose-2xl "
+      class="relative flex-grow h-full overflow-y-scroll prose-sm prose  sm:prose lg:prose-lg xl:prose-2xl "
     >
       <editor-content :editor="editor" class="h-full" />
       <div
@@ -208,7 +205,7 @@
             />
             <button
               @click="addVideo"
-              class="absolute px-3 py-1 text-sm font-semibold uppercase bg-white rounded top-1/2 right-3 "
+              class="absolute px-3 py-1 text-sm font-semibold uppercase bg-white rounded  top-1/2 right-3 "
             >
               add
             </button>
@@ -219,47 +216,47 @@
 
     <div class="relative">
       <bubble-menu
-        class="flex items-center px-2 py-1 space-x-2 bg-black border rounded shadow border-stone-300 "
+        class="flex items-center px-2 py-1 space-x-2 bg-black border rounded shadow  border-stone-300 "
         :editor="editor"
         :tippy-options="{ duration: 100 }"
         v-if="editor"
       >
         <IconHeadingH2
-            @click="editor.chain().focus().toggleHeading({ level: 2 }).run()"
-            class="hover:text-blue-500"
-            :class="[
-              editor.isActive('heading', { level: 2 })
-                ? 'is-active text-teal-500'
-                : 'text-neutral-400',
-            ]"
-          />
+          @click="editor.chain().focus().toggleHeading({ level: 2 }).run()"
+          class="hover:text-blue-500"
+          :class="[
+            editor.isActive('heading', { level: 2 })
+              ? 'is-active text-teal-500'
+              : 'text-neutral-400',
+          ]"
+        />
         <IconBold
-            @click="editor.chain().focus().toggleBold().run()"
-            class="hover:text-blue-500"
-            :class="[
-              editor.isActive('bold')
-                ? 'is-active text-teal-500'
-                : 'text-neutral-400',
-            ]"
-          />
+          @click="editor.chain().focus().toggleBold().run()"
+          class="hover:text-blue-500"
+          :class="[
+            editor.isActive('bold')
+              ? 'is-active text-teal-500'
+              : 'text-neutral-400',
+          ]"
+        />
         <IconCode
-            @click="editor.chain().focus().toggleCode().run()"
-            class="hover:text-blue-500"
-            :class="[
-              editor.isActive('code')
-                ? 'is-active text-teal-500'
-                : 'text-neutral-400',
-            ]"
-          />
+          @click="editor.chain().focus().toggleCode().run()"
+          class="hover:text-blue-500"
+          :class="[
+            editor.isActive('code')
+              ? 'is-active text-teal-500'
+              : 'text-neutral-400',
+          ]"
+        />
         <IconHighlight
-            @click="editor.chain().focus().toggleHighlight().run()"
-            class="hover:text-blue-500"
-            :class="[
-              editor.isActive('highlight')
-                ? 'is-active text-teal-500'
-                : 'text-neutral-400',
-            ]"
-          />
+          @click="editor.chain().focus().toggleHighlight().run()"
+          class="hover:text-blue-500"
+          :class="[
+            editor.isActive('highlight')
+              ? 'is-active text-teal-500'
+              : 'text-neutral-400',
+          ]"
+        />
       </bubble-menu>
     </div>
 
@@ -270,6 +267,7 @@
 
 <script setup>
 // import Heading from "@tiptap/extension-heading";
+import Document from "@tiptap/extension-document";
 import Underline from "@tiptap/extension-underline";
 import ListItem from "@tiptap/extension-list-item";
 import BulletList from "@tiptap/extension-bullet-list";
@@ -284,7 +282,6 @@ import Highlight from "@tiptap/extension-highlight";
 // import Blockquote from "@tiptap/extension-blockquote";
 import Youtube from "@tiptap/extension-youtube";
 import CharacterCount from "@tiptap/extension-character-count";
-import Document from "@tiptap/extension-document";
 import { BubbleMenu, useEditor, EditorContent } from "@tiptap/vue-3";
 // import { lowlight } from "lowlight/lib/core";
 import { lowlight } from "lowlight/lib/common.js";
@@ -307,7 +304,7 @@ import {
   IconUndo,
   IconRedo,
   IconImageAdd,
-  IconCodeBlock
+  IconCodeBlock,
 } from "@iconify-prerendered/vue-bx";
 import { IconYoutube } from "@iconify-prerendered/vue-bxl";
 
