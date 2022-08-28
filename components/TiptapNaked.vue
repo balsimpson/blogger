@@ -345,6 +345,7 @@ const editor = useEditor({
     // Blockquote,
     // BulletList,
     // ListItem,
+    Youtube,
     // Youtube.configure({
     //   width: "100%",
     // }),
