@@ -16,6 +16,6 @@
       </p>
     </div>
     <!-- <img src="/demo_editor_image.png" alt="" class="w-2/3" /> -->
-    <!-- <TiptapNaked /> -->
+    <TiptapNaked />
   </div>
 </template>

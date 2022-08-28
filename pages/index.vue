@@ -24,7 +24,7 @@
           There are many variations of passages of Lorem Ipsum available but the
           majority have suffered alteration in some form.
         </p>
-        <img src="/demo_editor_image.png" alt="" class="rounded-lg" />
+        <img src="/demo_admin_image.png" alt="" class="rounded-lg" />
       </div>
     </div>
 
