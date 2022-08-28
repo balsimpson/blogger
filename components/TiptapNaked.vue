@@ -270,9 +270,10 @@
 
 <script setup>
 // import Heading from "@tiptap/extension-heading";
+import Document from "@tiptap/extension-document";
 import Underline from "@tiptap/extension-underline";
-// import ListItem from "@tiptap/extension-list-item";
-// import BulletList from "@tiptap/extension-bullet-list";
+import ListItem from "@tiptap/extension-list-item";
+import BulletList from "@tiptap/extension-bullet-list";
 import Link from "@tiptap/extension-link";
 import TextAlign from "@tiptap/extension-text-align";
 import StarterKit from "@tiptap/starter-kit";
@@ -280,7 +281,6 @@ import Placeholder from "@tiptap/extension-placeholder";
 import Image from "@tiptap/extension-image";
 import Code from "@tiptap/extension-code";
 // import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
-import Document from "@tiptap/extension-document";
 import Highlight from "@tiptap/extension-highlight";
 // import Blockquote from "@tiptap/extension-blockquote";
 import Youtube from "@tiptap/extension-youtube";
@@ -343,8 +343,8 @@ const editor = useEditor({
     Highlight,
     CharacterCount,
     // Blockquote,
-    // BulletList,
-    // ListItem,
+    BulletList,
+    ListItem,
     Youtube.configure({
       width: "100%",
     }),

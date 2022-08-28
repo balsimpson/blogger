@@ -7,12 +7,33 @@
 
     <AppCta />
     
-    <div class="py-12 mx-auto bg-cyan-700">
+    <div class="w-full py-12 mx-auto bg-sky-800">
+      <div class="flex flex-col items-center justify-center w-full max-w-4xl px-4 mx-auto text-center ">
+        <h2
+          class="text-base font-semibold tracking-wide text-teal-300 uppercase "
+        >
+          Admin Panel
+        </h2>
+        <p
+          class="mt-2 text-3xl font-extrabold leading-8 tracking-tight text-white sm:text-4xl "
+        >
+          Easily Add New Posts
+        </p>
+        <p class="max-w-2xl mx-auto mt-4 mb-6 text-xl text-gray-200">
+          There are many variations of passages of Lorem Ipsum available but the
+          majority have suffered alteration in some form.
+        </p>
+          <img src="demo_admin_image.png" alt="" class="rounded-lg">
+      </div>
+
+    </div>
+    
+    <div class="py-12 mx-auto bg-teal-800">
       <div class="w-full max-w-4xl px-4 mx-auto text-center">
         <h2
           class="text-base font-semibold tracking-wide text-teal-300 uppercase "
         >
-          Our Blogs
+          The Blog
         </h2>
         <p
           class="mt-2 text-3xl font-extrabold leading-8 tracking-tight text-white sm:text-4xl "

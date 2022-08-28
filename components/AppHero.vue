@@ -27,7 +27,7 @@
         </main>
         <div class="hidden w-1/2 overflow-hidden sm:block sm:pl-6 rounded-xl">
           <img
-            class="object-cover w-full h-full rounded-xl"
+            class="object-cover object-left w-full h-full border-t border-l rounded-xl"
             :src="hero.image"
             alt=""
           />
