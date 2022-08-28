@@ -1,8 +1,6 @@
 <template>
   <div class="flex flex-col h-screen">
-    <div>
-     
-    </div>
+    <div></div>
     <div v-if="$route.params.post" class="flex-grow m-2 overflow-y-scroll">
       <TiptapNaked
         @update="updateDoc($event)"
@@ -12,9 +10,14 @@
     </div>
 
     <div class="border-t border-stone-500">
+      <TagInput
+        :suggestions="['comedy', 'laugh']"
+        :oldTags="ogPost.tags"
+        @updated="addTags"
+      />
       <div class="flex justify-between max-w-2xl p-6">
         <button
-          class="inline-block px-3 py-1 text-sm font-bold tracking-wide uppercase transition duration-150 ease-in-out bg-transparent border-2 rounded text-stone-500 border-stone-400 w-min focus:outline-none hover:bg-transparent hover:text-teal-600 "
+          class="inline-block px-3 py-1 text-sm font-bold tracking-wide uppercase transition duration-150 ease-in-out bg-transparent border-2 rounded  text-stone-500 border-stone-400 w-min focus:outline-none hover:bg-transparent hover:text-teal-600 "
         >
           cancel
         </button>
@@ -23,7 +26,7 @@
           <button
             v-if="!confirmDelete"
             @click.prevent="confirmDelete = !confirmDelete"
-            class="inline-flex items-center px-3 py-1 text-sm font-bold tracking-wide text-red-600 uppercase transition duration-150 ease-in-out bg-transparent border-2 border-red-600 rounded w-min focus:outline-none hover:bg-transparent hover:text-red-600 "
+            class="inline-flex items-center px-3 py-1 text-sm font-bold tracking-wide text-red-600 uppercase transition duration-150 ease-in-out bg-transparent border-2 border-red-600 rounded  w-min focus:outline-none hover:bg-transparent hover:text-red-600 "
           >
             <IconTrash />
             <span class="ml-3">delete</span>
@@ -31,14 +34,14 @@
           <button
             v-else
             @click.prevent="deleteDoc($route.params.post)"
-            class="inline-block px-3 py-1 text-sm font-bold tracking-wide text-red-600 uppercase transition duration-150 ease-in-out bg-transparent border-2 border-red-600 rounded w-min focus:outline-none hover:bg-transparent hover:text-red-600 "
+            class="inline-block px-3 py-1 text-sm font-bold tracking-wide text-red-600 uppercase transition duration-150 ease-in-out bg-transparent border-2 border-red-600 rounded  w-min focus:outline-none hover:bg-transparent hover:text-red-600 "
           >
             sure?
           </button>
 
           <button
             @click.prevent="saveDoc($route.params.post)"
-            class="inline-flex items-center px-3 py-1 text-sm font-bold tracking-wide text-white uppercase transition duration-150 ease-in-out bg-teal-600 border-2 border-teal-600 rounded w-min focus:outline-none hover:bg-transparent hover:text-teal-600 "
+            class="inline-flex items-center px-3 py-1 text-sm font-bold tracking-wide text-white uppercase transition duration-150 ease-in-out bg-teal-600 border-2 border-teal-600 rounded  w-min focus:outline-none hover:bg-transparent hover:text-teal-600 "
             :class="[saveBtnText == 'save' ? '' : 'pointer-events-none']"
           >
             <IconSave />
@@ -53,10 +56,7 @@
 <script setup>
 import { useToast } from "vue-toastification";
 import { serverTimestamp } from "firebase/firestore";
-import {
-  IconSave,
-  IconTrash
-} from "@iconify-prerendered/vue-bx";
+import { IconSave, IconTrash } from "@iconify-prerendered/vue-bx";
 
 definePageMeta({
   layout: "admin",
@@ -70,16 +70,18 @@ const isEditing = ref(false);
 const ogPost = computed(() => JSON.parse(route.params.post));
 // const ogPost = computed(() => route.params.post);
 const editorPost = ref({});
+const postTags = ref([]);
 const confirmDelete = ref(false);
 const saveBtnText = ref("save");
 
 const updateDoc = async (data) => {
   // let doc = JSON.parse(data);
   //   console.log(data);
-  editorPost.value = data.content;
+  editorPost.value = { type: "doc", content: data.content };
 };
 
 const saveDoc = async (data) => {
+  console.log("save", editorPost.value);
   saveBtnText.value = "saving...";
   let doc = JSON.parse(data);
 
@@ -90,25 +92,23 @@ const saveDoc = async (data) => {
     description,
     image,
     slug,
-    content: {
-      type: "doc",
-      content: editorPost.value,
-    },
-    published_at: serverTimestamp(),
+    content: editorPost.value,
+    tags: postTags.value,
+    lastUpdatedAt: serverTimestamp(),
   };
 
   console.log("add", newData);
 
   //   console.log(doc, ogPost.value);
-    let res = await updateDocInFirestore("posts", ogPost.value.uid, newData);
+  let res = await updateDocInFirestore("posts", ogPost.value.uid, newData);
 
-    if (res) {
-      toast.error("Post failed to save! - " + res);
-    } else {
-        toast.success(doc.title + " was saved!")
-    }
-    console.log(res);
-    saveBtnText.value = "save";
+  if (res) {
+    toast.error("Post failed to save! - " + res);
+  } else {
+    toast.success(doc.title + " was saved!");
+  }
+  console.log(res);
+  saveBtnText.value = "save";
 };
 
 const deleteDoc = async (data) => {
@@ -118,8 +118,14 @@ const deleteDoc = async (data) => {
   console.log(data);
 };
 
+const addTags = (tags) => {
+  postTags.value = tags;
+  // console.log("tags", tags);
+};
+
 onMounted(() => {
   console.log(route.params, ogPost.value);
+  editorPost.value = ogPost.value.content;
 });
 </script>
 

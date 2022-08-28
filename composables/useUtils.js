@@ -53,21 +53,22 @@ export const createSlug = (title, id) => {
 }
 
 export const getPostDetails = (data) => {
-  if (data.length > 0 && data[0].content) {
-    let title = data.find(element => element.type == "heading");
+  // console.log("data", data)
+  if (data && data.content) {
+    let title = data.content.find(element => element.type == "heading");
     title = title?.content[0]?.text || "";
-    let description = data.find(element => element.type == "paragraph");
+    let description = data.content.find(element => element.type == "paragraph");
 
     if (description && description.content) {
       description = description?.content[0]?.text || "";
     }
 
-    let image = data.find(element => element.type == "image");
+    let image = data.content.find(element => element.type == "image");
     image = image?.attrs?.src || ""
   
     return { title, description, image }
   }
-  return ""
+  return
 }
 
 export const getYTLink = (link) => {

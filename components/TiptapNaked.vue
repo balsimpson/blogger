@@ -1,13 +1,13 @@
 <template>
   <!-- <editor-content :editor="editor" /> -->
-  <div v-if="editor" class="flex flex-col w-3/4 h-full border">
+  <div v-if="editor" class="flex flex-col w-full h-full border">
     <!-- <div
       class="sticky top-0 z-20 flex justify-between prose-sm prose bg-white border-b text-neutral-400 sm:prose lg:prose-lg xl:prose-2xl focus:outline-none " -->
     <div
       class="sticky top-0 z-20 flex justify-between bg-white border-b text-neutral-400 focus:outline-none "
     >
-      <div class="p-2">
-        <div class="flex flex-wrap items-center gap-3 rounded">
+      <div class="flex flex-wrap items-center px-4">
+        <div class="flex flex-wrap items-center gap-3 mr-3 rounded">
           <IconHeadingH1
             @click="editor.chain().focus().toggleHeading({ level: 1 }).run()"
             class="cursor-pointer hover:text-teal-500"
@@ -98,7 +98,7 @@
             ]"
           />
         </div>
-        <div class="flex mt-2 space-x-3">
+        <div class="flex space-x-3">
           <IconAlignLeft
             @click="editor.chain().focus().setTextAlign('left').run()"
             class="cursor-pointer hover:text-teal-500"
@@ -187,7 +187,7 @@
     <!-- <div
       class="relative flex-grow h-full overflow-y-scroll prose-sm prose sm:prose lg:prose-lg xl:prose-2xl " -->
     <div
-      class="relative flex-grow h-full overflow-y-scroll "
+      class="relative flex-grow w-full h-full overflow-y-scroll"
     >
       <editor-content :editor="editor" class="h-full" />
       <div
@@ -438,6 +438,7 @@ const addVideo = (url) => {
 <style>
 .ProseMirror {
   height: inherit;
+  max-width: 100%;
   /* min-height: 60vh; */
   background: #ffffff;
   /* height: 100%;
