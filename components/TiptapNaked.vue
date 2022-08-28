@@ -321,25 +321,28 @@ const vFocus = {
   mounted: (el) => el.focus(),
 };
 
-// const CustomDocument = Document.extend({
-//   content: "heading block*",
-// });
+const CustomDocument = Document.extend({
+  content: "heading block*",
+});
 
 const editor = useEditor({
   extensions: [
-    // CustomDocument,
+    CustomDocument,
     StarterKit.configure({
-      document: true,
+      document: false,
       heading: {
         levels: [1, 2, 3, 4, 5, 6],
       },
+      // textAlign: {
+      //   types: ["heading", "paragraph"]
+      // }
     }),
     Image,
     Link,
     // Code,
-    // TextAlign.configure({
-    //   types: ["heading", "paragraph"],
-    // }),
+    TextAlign.configure({
+      types: ["heading", "paragraph"],
+    }),
     Highlight,
     CharacterCount,
     // Blockquote,
@@ -353,7 +356,7 @@ const editor = useEditor({
     //   lowlight,
     //   languageClassPrefix: "language-",
     // }),
-    TextAlign,
+    // TextAlign,
     // TextAlign.configure({
     //   types: ["heading", "paragraph"],
     // }),
