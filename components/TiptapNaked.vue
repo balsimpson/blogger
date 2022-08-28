@@ -353,6 +353,7 @@ const editor = useEditor({
     //   lowlight,
     //   languageClassPrefix: "language-",
     // }),
+    TextAlign,
     // TextAlign.configure({
     //   types: ["heading", "paragraph"],
     // }),
