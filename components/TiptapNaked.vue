@@ -321,15 +321,15 @@ const vFocus = {
   mounted: (el) => el.focus(),
 };
 
-const CustomDocument = Document.extend({
-  content: "heading block*",
-});
+// const CustomDocument = Document.extend({
+//   content: "heading block*",
+// });
 
 const editor = useEditor({
   extensions: [
-    CustomDocument,
+    // CustomDocument,
     StarterKit.configure({
-      document: false,
+      document: true,
       heading: {
         levels: [1, 2, 3, 4, 5, 6],
       },
