@@ -4,7 +4,7 @@
       <TiptapNaked @update="docUpdated" />
     </div>
     <div class="py-4">
-      <TagInput :suggestions="['comedy', 'laugh']" @updated="addTags" />
+      <TagInput :suggestions="tagsuggestions.items" @updated="addTags" />
       <div class="flex space-x-8">
         <div
           @click.prevent="saveDoc('draft')"
@@ -48,6 +48,9 @@ useHead({
 const editorPost = ref({});
 const postDetails = computed(() => getPostDetails(editorPost.value));
 const postTags = ref([]);
+const { data: tagsuggestions } = await useAsyncData("tags", () =>
+  queryContent("/tags").findOne()
+);
 const toast = useToast();
 const publishBtnText = ref("Publish");
 

@@ -16,6 +16,9 @@
       </p>
     </div>
     <!-- <img src="/demo_editor_image.png" alt="" class="w-2/3" /> -->
-    <TiptapNaked />
+    <div class="max-w-3xl mx-auto">
+      
+      <TiptapNaked />
+    </div>
   </div>
 </template>

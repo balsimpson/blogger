@@ -60,7 +60,7 @@
       </template>
     </NavSidebar>
 
-    <div class="w-full h-screen mx-auto overflow-y-scroll bg-white">
+    <div class="w-full h-screen mx-auto overflow-y-scroll bg-stone-300">
       <!-- Main Content -->
       <slot />
     </div>

@@ -94,6 +94,9 @@ export const convertDate = (d) => {
   let m = newDate.getMonth();
   let y = newDate.getFullYear();
 
+  let h = newDate.getHours();
+  let min = newDate.getMinutes()
+
   let months = [
     "Jan",
     "Feb",
@@ -109,5 +112,5 @@ export const convertDate = (d) => {
     "Dec",
   ];
 
-  return day + " " + months[m] + " " + y;
+  return day + " " + months[m] + " " + y + " " + h + ":" + min;
 };

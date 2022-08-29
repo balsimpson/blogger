@@ -32,10 +32,12 @@ export default defineNuxtConfig({
         FIREBASE_API_KEY: process.env.FIREBASE_API_KEY,
         FIREBASE_PROJECT_ID: process.env.FIREBASE_PROJECT_ID,
         CLOUDINARY_NAME: process.env.CLOUDINARY_NAME,
+        CLOUDINARY_UPLOAD_PRESET: process.env.CLOUDINARY_UPLOAD_PRESET,
       },
       privateRuntimeConfig: {
         FIREBASE_API_KEY: process.env.FIREBASE_API_KEY,
         FIREBASE_PROJECT_ID: process.env.FIREBASE_PROJECT_ID,
         CLOUDINARY_NAME: process.env.CLOUDINARY_NAME,
+        CLOUDINARY_UPLOAD_PRESET: process.env.CLOUDINARY_UPLOAD_PRESET,
       },
 })

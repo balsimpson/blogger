@@ -1,6 +1,6 @@
 <template>
   <!-- <editor-content :editor="editor" /> -->
-  <div v-if="editor" class="flex flex-col w-full h-full border">
+  <div v-if="editor" class="flex flex-col w-full h-full border rounded-lg">
     <!-- <div
       class="sticky top-0 z-20 flex justify-between prose-sm prose bg-white border-b text-neutral-400 sm:prose lg:prose-lg xl:prose-2xl focus:outline-none " -->
     <div
@@ -183,13 +183,12 @@
         </div>
       </div>
     </div>
-    
+
     <!-- <div
       class="relative flex-grow h-full overflow-y-scroll prose-sm prose sm:prose lg:prose-lg xl:prose-2xl " -->
-    <div
-      class="relative flex-grow w-full h-full overflow-y-scroll"
-    >
+    <div class="relative flex-grow w-full h-full overflow-y-scroll">
       <editor-content :editor="editor" class="h-full" />
+      <!-- add youtube link -->
       <div
         v-if="showAddYTLink"
         @keydown.esc="showAddYTLink = !showAddYTLink"
@@ -216,6 +215,34 @@
           </label>
         </div>
       </div>
+      <!-- add link -->
+      <div
+        v-if="showAddLink"
+        @keydown.esc="showAddLink = !showAddLink"
+        class="absolute top-0 z-10 w-full p-2 pb-4 bg-white shadow-xl"
+        tabindex="0"
+      >
+        <div class="relative px-2">
+          <label class="text-sm text-stone-500"
+            >Paste a URL
+
+            <input
+              v-model="urlLink"
+              v-focus
+              type="url"
+              class="form-input"
+              placeholder="https://www.youtube.com/watch?v=aRx4-fsJ5uE"
+            />
+            <button
+              @click="addLink"
+              class="absolute px-3 py-1 text-sm font-semibold uppercase bg-white rounded top-1/2 right-3 "
+              :class="{ 'is-active': editor.isActive('link') }"
+            >
+              add
+            </button>
+          </label>
+        </div>
+      </div>
     </div>
 
     <div class="relative">
@@ -227,7 +254,7 @@
       >
         <IconHeadingH2
           @click="editor.chain().focus().toggleHeading({ level: 2 }).run()"
-          class="hover:text-blue-500"
+          class="cursor-pointer hover:text-teal-500"
           :class="[
             editor.isActive('heading', { level: 2 })
               ? 'is-active text-teal-500'
@@ -236,7 +263,7 @@
         />
         <IconBold
           @click="editor.chain().focus().toggleBold().run()"
-          class="hover:text-blue-500"
+          class="cursor-pointer hover:text-teal-500"
           :class="[
             editor.isActive('bold')
               ? 'is-active text-teal-500'
@@ -245,7 +272,7 @@
         />
         <IconCode
           @click="editor.chain().focus().toggleCode().run()"
-          class="hover:text-blue-500"
+          class="cursor-pointer hover:text-teal-500"
           :class="[
             editor.isActive('code')
               ? 'is-active text-teal-500'
@@ -254,9 +281,18 @@
         />
         <IconHighlight
           @click="editor.chain().focus().toggleHighlight().run()"
-          class="hover:text-blue-500"
+          class="cursor-pointer hover:text-teal-500"
           :class="[
             editor.isActive('highlight')
+              ? 'is-active text-teal-500'
+              : 'text-neutral-400',
+          ]"
+        />
+        <IconLink
+          @click="addLink"
+          class="cursor-pointer hover:text-teal-500"
+          :class="[
+            editor.isActive('link')
               ? 'is-active text-teal-500'
               : 'text-neutral-400',
           ]"
@@ -309,13 +345,16 @@ import {
   IconRedo,
   IconImageAdd,
   IconCodeBlock,
+  IconLink,
 } from "@iconify-prerendered/vue-bx";
 import { IconYoutube } from "@iconify-prerendered/vue-bxl";
 
 const props = defineProps(["content"]);
 const emit = defineEmits();
 const showAddYTLink = ref("");
+const showAddLink = ref("");
 const ytLink = ref("");
+const urlLink = ref("");
 const runtimeConfig = useRuntimeConfig();
 
 const vFocus = {
@@ -339,7 +378,10 @@ const editor = useEditor({
       // }
     }),
     Image,
-    Link,
+    // Link,
+    Link.configure({
+      openOnClick: false,
+    }),
     // Code,
     TextAlign.configure({
       types: ["heading", "paragraph"],
@@ -401,7 +443,7 @@ const uploadImage = async (event) => {
 
   let formData = new FormData();
   formData.append("file", file);
-  formData.append("upload_preset", "custom-upload");
+  formData.append("upload_preset", runtimeConfig.CLOUDINARY_UPLOAD_PRESET);
   formData.append("folder", "blog");
 
   const response = await fetch(
@@ -427,6 +469,29 @@ const addVideo = (url) => {
     });
     ytLink.value = "";
     showAddYTLink.value = false;
+  }
+};
+
+// add URL video
+const addLink = (url) => {
+  const previousUrl = editor.value.getAttributes("link").href;
+  // console.log(previousUrl)
+
+  if (previousUrl) {
+    editor.value.commands.unsetLink({
+      href: urlLink.value,
+    });
+    return;
+  }
+
+  showAddLink.value = !showAddLink.value;
+
+  if (urlLink.value) {
+    editor.value.commands.setLink({
+      href: urlLink.value,
+    });
+    urlLink.value = "";
+    showAddLink.value = false;
   }
 };
 
@@ -486,13 +551,13 @@ const addVideo = (url) => {
   height: 0;
 }
 
-pre {
-  background: #0d0d0d;
+/* pre {
+  background: #a31313;
   color: #fff;
-  font-family: "JetBrainsMono", monospace;
+  
   padding: 0.75rem 1rem;
   border-radius: 0.5rem;
-}
+} */
 
 /* .ProseMirror code {
   font-size: 0.9rem;
@@ -510,14 +575,6 @@ pre {
   background-color: rgb(213, 213, 213);
   color: #616161;
   box-decoration-break: clone;
-}
-
-.prose :where(code):not(:where([class~="not-prose"] *))::before {
-  content: "";
-}
-
-.prose :where(code):not(:where([class~="not-prose"] *))::after {
-  content: "";
 }
 
 img {
@@ -544,7 +601,7 @@ hr {
   border-radius: 0.5rem;
 } */
 
-pre {
+/* pre {
   background: #f4f4f4;
   border: 1px solid #ddd;
   border-left: 3px solid #f36d33;
@@ -559,7 +616,7 @@ pre {
   padding: 1em 1.5em;
   display: block;
   word-wrap: break-word;
-}
+} */
 
 /* code {
   font-size: 0.9rem;
@@ -570,12 +627,30 @@ pre {
   box-decoration-break: clone;
 } */
 
-code {
-  background: #efefef;
+/* .prose :where(code):not(:where([class~="not-prose"] *))::before {
+  content: "";
+}
+
+.prose :where(code):not(:where([class~="not-prose"] *))::after {
+  content: "";
+} */
+
+.prose code {
   word-wrap: break-word;
   box-decoration-break: clone;
-  padding: 0.1rem 0.3rem 0.2rem;
   border-radius: 0.2rem;
+  border: 1px solid #dedede;
+  color: crimson;
+  background-color: #e7e7e7;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+.prose pre code {
+  color: rgb(255, 255, 255);
+  background-color: transparent;
+  font-family: "JetBrainsMono", monospace;
+  border: none;
 }
 
 .hljs-comment,

@@ -1,11 +1,11 @@
 <template>
   <div class="max-w-3xl">
-    <div class="flex flex-wrap items-start justify-start md:justify-start">
+    <div class="flex flex-wrap items-start justify-start">
       <div v-for="(tag, index) in tags" :key="tag" class="space-x-2">
         <div
-          class="flex items-center h-5 p-1 m-1 border border-gray-400 rounded-lg "
+          class="flex items-center h-5 p-1 m-1 border-2 border-teal-600 rounded-lg "
         >
-          <div class="text-[12px] px-2 font-bold text-gray-400">{{ tag }}</div>
+          <div class="text-[12px] px-2 font-bold text-teal-600 border-teal-600">{{ tag }}</div>
           <svg
             @click="removeTag(tag)"
             xmlns="http://www.w3.org/2000/svg"
@@ -27,19 +27,7 @@
         ref="newtagInput"
         type="text"
         placeholder="Add a Tag"
-        class="
-          text-[12px]
-          w-20
-          m-1
-          rounded-full
-          text-center
-          focus:outline-none
-          border border-teal-400
-          text-gray-400
-          bg-transparent
-          placeholder-gray-400
-          focus-within:border-stone-600
-        "
+        class="w-20 m-1 text-xs font-bold text-center text-teal-600 bg-transparent border-2 rounded-full focus:outline-none border-stone-400 placeholder-stone-500 focus-within:border-teal-600 "
         v-model="newtag"
         @keydown="addTag"
       />
@@ -95,7 +83,11 @@ onMounted(() => {
 });
 
 const suggestedTags = computed(() => {
-  return props.suggestions.filter((tag) => tag.includes(newtag.value));
+  if (props.suggestions.length) {
+    return props.suggestions.filter((tag) => tag.includes(newtag.value));
+  } else {
+    return []
+  }
 });
 
 const suggestionClicked = (tag) => {

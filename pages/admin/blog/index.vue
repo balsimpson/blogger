@@ -136,47 +136,13 @@ const postsHTML = computed(() => {
   return items;
 });
 
-function formatDate(val) {
-  let d = val.split(",")[0];
-  let day = d.split("/")[0];
-  let m = val.split("/")[1];
-  let y = val.split("/")[2];
-  let year = y.split(",")[0];
-
-  let time = val.split(",")[1];
-  let hour = time.split(":")[0];
-  let min = time.split(":")[1];
-
-  let months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
-  let month = months[m - 1];
-  return `${day} ${month} ${year} ${hour}:${min}`;
-}
-
-const convertDate = (d) => {
-  const newDate = new Date(d.seconds * 1000);
-  return newDate.toLocaleString();
-};
-
 const deletePost = async (id) => {
   let res = await deleteDocFromFirestore("posts", id);
 };
 
 onMounted(async () => {
   posts.value = await getOrderedDocsFromFirestore("posts", "published_at");
-  console.log(posts.value);
+  // console.log(posts.value);
 });
 </script>
 
