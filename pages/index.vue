@@ -66,14 +66,13 @@
 
 <script setup>
 const posts = ref([]);
-const hero = ref();
+// const hero = ref();
+const { pending, data: hero } = await useAsyncData("hero", async() =>
+  queryContent("/hero").findOne()
+);
 
 onMounted(async () => {
-  hero.value = await getDocFromFirestore("content", "hero");
+  // hero.value = await getDocFromFirestore("content", "hero");
   posts.value = await getOrderedDocsFromFirestore("posts", "published_at");
-  // const { pending, data: hero } = await useAsyncData("hero", async() =>
-  //   // queryContent("/editor").findOne()
-  //   await getDocFromFirestore("content", "hero")
-  // );
 });
 </script>
