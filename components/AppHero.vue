@@ -30,7 +30,7 @@
             :src="hero.image"
             alt=""
           /> -->
-          <TiptapNaked />
+          <Tiptap />
         </div>
 
         <!-- <pre>{{hero}}</pre> -->

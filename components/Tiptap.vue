@@ -1,136 +1,150 @@
 <template>
   <!-- <editor-content :editor="editor" /> -->
-  <div v-if="editor" class="h-full max-w-4xl">
+  <div v-if="editor" class="flex flex-col w-full h-full border rounded-lg">
+    <!-- <div
+      class="sticky top-0 z-20 flex justify-between prose-sm prose bg-white border-b text-neutral-400 sm:prose lg:prose-lg xl:prose-2xl focus:outline-none " -->
     <div
-      class="sticky top-0 z-20 flex justify-between prose-sm prose text-neutral-400 sm:prose lg:prose-lg xl:prose-2xl focus:outline-none toolbar "
+      class="sticky top-0 z-20 flex justify-between bg-white border-b text-neutral-400 focus:outline-none "
     >
-      <div class="px-2">
-        <div class="flex flex-wrap items-center gap-3 p-2 rounded sm:gap-5">
-          <TipTapHeading1
+      <div class="flex flex-wrap items-center px-4">
+        <div class="flex flex-wrap items-center gap-3 mr-3 rounded">
+          <IconHeadingH1
             @click="editor.chain().focus().toggleHeading({ level: 1 }).run()"
-            class="hover:text-blue-500"
+            class="cursor-pointer hover:text-teal-500"
             :class="[
               editor.isActive('heading', { level: 1 })
-                ? 'is-active text-blue-500'
+                ? 'is-active text-teal-500'
                 : 'text-neutral-400',
             ]"
           />
-          <TipTapHeading2
+
+          <IconHeadingH2
             @click="editor.chain().focus().toggleHeading({ level: 2 }).run()"
-            class="hover:text-blue-500"
+            class="cursor-pointer hover:text-teal-500"
             :class="[
               editor.isActive('heading', { level: 2 })
-                ? 'is-active text-blue-500'
+                ? 'is-active text-teal-500'
                 : 'text-neutral-400',
             ]"
           />
-          <TipTapHeading3
+
+          <IconHeadingH3
             @click="editor.chain().focus().toggleHeading({ level: 3 }).run()"
-            class="hover:text-blue-500"
+            class="cursor-pointer hover:text-teal-500"
             :class="[
               editor.isActive('heading', { level: 3 })
-                ? 'is-active text-blue-500'
+                ? 'is-active text-teal-500'
                 : 'text-neutral-400',
             ]"
           />
 
-          <TipTapBold
+          <IconBold
             @click="editor.chain().focus().toggleBold().run()"
-            class="hover:text-blue-500"
+            class="cursor-pointer hover:text-teal-500"
             :class="[
               editor.isActive('bold')
-                ? 'is-active text-blue-500'
+                ? 'is-active text-teal-500'
                 : 'text-neutral-400',
             ]"
           />
 
-          <TipTapItalic
+          <IconItalic
             @click="editor.chain().focus().toggleItalic().run()"
-            class="hover:text-blue-500"
+            class="cursor-pointer hover:text-teal-500"
             :class="[
               editor.isActive('italic')
-                ? 'is-active text-blue-500'
+                ? 'is-active text-teal-500'
                 : 'text-neutral-400',
             ]"
           />
 
-          <TipTapCode
-            @click="editor.chain().focus().toggleCode().run()"
-            class="hover:text-blue-500"
-            :class="[
-              editor.isActive('code')
-                ? 'is-active text-blue-500'
-                : 'text-neutral-400',
-            ]"
-          />
-
-          <TipTapCodeBlock
-            @click="editor.chain().focus().toggleCodeBlock().run()"
-            class="hover:text-blue-500"
-            :class="[
-              editor.isActive('codeBlock')
-                ? 'is-active text-blue-500'
-                : 'text-neutral-400',
-            ]"
-          />
-
-          <!-- blockquote -->
-          <TipTapBlockquote
+          <IconQuote
             @click="editor.chain().focus().toggleBlockquote().run()"
-            class="hover:text-blue-500"
+            class="cursor-pointer hover:text-teal-500"
             :class="[
               editor.isActive('blockquote')
-                ? 'is-active text-blue-500'
+                ? 'is-active text-teal-500'
+                : 'text-neutral-400',
+            ]"
+          />
+
+          <IconCode
+            @click="editor.chain().focus().toggleCode().run()"
+            class="cursor-pointer hover:text-teal-500"
+            :class="[
+              editor.isActive('code')
+                ? 'is-active text-teal-500'
+                : 'text-neutral-400',
+            ]"
+          />
+
+          <IconCodeBlock
+            @click="editor.chain().focus().toggleCodeBlock().run()"
+            class="cursor-pointer hover:text-teal-500"
+            :class="[
+              editor.isActive('codeBlock')
+                ? 'is-active text-teal-500'
+                : 'text-neutral-400',
+            ]"
+          />
+
+          <IconHighlight
+            @click="editor.chain().focus().toggleHighlight().run()"
+            class="cursor-pointer hover:text-teal-500"
+            :class="[
+              editor.isActive('highlight')
+                ? 'is-active text-teal-500'
                 : 'text-neutral-400',
             ]"
           />
         </div>
-
-        <div class="flex flex-wrap items-center gap-3 p-2 rounded sm:gap-5">
-          <!-- highlight -->
-          <TipTapHighlight
-            @click="editor.chain().focus().toggleHighlight().run()"
-            class="hover:text-blue-500"
+        <div class="flex space-x-3">
+          <IconAlignLeft
+            @click="editor.chain().focus().setTextAlign('left').run()"
+            class="cursor-pointer hover:text-teal-500"
             :class="[
-              editor.isActive('highlight')
-                ? 'is-active text-blue-500'
+              editor.isActive({ textAlign: 'left' })
+                ? 'is-active text-teal-500'
+                : 'text-neutral-400',
+            ]"
+          />
+          <IconAlignMiddle
+            @click="editor.chain().focus().setTextAlign('center').run()"
+            class="cursor-pointer hover:text-teal-500"
+            :class="[
+              editor.isActive({ textAlign: 'center' })
+                ? 'is-active text-teal-500'
+                : 'text-neutral-400',
+            ]"
+          />
+          <IconAlignRight
+            @click="editor.chain().focus().setTextAlign('right').run()"
+            class="cursor-pointer hover:text-teal-500"
+            :class="[
+              editor.isActive({ textAlign: 'right' })
+                ? 'is-active text-teal-500'
                 : 'text-neutral-400',
             ]"
           />
 
-          <!-- YouTube -->
-          <TipTapYoutube
+          <IconYoutube
             @click="showAddYTLink = !showAddYTLink"
-            class="relative hover:text-blue-500"
+            class="relative cursor-pointer hover:text-teal-500"
             :class="[
-              showAddYTLink ? 'is-active text-blue-500' : 'text-neutral-400',
+              showAddYTLink ? 'is-active text-teal-500' : 'text-neutral-400',
             ]"
           />
 
           <label
-            class="flex flex-col items-center transition-colors cursor-pointer hover:text-neutral-400 "
+            class="flex flex-col items-center transition-colors cursor-pointer"
           >
-            <div
-              class=""
+            <IconImageAdd
               :class="[
                 editor.isActive('image')
-                  ? 'is-active text-blue-500'
-                  : 'text-neutral-400',
+                  ? 'is-active text-teal-500'
+                  : 'text-neutral-400 hover:text-teal-500',
               ]"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                width="24"
-                height="24"
-              >
-                <path fill="none" d="M0 0h24v24H0z" />
-                <path
-                  fill="currentColor"
-                  d="M21 15v3h3v2h-3v3h-2v-3h-3v-2h3v-3h2zm.008-12c.548 0 .992.445.992.993V13h-2V5H4v13.999L14 9l3 3v2.829l-3-3L6.827 19H14v2H2.992A.993.993 0 0 1 2 20.007V3.993A1 1 0 0 1 2.992 3h18.016zM8 7a2 2 0 1 1 0 4 2 2 0 0 1 0-4z"
-                />
-              </svg>
-            </div>
+            />
             <input
               @change="uploadImage"
               type="file"
@@ -138,126 +152,156 @@
               class="sr-only"
             />
           </label>
-
-          <TipTapTextAlignLeft
-            @click="editor.chain().focus().setTextAlign('left').run()"
-            class="hover:text-blue-500"
-            :class="[
-              editor.isActive({ textAlign: 'left' })
-                ? 'is-active text-blue-500'
-                : 'text-neutral-400',
-            ]"
-          />
-
-          <TipTapTextAlignCenter
-            @click="editor.chain().focus().setTextAlign('center').run()"
-            class="hover:text-blue-500"
-            :class="[
-              editor.isActive({ textAlign: 'center' })
-                ? 'is-active text-blue-500'
-                : 'text-neutral-400',
-            ]"
-          />
-
-          <TipTapTextAlignRight
-            @click="editor.chain().focus().setTextAlign('right').run()"
-            class="hover:text-blue-500"
+        </div>
+      </div>
+      <div class="flex flex-col items-center justify-around p-4 space-y-2">
+        <div class="flex justify-between space-x-3">
+          <IconUndo
+            @click="editor.chain().focus().undo().run()"
+            class="cursor-pointer hover:text-teal-500"
             :class="[
               editor.isActive({ textAlign: 'right' })
-                ? 'is-active text-blue-500'
+                ? 'is-active text-teal-500'
+                : 'text-neutral-400',
+            ]"
+          />
+          <IconRedo
+            @click="editor.chain().focus().redo().run()"
+            class="cursor-pointer hover:text-teal-500"
+            :class="[
+              editor.isActive({ textAlign: 'right' })
+                ? 'is-active text-teal-500'
                 : 'text-neutral-400',
             ]"
           />
         </div>
-      </div>
-      <div class="flex flex-col items-center justify-around px-4">
-        <div class="flex flex-col w-full">
-          <div class="mb-2 text-sm">
-            <span class="font-bold text-blue-400">{{
-              editor.storage.characterCount.words()
-            }}</span>
-            words
-          </div>
-          <div class="flex justify-between">
-            <TipTapUndo @click="editor.chain().focus().undo().run()" />
-            <TipTapRedo @click="editor.chain().focus().redo().run()" />
-          </div>
+        <div class="flex items-center space-x-1 text-sm">
+          <span class="text-sm font-bold text-center text-teal-600">{{
+            editor.storage.characterCount.words()
+          }}</span>
+          <span class="text-sm">words</span>
         </div>
       </div>
-      <!-- <div class="flex flex-wrap items-center justify-center gap-3 p-2 rounded">
-        <span class="inline-block space-x-3"> </span>
-      </div> -->
+    </div>
 
-      <!-- undo -->
-      <!-- <div class="flex p-2 space-x-3 rounded">
-      </div> -->
+    <!-- <div
+      class="relative flex-grow h-full overflow-y-scroll prose-sm prose sm:prose lg:prose-lg xl:prose-2xl " -->
+    <div class="relative flex-grow w-full h-full overflow-y-scroll">
+      <!-- <no-ssr> -->
+        <client-only>
+          <editor-content :editor="editor" class="h-full"/>
+        </client-only>
+      <!-- </no-ssr> -->
+      <!-- add youtube link -->
+      <div
+        v-if="showAddYTLink"
+        @keydown.esc="showAddYTLink = !showAddYTLink"
+        class="absolute top-0 z-10 w-full p-2 pb-4 bg-white shadow-xl"
+        tabindex="0"
+      >
+        <div class="relative px-2">
+          <label class="text-sm text-stone-500"
+            >Paste a YouTube Link
+
+            <input
+              v-model="ytLink"
+              v-focus
+              type="url"
+              class="form-input"
+              placeholder="https://www.youtube.com/watch?v=aRx4-fsJ5uE"
+            />
+            <button
+              @click="addVideo"
+              class="absolute px-3 py-1 text-sm font-semibold uppercase bg-white rounded top-1/2 right-3 "
+            >
+              add
+            </button>
+          </label>
+        </div>
+      </div>
+      <!-- add link -->
+      <div
+        v-if="showAddLink"
+        @keydown.esc="showAddLink = !showAddLink"
+        class="absolute top-0 z-10 w-full p-2 pb-4 bg-white shadow-xl"
+        tabindex="0"
+      >
+        <div class="relative px-2">
+          <label class="text-sm text-stone-500"
+            >Paste a URL
+
+            <input
+              v-model="urlLink"
+              v-focus
+              type="url"
+              class="form-input"
+              placeholder="https://www.youtube.com/watch?v=aRx4-fsJ5uE"
+            />
+            <button
+              @click="addLink"
+              class="absolute px-3 py-1 text-sm font-semibold uppercase bg-white rounded top-1/2 right-3 "
+              :class="{ 'is-active': editor.isActive('link') }"
+            >
+              add
+            </button>
+          </label>
+        </div>
+      </div>
     </div>
 
     <div class="relative">
       <bubble-menu
-        class="flex items-center px-2 py-1 space-x-2 bg-white border rounded shadow border-stone-300 "
+        class="flex items-center px-2 py-1 space-x-2 bg-black border rounded shadow border-stone-300 "
         :editor="editor"
         :tippy-options="{ duration: 100 }"
         v-if="editor"
       >
-        <TipTapHeading1
-          @click="editor.chain().focus().toggleHeading({ level: 1 }).run()"
-          class="hover:text-blue-500"
+        <IconHeadingH2
+          @click="editor.chain().focus().toggleHeading({ level: 2 }).run()"
+          class="cursor-pointer hover:text-teal-500"
           :class="[
-            editor.isActive('heading', { level: 1 })
-              ? 'is-active text-blue-500'
+            editor.isActive('heading', { level: 2 })
+              ? 'is-active text-teal-500'
               : 'text-neutral-400',
           ]"
         />
-        <TipTapBold
+        <IconBold
           @click="editor.chain().focus().toggleBold().run()"
-          class="hover:text-blue-500"
+          class="cursor-pointer hover:text-teal-500"
           :class="[
             editor.isActive('bold')
-              ? 'is-active text-blue-500'
+              ? 'is-active text-teal-500'
               : 'text-neutral-400',
           ]"
         />
-        <TipTapCode
+        <IconCode
           @click="editor.chain().focus().toggleCode().run()"
-          class="hover:text-blue-500"
+          class="cursor-pointer hover:text-teal-500"
           :class="[
             editor.isActive('code')
-              ? 'is-active text-blue-500'
+              ? 'is-active text-teal-500'
               : 'text-neutral-400',
           ]"
         />
-        <TipTapHighlight
+        <IconHighlight
           @click="editor.chain().focus().toggleHighlight().run()"
-          class="hover:text-blue-500"
+          class="cursor-pointer hover:text-teal-500"
           :class="[
             editor.isActive('highlight')
-              ? 'is-active text-blue-500'
+              ? 'is-active text-teal-500'
+              : 'text-neutral-400',
+          ]"
+        />
+        <IconLink
+          @click="addLink"
+          class="cursor-pointer hover:text-teal-500"
+          :class="[
+            editor.isActive('link')
+              ? 'is-active text-teal-500'
               : 'text-neutral-400',
           ]"
         />
       </bubble-menu>
-      <editor-content :editor="editor" />
-      <div
-        v-if="showAddYTLink"
-        class="absolute top-0 z-10 w-full p-2 bg-black border-l border-r shadow-xl border-stone-500 "
-      >
-        <div class="relative px-2">
-          <label class="text-sm text-white">Paste a YouTube Link</label>
-          <input
-            v-model="ytLink"
-            type="text"
-            class="w-full px-3 py-1 pr-12 border rounded-lg border-stone-300 placeholder-stone-300 "
-            placeholder="https://www.youtube.com/watch?v=aRx4-fsJ5uE"
-          />
-          <button
-            @click="addVideo"
-            class="absolute px-3 py-1 text-sm font-semibold uppercase bg-white rounded right-3 top-7 "
-          >
-            add
-          </button>
-        </div>
-      </div>
     </div>
 
     <!-- <div>{{ editor.getHTML() }}</div>
@@ -267,17 +311,17 @@
 
 <script setup>
 // import Heading from "@tiptap/extension-heading";
+import Document from "@tiptap/extension-document";
 import Underline from "@tiptap/extension-underline";
-// import ListItem from "@tiptap/extension-list-item";
-// import BulletList from "@tiptap/extension-bullet-list";
+import ListItem from "@tiptap/extension-list-item";
+import BulletList from "@tiptap/extension-bullet-list";
 import Link from "@tiptap/extension-link";
 import TextAlign from "@tiptap/extension-text-align";
 import StarterKit from "@tiptap/starter-kit";
 import Placeholder from "@tiptap/extension-placeholder";
 import Image from "@tiptap/extension-image";
 import Code from "@tiptap/extension-code";
-import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
-import Document from "@tiptap/extension-document";
+// import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
 import Highlight from "@tiptap/extension-highlight";
 // import Blockquote from "@tiptap/extension-blockquote";
 import Youtube from "@tiptap/extension-youtube";
@@ -285,15 +329,47 @@ import CharacterCount from "@tiptap/extension-character-count";
 import { BubbleMenu, useEditor, EditorContent } from "@tiptap/vue-3";
 // import { lowlight } from "lowlight/lib/core";
 import { lowlight } from "lowlight/lib/common.js";
+import {
+  IconHeadingH1,
+  IconHeadingH2,
+  IconHeadingH3,
+  IconBold,
+  IconItalic,
+  IconQuote,
+  IconCode,
+} from "@iconify-prerendered/vue-gridicons";
+
+import {
+  IconHighlight,
+  IconAlignLeft,
+  IconAlignRight,
+  IconAlignMiddle,
+  IconAlignJustify,
+  IconUndo,
+  IconRedo,
+  IconImageAdd,
+  IconCodeBlock,
+  IconLink,
+} from "@iconify-prerendered/vue-bx";
+import { IconYoutube } from "@iconify-prerendered/vue-bxl";
 
 const props = defineProps(["content"]);
 const emit = defineEmits();
 const showAddYTLink = ref("");
+const showAddLink = ref("");
 const ytLink = ref("");
+const urlLink = ref("");
+const runtimeConfig = useRuntimeConfig();
 
+const vFocus = {
+  mounted: (el) => el.focus(),
+};
+
+// const CustomDocument = ref();
+// const editor = ref();
 const CustomDocument = Document.extend({
-  content: "heading block*",
-});
+    content: "heading block*",
+  });
 
 const editor = useEditor({
   extensions: [
@@ -303,9 +379,15 @@ const editor = useEditor({
       heading: {
         levels: [1, 2, 3, 4, 5, 6],
       },
+      // textAlign: {
+      //   types: ["heading", "paragraph"]
+      // }
     }),
     Image,
-    Link,
+    // Link,
+    Link.configure({
+      openOnClick: false,
+    }),
     // Code,
     TextAlign.configure({
       types: ["heading", "paragraph"],
@@ -315,32 +397,35 @@ const editor = useEditor({
     // Blockquote,
     // BulletList,
     // ListItem,
-    Youtube.configure({
-      width: "100%",
-    }),
-    CodeBlockLowlight.configure({
-      lowlight,
-      languageClassPrefix: "language-",
-    }),
+    Youtube,
+    // Youtube.configure({
+    //   width: "100%",
+    // }),
+    // CodeBlockLowlight.configure({
+    //   lowlight,
+    //   languageClassPrefix: "language-",
+    // }),
+    // TextAlign,
     // TextAlign.configure({
     //   types: ["heading", "paragraph"],
     // }),
 
-    Placeholder.configure({
-      emptyEditorClass: "is-editor-empty",
-      placeholder: ({ node }) => {
-        // return "Write something …" + node.type.name;
-        if (node.type.name == "heading") {
-          return "What’s the title?";
-        } else {
-          return "Write something …";
-        }
-      },
-    }),
+    // Placeholder.configure({
+    //   emptyEditorClass: "is-editor-empty",
+    //   placeholder: ({ node }) => {
+    //     // return "Write something …" + node.type.name;
+    //     if (node.type.name == "heading") {
+    //       return "What’s the title?";
+    //     } else {
+    //       return "Write something …";
+    //     }
+    //   },
+    // }),
   ],
   editorProps: {
     attributes: {
-      class: 'prose prose-sm sm:prose lg:prose-lg xl:prose-2xl  focus:outline-none p-5 h-auto',
+      class:
+        "prose prose-sm sm:prose lg:prose-lg xl:prose-2xl focus:outline-none p-5 overflow-y-scroll",
     },
   },
   content: props.content,
@@ -364,11 +449,11 @@ const uploadImage = async (event) => {
 
   let formData = new FormData();
   formData.append("file", file);
-  formData.append("upload_preset", "custom-upload");
+  formData.append("upload_preset", runtimeConfig.CLOUDINARY_UPLOAD_PRESET);
   formData.append("folder", "blog");
 
   const response = await fetch(
-    `https://api.cloudinary.com/v1_1/tinkrshop/image/upload`,
+    `https://api.cloudinary.com/v1_1/${runtimeConfig.CLOUDINARY_NAME}/image/upload`,
     {
       method: "POST",
       body: formData,
@@ -393,31 +478,98 @@ const addVideo = (url) => {
   }
 };
 
-const saveDoc = (status) => {
-  const json = editor.value.getJSON();
-  // const words = json.content[0].content[0].text;
-  // if (words.length > 3) {
-  //   console.log(words);
-  //   json.title = words;
-  //   json.slug = words.split(" ").slice(0, 5).join("-");
-  // } else {
-  //   json.title = "title";
-  //   json.slug = "slug";
-  // }
-  // json.status = status;
-  // json.added_at = serverTimestamp();
+// add URL video
+const addLink = (url) => {
+  const previousUrl = editor.value.getAttributes("link").href;
+  // console.log(previousUrl)
 
-  // emit("save", json);
+  if (previousUrl) {
+    editor.value.commands.unsetLink({
+      href: urlLink.value,
+    });
+    return;
+  }
 
-  console.log(json);
-  // let res = addDocToFirestore("posts", json);
+  showAddLink.value = !showAddLink.value;
 
-  // if (status == "published") {
-  //   editor.value.commands.setContent("");
-  // } else {
-  //   alert("Error saving document");
-  // }
+  if (urlLink.value) {
+    editor.value.commands.setLink({
+      href: urlLink.value,
+    });
+    urlLink.value = "";
+    showAddLink.value = false;
+  }
 };
+
+// onMounted(() => {
+//   CustomDocument.value = Document.extend({
+//     content: "heading block*",
+//   });
+
+//   editor.value = useEditor({
+//     extensions: [
+//       CustomDocument,
+//       StarterKit.configure({
+//         document: false,
+//         heading: {
+//           levels: [1, 2, 3, 4, 5, 6],
+//         },
+//         // textAlign: {
+//         //   types: ["heading", "paragraph"]
+//         // }
+//       }),
+//       Image,
+//       // Link,
+//       Link.configure({
+//         openOnClick: false,
+//       }),
+//       // Code,
+//       TextAlign.configure({
+//         types: ["heading", "paragraph"],
+//       }),
+//       Highlight,
+//       CharacterCount,
+//       // Blockquote,
+//       // BulletList,
+//       // ListItem,
+//       Youtube,
+//       // Youtube.configure({
+//       //   width: "100%",
+//       // }),
+//       // CodeBlockLowlight.configure({
+//       //   lowlight,
+//       //   languageClassPrefix: "language-",
+//       // }),
+//       // TextAlign,
+//       // TextAlign.configure({
+//       //   types: ["heading", "paragraph"],
+//       // }),
+
+//       // Placeholder.configure({
+//       //   emptyEditorClass: "is-editor-empty",
+//       //   placeholder: ({ node }) => {
+//       //     // return "Write something …" + node.type.name;
+//       //     if (node.type.name == "heading") {
+//       //       return "What’s the title?";
+//       //     } else {
+//       //       return "Write something …";
+//       //     }
+//       //   },
+//       // }),
+//     ],
+//     editorProps: {
+//       attributes: {
+//         class:
+//           "prose prose-sm sm:prose lg:prose-lg xl:prose-2xl focus:outline-none p-5 overflow-y-scroll",
+//       },
+//     },
+//     content: props.content,
+//     autofocus: true,
+//     onUpdate: ({ editor }) => {
+//       emit("update", editor.getJSON());
+//     },
+//   });
+// });
 
 // onBeforeUnmount(() => {
 //   editor.value.destroy();
@@ -426,8 +578,9 @@ const saveDoc = (status) => {
 
 <style>
 .ProseMirror {
-  /* height: max-content; */
-  min-height: 60vh;
+  height: inherit;
+  max-width: 100%;
+  /* min-height: 60vh; */
   background: #ffffff;
   /* height: 100%;
   max-width: 100%;
@@ -447,7 +600,7 @@ const saveDoc = (status) => {
   border-left: 1px solid #6f6f6f;
   border-right: 1px solid #6f6f6f;
   border-top: 1px solid #6f6f6f;
-  background: #0d0d0d;
+  /* background: #0d0d0d; */
 }
 .ProseMirror:focus .toolbar {
   outline: none;
@@ -474,13 +627,13 @@ const saveDoc = (status) => {
   height: 0;
 }
 
-pre {
-  background: #0d0d0d;
+/* pre {
+  background: #a31313;
   color: #fff;
-  font-family: "JetBrainsMono", monospace;
+  
   padding: 0.75rem 1rem;
   border-radius: 0.5rem;
-}
+} */
 
 /* .ProseMirror code {
   font-size: 0.9rem;
@@ -498,14 +651,6 @@ pre {
   background-color: rgb(213, 213, 213);
   color: #616161;
   box-decoration-break: clone;
-}
-
-.prose :where(code):not(:where([class~="not-prose"] *))::before {
-  content: "";
-}
-
-.prose :where(code):not(:where([class~="not-prose"] *))::after {
-  content: "";
 }
 
 img {
@@ -532,7 +677,7 @@ hr {
   border-radius: 0.5rem;
 } */
 
-pre {
+/* pre {
   background: #f4f4f4;
   border: 1px solid #ddd;
   border-left: 3px solid #f36d33;
@@ -547,7 +692,7 @@ pre {
   padding: 1em 1.5em;
   display: block;
   word-wrap: break-word;
-}
+} */
 
 /* code {
   font-size: 0.9rem;
@@ -558,12 +703,30 @@ pre {
   box-decoration-break: clone;
 } */
 
-code {
-  background: #efefef;
+/* .prose :where(code):not(:where([class~="not-prose"] *))::before {
+  content: "";
+}
+
+.prose :where(code):not(:where([class~="not-prose"] *))::after {
+  content: "";
+} */
+
+.prose code {
   word-wrap: break-word;
   box-decoration-break: clone;
-  padding: 0.1rem 0.3rem 0.2rem;
   border-radius: 0.2rem;
+  border: 1px solid #dedede;
+  color: crimson;
+  background-color: #e7e7e7;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+.prose pre code {
+  color: rgb(255, 255, 255);
+  background-color: transparent;
+  font-family: "JetBrainsMono", monospace;
+  border: none;
 }
 
 .hljs-comment,
