@@ -311,7 +311,6 @@
 
 <script setup>
 // import Heading from "@tiptap/extension-heading";
-import Document from "@tiptap/extension-document";
 import Underline from "@tiptap/extension-underline";
 import ListItem from "@tiptap/extension-list-item";
 import BulletList from "@tiptap/extension-bullet-list";
@@ -327,6 +326,7 @@ import Highlight from "@tiptap/extension-highlight";
 import Youtube from "@tiptap/extension-youtube";
 import CharacterCount from "@tiptap/extension-character-count";
 import { BubbleMenu, useEditor, EditorContent } from "@tiptap/vue-3";
+import Document from "@tiptap/extension-document";
 // import { lowlight } from "lowlight/lib/core";
 import { lowlight } from "lowlight/lib/common.js";
 import {
