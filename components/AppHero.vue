@@ -30,7 +30,12 @@
             :src="hero.image"
             alt=""
           /> -->
-          <Tiptap />
+          <!-- <no-ssr> -->
+            <!-- <Tiptap /> -->
+          <!-- </no-ssr> -->
+          <client-only>
+            <Tiptap />
+          </client-only>
         </div>
 
         <!-- <pre>{{hero}}</pre> -->

@@ -188,9 +188,9 @@
       class="relative flex-grow h-full overflow-y-scroll prose-sm prose sm:prose lg:prose-lg xl:prose-2xl " -->
     <div class="relative flex-grow w-full h-full overflow-y-scroll">
       <!-- <no-ssr> -->
-        <client-only>
-          <editor-content :editor="editor" class="h-full"/>
-        </client-only>
+      <!-- <client-only> -->
+        <editor-content :editor="editor" class="h-full" />
+      <!-- </client-only> -->
       <!-- </no-ssr> -->
       <!-- add youtube link -->
       <div
@@ -365,75 +365,70 @@ const vFocus = {
   mounted: (el) => el.focus(),
 };
 
-// const CustomDocument = ref();
-// const editor = ref();
-const CustomDocument = Document.extend({
-    content: "heading block*",
-  });
-
+const CustomDocument = ref();
 const editor = useEditor({
-  extensions: [
-    CustomDocument,
-    StarterKit.configure({
-      document: false,
-      heading: {
-        levels: [1, 2, 3, 4, 5, 6],
-      },
-      // textAlign: {
-      //   types: ["heading", "paragraph"]
-      // }
-    }),
-    Image,
-    // Link,
-    Link.configure({
-      openOnClick: false,
-    }),
-    // Code,
-    TextAlign.configure({
-      types: ["heading", "paragraph"],
-    }),
-    Highlight,
-    CharacterCount,
-    // Blockquote,
-    // BulletList,
-    // ListItem,
-    Youtube,
-    // Youtube.configure({
-    //   width: "100%",
-    // }),
-    // CodeBlockLowlight.configure({
-    //   lowlight,
-    //   languageClassPrefix: "language-",
-    // }),
-    // TextAlign,
-    // TextAlign.configure({
-    //   types: ["heading", "paragraph"],
-    // }),
+    extensions: [
+      CustomDocument,
+      StarterKit.configure({
+        document: true,
+        heading: {
+          levels: [1, 2, 3, 4, 5, 6],
+        },
+        // textAlign: {
+        //   types: ["heading", "paragraph"]
+        // }
+      }),
+      Image,
+      // Link,
+      Link.configure({
+        openOnClick: false,
+      }),
+      // Code,
+      TextAlign.configure({
+        types: ["heading", "paragraph"],
+      }),
+      Highlight,
+      CharacterCount,
+      // Blockquote,
+      // BulletList,
+      // ListItem,
+      Youtube,
+      // Youtube.configure({
+      //   width: "100%",
+      // }),
+      // CodeBlockLowlight.configure({
+      //   lowlight,
+      //   languageClassPrefix: "language-",
+      // }),
+      // TextAlign,
+      // TextAlign.configure({
+      //   types: ["heading", "paragraph"],
+      // }),
 
-    // Placeholder.configure({
-    //   emptyEditorClass: "is-editor-empty",
-    //   placeholder: ({ node }) => {
-    //     // return "Write something …" + node.type.name;
-    //     if (node.type.name == "heading") {
-    //       return "What’s the title?";
-    //     } else {
-    //       return "Write something …";
-    //     }
-    //   },
-    // }),
-  ],
-  editorProps: {
-    attributes: {
-      class:
-        "prose prose-sm sm:prose lg:prose-lg xl:prose-2xl focus:outline-none p-5 overflow-y-scroll",
+      // Placeholder.configure({
+      //   emptyEditorClass: "is-editor-empty",
+      //   placeholder: ({ node }) => {
+      //     // return "Write something …" + node.type.name;
+      //     if (node.type.name == "heading") {
+      //       return "What’s the title?";
+      //     } else {
+      //       return "Write something …";
+      //     }
+      //   },
+      // }),
+    ],
+    editorProps: {
+      attributes: {
+        class:
+          "prose prose-sm sm:prose lg:prose-lg xl:prose-2xl focus:outline-none p-5 overflow-y-scroll",
+      },
     },
-  },
-  content: props.content,
-  autofocus: true,
-  onUpdate: ({ editor }) => {
-    emit("update", editor.getJSON());
-  },
-});
+    content: props.content,
+    autofocus: true,
+    onUpdate: ({ editor }) => {
+      emit("update", editor.getJSON());
+    },
+  });
 
 const readData = (f) => {
   return new Promise((resolve) => {
@@ -570,6 +565,14 @@ const addLink = (url) => {
 //     },
 //   });
 // });
+onMounted(async () => {
+  console.log("mounted")
+  const CustomDocument = Document.extend({
+    content: "heading block*",
+  });
+  
+  
+});
 
 // onBeforeUnmount(() => {
 //   editor.value.destroy();
