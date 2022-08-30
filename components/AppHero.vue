@@ -4,7 +4,7 @@
     <div v-if="hero" class="max-w-4xl mx-auto">
       <div class="flex flex-col">
         <main
-          class="mx-auto my-10 max-w-7xl sm:mt-12 md:my-16 lg:my-20 xl:my-28"
+          class="mx-auto max-w-7xl sm:mt-12 "
         >
           <div class="text-center">
             <h1
@@ -24,7 +24,7 @@
             </div>
           </div>
         </main>
-        <div class="overflow-hidden rounded-xl">
+        <div class="overflow-hidden rounded-xl h-[500px] mt-12">
           <!-- <img
             class="object-cover object-left w-full h-full border rounded-xl"
             :src="hero.image"
@@ -34,8 +34,12 @@
             <!-- <Tiptap /> -->
           <!-- </no-ssr> -->
           <client-only>
-            <Tiptap />
+            <TiptapNew />
           </client-only>
+        </div>
+
+        <div class="max-w-lg mx-auto mt-4 text-center">
+          The Text Editor from TipTap comes with image uploads to <span class="font-bold">Cloudinary</span> and <span class="font-bold">YouTube</span> video embeds. Use Headings, Code Block and Highlight to make your writing stand out. With built-in authentication, you can start blogging right away.
         </div>
 
         <!-- <pre>{{hero}}</pre> -->

@@ -2,11 +2,11 @@
   <div class="min-h-screen py-0">
     <AppHero :hero="hero" />
 
-    <AppDemoEditor />
+    <!-- <AppDemoEditor /> -->
 
     <AppCta />
 
-    <div class="w-full py-12 mx-auto bg-sky-800">
+    <!-- <div class="w-full py-12 mx-auto bg-sky-800">
       <div
         class="flex flex-col items-center justify-center w-full max-w-4xl px-4 mx-auto text-center "
       >
@@ -26,7 +26,7 @@
         </p>
         <img src="/demo_admin_image.png" alt="" class="rounded-lg" />
       </div>
-    </div>
+    </div> -->
 
     <div class="py-12 mx-auto bg-teal-800">
       <div class="w-full max-w-4xl px-4 mx-auto text-center">

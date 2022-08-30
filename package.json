@@ -13,6 +13,7 @@
     "nuxt": "^3.0.0-rc.8"
   },
   "dependencies": {
+    "@iconify-prerendered/vue-bi": "^0.10.1661750918",
     "@iconify-prerendered/vue-bx": "^0.10.1656181453",
     "@iconify-prerendered/vue-bxl": "^0.10.1656181467",
     "@iconify-prerendered/vue-bxs": "^0.10.1656181481",
@@ -43,7 +44,6 @@
   "name": "blogger",
   "description": "``` # install tiptap npm install @tiptap/vue-3 @tiptap/starter-kit @tiptap/extension-underline @tiptap/extension-text-align @tiptap/extension-placeholder @tiptap/extension-image @tiptap/extension-heading @tiptap/extension-code @tiptap/extension-character-count @tiptap/extension-bubble-menu @tiptap/extension-link @tiptap/extension-highlight @tiptap/extension-youtube @tiptap/extension-code-block-lowlight",
   "version": "1.0.0",
-  "main": "tailwind.config.js",
-  "author": "",
+  "author": "tinkr",
   "license": "ISC"
 }
