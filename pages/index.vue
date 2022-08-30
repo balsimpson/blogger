@@ -28,7 +28,7 @@
       </div>
     </div> -->
 
-    <div class="py-12 mx-auto bg-teal-800">
+    <div class="py-12 mx-auto bg-cyan-800">
       <div class="w-full max-w-4xl px-4 mx-auto text-center">
         <h2
           class="text-base font-semibold tracking-wide text-teal-300 uppercase"

@@ -1,8 +1,8 @@
 <template>
-  <div class="w-full mx-auto ">
+  <div class="w-full ">
     <div class="relative px-4 py-6 sm:px-6 lg:px-8">
         <nav
-          class="relative flex items-center justify-between sm:h-10 "
+          class="relative flex items-center justify-between max-w-4xl mx-auto sm:h-10"
           aria-label="Global"
         >
           <div class="flex items-center flex-grow flex-shrink-0 lg:flex-grow-0">
