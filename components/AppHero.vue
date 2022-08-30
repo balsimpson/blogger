@@ -2,11 +2,11 @@
   <!-- This example requires Tailwind CSS v2.0+ -->
   <div class="relative px-4 pb-12 overflow-hidden bg-white">
     <div v-if="hero" class="max-w-4xl mx-auto">
-      <div class="flex">
+      <div class="flex flex-col">
         <main
-          class="mx-auto my-10 sm:w-1/2 max-w-7xl sm:mt-12 md:my-16 lg:my-20 xl:my-28"
+          class="mx-auto my-10 max-w-7xl sm:mt-12 md:my-16 lg:my-20 xl:my-28"
         >
-          <div class="">
+          <div class="text-center">
             <h1
               class="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl md:text-6xl "
             >
@@ -18,19 +18,19 @@
               v-html="hero.description"
             ></p>
             <div
-              class="mt-2 sm:mt-4 sm:flex "
+              class="justify-center mt-2 sm:mt-4 sm:flex"
             >
-              
               <div v-html="hero.button"></div>
             </div>
           </div>
         </main>
-        <div class="hidden w-1/2 overflow-hidden sm:block sm:pl-6 rounded-xl">
-          <img
-            class="object-cover object-left w-full h-full border-t border-l rounded-xl"
+        <div class="overflow-hidden rounded-xl">
+          <!-- <img
+            class="object-cover object-left w-full h-full border rounded-xl"
             :src="hero.image"
             alt=""
-          />
+          /> -->
+          <TiptapNaked />
         </div>
 
         <!-- <pre>{{hero}}</pre> -->

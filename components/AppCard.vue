@@ -10,7 +10,7 @@
       <NuxtLink :to="'/blog/' + slug">
         <div class="text-xl font-bold leading-5">{{ title }}</div>
       </NuxtLink>
-      <div class="px-6 mt-4">{{ description }}</div>
+      <div class="mt-4 ">{{ description }}</div>
     </div>
     <div class="p-4 border-t">
       <div class="text-xs text-stone-400">{{ date }}</div>

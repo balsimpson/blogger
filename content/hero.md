@@ -1,8 +1,7 @@
 ---
 headline1: Deploy your 
 headline2: blog online
-description:  In under 5 minutes, have your own blog up and running. Built on <span class="inline-block">Nuxt 3</span> and Tailwind CSS. With a rich text editor from TipTap. Comes with an admin panel with Firebase authetication. <br><br>Deploy on Vercel with a click.
-button1: Get Started
-button2: View Demo
+description:  In just 5 minutes, have your own blog up and running. Built on <a href="https://v3.nuxtjs.com" target="_blank" class="font-bold text-blue-500">Nuxt 3</a> and <a href="https://tailwindcss.com" target="_blank" class="font-bold text-teal-500">Tailwind CSS</a>. With a rich text editor from <a href="https://tiptap.dev" target="_blank" class="font-bold text-red-500">TipTap</a>. Comes with an admin panel with <a href="https://console.firebase.google.com" target="_blank" class="px-2 font-bold text-yellow-500 bg-black rounded">Firebase</a> authetication. <br><br>Deploy on Vercel with a click.
+button: <a href="https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fbalsimpson%2Fblogger&env=FIREBASE_API_KEY,FIREBASE_PROJECT_ID,CLOUDINARY_NAME&envDescription=All%20Environment%20variables%20are%20required.&project-name=blogger&repo-name=blogger&demo-description=A%20blog%20template%20made%20in%20Nuxt%203%20and%20styled%20by%20Tailwind%20CSS.&demo-url=http%3A%2F%2Fblogger-livid.vercel.app%2F&demo-image=https%3A%2F%2Fres.cloudinary.com%2Ftinkrshop%2Fimage%2Fupload%2Fv1661431359%2Fblog%2Fs5e51rf8far73jza4ul3.png"><img src="https://vercel.com/button" alt="Deploy with Vercel"/></a>
 image: /demo_editor_image.png
 ---
