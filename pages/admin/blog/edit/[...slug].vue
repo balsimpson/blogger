@@ -13,7 +13,7 @@
       </div>
     </div>
     <div v-if="$route.params.post" class="flex-grow m-2 overflow-y-scroll">
-      <TiptapNaked
+      <TiptapNew
         @update="updateDoc($event)"
         :content="ogPost.content"
         :uid="$route.params.post.uid"

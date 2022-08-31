@@ -1,14 +1,14 @@
 <template>
   <!-- <editor-content :editor="editor" /> -->
-  <div v-if="editor" class="flex flex-col w-full h-full rounded-lg">
+  <div v-if="editor" class="flex flex-col w-full h-full rounded-none sm:rounded-lg">
     <div
-      class="sticky top-0 z-20 flex justify-between text-neutral-400 focus:outline-none toolbar"
+      class="sticky top-0 z-20 flex justify-between text-neutral-500 focus:outline-none bg-stone-600"
     >
       <div class="flex flex-wrap items-center p-4">
-        <div class="flex flex-wrap items-center mr-3 rounded gap-x-2">
+        <div class="flex flex-wrap items-center ">
           <IconHeadingH1
             @click="editor.chain().focus().toggleHeading({ level: 1 }).run()"
-            class="cursor-pointer w-9 h-9 hover:text-teal-500"
+            class="w-8 h-8 cursor-pointer hover:text-teal-500"
             :class="[
               editor.isActive('heading', { level: 1 })
                 ? 'is-active text-teal-500'
@@ -18,7 +18,7 @@
 
           <IconHeadingH2
             @click="editor.chain().focus().toggleHeading({ level: 2 }).run()"
-            class="cursor-pointer w-9 h-9 hover:text-teal-500 "
+            class="w-8 h-8 cursor-pointer hover:text-teal-500 "
             :class="[
               editor.isActive('heading', { level: 2 })
                 ? 'is-active text-teal-500'
@@ -28,7 +28,7 @@
 
           <IconHeadingH3
             @click="editor.chain().focus().toggleHeading({ level: 3 }).run()"
-            class="cursor-pointer w-9 h-9 hover:text-teal-500 "
+            class="w-8 h-8 cursor-pointer hover:text-teal-500 "
             :class="[
               editor.isActive('heading', { level: 3 })
                 ? 'is-active text-teal-500'
@@ -106,7 +106,7 @@
           />
           <IconAlignMiddle
             @click="editor.chain().focus().setTextAlign('center').run()"
-            class="cursor-pointer hover:text-teal-500"
+            class="w-8 cursor-pointer hover:text-teal-500"
             :class="[
               editor.isActive({ textAlign: 'center' })
                 ? 'is-active text-teal-500'
@@ -115,7 +115,7 @@
           />
           <IconAlignRight
             @click="editor.chain().focus().setTextAlign('right').run()"
-            class="cursor-pointer hover:text-teal-500"
+            class="w-8 cursor-pointer hover:text-teal-500"
             :class="[
               editor.isActive({ textAlign: 'right' })
                 ? 'is-active text-teal-500'
@@ -132,7 +132,7 @@
           />
   
           <label
-            class="flex flex-col items-center transition-colors cursor-pointer"
+            class="flex flex-col items-center w-8 transition-colors cursor-pointer"
           >
             <IconImageAdd
               :class="[
@@ -154,7 +154,7 @@
         <div class="flex justify-between space-x-3">
           <IconUndo
             @click="editor.chain().focus().undo().run()"
-            class="cursor-pointer hover:text-teal-500"
+            class="w-8 h-8 cursor-pointer hover:text-teal-500"
             :class="[
               editor.isActive({ textAlign: 'right' })
                 ? 'is-active text-teal-500'
@@ -163,7 +163,7 @@
           />
           <IconRedo
             @click="editor.chain().focus().redo().run()"
-            class="cursor-pointer hover:text-teal-500"
+            class="w-8 h-8 cursor-pointer hover:text-teal-500"
             :class="[
               editor.isActive({ textAlign: 'right' })
                 ? 'is-active text-teal-500'
@@ -511,18 +511,16 @@ const addLink = (url) => {
   border-right: 1px solid #6f6f6f;
   border-bottom: 1px solid #6f6f6f;
   /* background: #d6d6d6; */
-  border-radius: 0 0 12px 12px;
+  border-radius: 0 0 10px 10px;
   transition: color 0.3s ease-in-out;
 }
-/* .ProseMirror:focus {
-  background: #ffffff;
-} */
+
 .toolbar {
-  border-radius: 8px 8px 0 0;
+  /* border-radius: 8px 8px 0 0; */
   border-left: 1px solid #6f6f6f;
   border-right: 1px solid #6f6f6f;
   border-top: 1px solid #6f6f6f;
-  background: #3c3c3c;
+  background: #6f6565;
 }
 
 /* Placeholder (at the top) */
@@ -543,27 +541,9 @@ const addLink = (url) => {
   height: 0;
 }
 
-/* pre {
-  background: #a31313;
-  color: #fff;
-  
-  padding: 0.75rem 1rem;
-  border-radius: 0.5rem;
-} */
-
-/* .ProseMirror code {
-  font-size: 0.9rem;
-  padding: 0.5em;
-  border-radius: 0.25em;
-  background-color: rgb(213, 213, 213);
-  color: #616161;
-  box-decoration-break: clone;
-} */
-
 .ProseMirror .prose {
   font-size: 0.9rem;
   padding: 0.5em;
-  /* border-radius: 0.25em; */
   background-color: rgb(213, 213, 213);
   color: #616161;
   box-decoration-break: clone;
@@ -584,48 +564,6 @@ hr {
   border-top: 2px solid rgba(#0d0d0d, 0.1);
   margin: 2rem 0;
 }
-
-/* pre {
-  background: #0d0d0d;
-  color: #fff;
-  font-family: "JetBrainsMono", monospace;
-  padding: 0.75rem 1rem;
-  border-radius: 0.5rem;
-} */
-
-/* pre {
-  background: #f4f4f4;
-  border: 1px solid #ddd;
-  border-left: 3px solid #f36d33;
-  color: #666;
-  page-break-inside: avoid;
-  font-family: monospace;
-  font-size: 15px;
-  line-height: 1.6;
-  margin-bottom: 1.6em;
-  max-width: 100%;
-  overflow: auto;
-  padding: 1em 1.5em;
-  display: block;
-  word-wrap: break-word;
-} */
-
-/* code {
-  font-size: 0.9rem;
-  padding: 0.5em;
-  border-radius: 0.25em;
-  background-color: rgb(213, 213, 213);
-  color: #616161;
-  box-decoration-break: clone;
-} */
-
-/* .prose :where(code):not(:where([class~="not-prose"] *))::before {
-  content: "";
-}
-
-.prose :where(code):not(:where([class~="not-prose"] *))::after {
-  content: "";
-} */
 
 .prose :where(pre):not(:where([class~="not-prose"] *)) {
     background-color: rgb(45, 45, 45);
@@ -649,55 +587,12 @@ hr {
   border: none;
 }
 
-.hljs-comment,
-.hljs-quote {
-  color: #616161;
+.prose :where(code):not(:where([class~="not-prose"] *))::before {
+  content: "";
 }
 
-.hljs-variable,
-.hljs-template-variable,
-.hljs-attribute,
-.hljs-tag,
-.hljs-name,
-.hljs-regexp,
-.hljs-link,
-.hljs-name,
-.hljs-selector-id,
-.hljs-selector-class {
-  color: #f98181;
+.prose :where(code):not(:where([class~="not-prose"] *))::after {
+  content: "";
 }
 
-.hljs-number,
-.hljs-meta,
-.hljs-built_in,
-.hljs-builtin-name,
-.hljs-literal,
-.hljs-type,
-.hljs-params {
-  color: #fbbc88;
-}
-
-.hljs-string,
-.hljs-symbol,
-.hljs-bullet {
-  color: #b9f18d;
-}
-
-.hljs-title,
-.hljs-section {
-  color: #faf594;
-}
-
-.hljs-keyword,
-.hljs-selector-tag {
-  color: #70cff8;
-}
-
-.hljs-emphasis {
-  font-style: italic;
-}
-
-.hljs-strong {
-  font-weight: 700;
-}
 </style>

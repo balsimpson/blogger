@@ -33,13 +33,13 @@ export const createSlug = (title, id) => {
     console.log('1');
     return (
       title
-      .toLowerCase()
-      .replace(/[^\w ]+/g, '')
-      .replace(/ +/g, '-') +
+        .toLowerCase()
+        .replace(/[^\w ]+/g, '')
+        .replace(/ +/g, '-') +
       '-' +
       id
-      )
-    } else if (title) {
+    )
+  } else if (title) {
     console.log('2');
     return (
       title
@@ -53,22 +53,24 @@ export const createSlug = (title, id) => {
 }
 
 export const getPostDetails = (data) => {
-  // console.log("data", data)
+  console.log("data", data)
   if (data && data.content) {
     let title = data.content.find(element => element.type == "heading");
-    title = title?.content[0]?.text || "";
-    let description = data.content.find(element => element.type == "paragraph");
+    if (title && title.content) {
+      title = title?.content[0]?.text || "";
+    }
 
+    let description = data.content.find(element => element.type == "paragraph");
     if (description && description.content) {
       description = description?.content[0]?.text || "";
     }
 
     let image = data.content.find(element => element.type == "image");
     image = image?.attrs?.src || ""
-  
+
     return { title, description, image }
   }
-  return
+  // return
 }
 
 export const getYTLink = (link) => {

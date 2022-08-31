@@ -1,22 +1,23 @@
 <template>
-  <div class="flex flex-col h-screen p-4">
+  <div class="flex flex-col h-screen sm:p-4">
     <div class="flex-grow w-full mx-auto overflow-y-auto">
-      <TiptapNaked @update="docUpdated" />
+      <TiptapNew @update="docUpdated" />
     </div>
-    <div class="py-4">
+    <div class="flex flex-col justify-center px-4 py-4">
       <TagInput :suggestions="tagsuggestions.items" @updated="addTags" />
-      <div class="flex space-x-8">
+      <div class="flex justify-between space-x-8">
         <div
           @click.prevent="saveDoc('draft')"
           class="inline-flex px-4 py-1 text-teal-500 border-2 border-teal-500 rounded "
+          :class="[postDetails && postDetails.title ? '' : 'opacity-50 pointer-events-none']"
         >
           <IconArchiveIn />
-          <span class="ml-3">Save Draft</span>
+          <span class="ml-3" >Save Draft</span>
         </div>
         <button
           @click.prevent="saveDoc('published')"
           class="inline-flex px-4 py-1 font-bold tracking-wide text-teal-800 transition bg-teal-500 border-2 border-teal-500 rounded cursor-pointer hover:bg-white hover:text-teal-500 "
-          :class="[postDetails.title ? '' : 'opacity-50 pointer-events-none']"
+          :class="[postDetails && postDetails.title ? '' : 'opacity-50 pointer-events-none']"
         >
           <IconCloudUpload />
           <span class="ml-3" :class="[publishBtnText == 'Publishing...' ? 'pointer-events-none': '']">{{ publishBtnText }}</span>
@@ -55,7 +56,7 @@ const toast = useToast();
 const publishBtnText = ref("Publish");
 
 const docUpdated = (doc) => {
-  editorPost.value = doc.content;
+  editorPost.value = doc;
 };
 
 const saveDoc = async (status) => {
