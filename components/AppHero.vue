@@ -18,7 +18,7 @@
               v-html="hero.description"
             ></p>
             <div
-              class="justify-center mt-2 sm:mt-4 sm:flex"
+              class="flex justify-center mt-2"
             >
               <div v-html="hero.button"></div>
             </div>
@@ -34,7 +34,7 @@
             <!-- <Tiptap /> -->
           <!-- </no-ssr> -->
           <client-only>
-            <TiptapNew />
+            <TiptapNew/>
           </client-only>
         </div>
 

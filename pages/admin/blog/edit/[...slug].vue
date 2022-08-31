@@ -15,7 +15,7 @@
     <div v-if="$route.params.post" class="flex-grow m-2 overflow-y-scroll">
       <TiptapNew
         @update="updateDoc($event)"
-        :content="ogPost.content"
+        :content="ogPost.content.content"
         :uid="$route.params.post.uid"
       />
     </div>
