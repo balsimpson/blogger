@@ -4,7 +4,7 @@
 
     <!-- <AppDemoEditor /> -->
 
-    <AppCta />
+    <AppCta :cta="cta"/>
 
     <!-- <div class="w-full py-12 mx-auto bg-sky-800">
       <div
@@ -69,6 +69,9 @@ const posts = ref([]);
 // const hero = ref();
 const { pending, data: hero } = await useAsyncData("hero", async() =>
   queryContent("/hero").findOne()
+);
+const { data: cta } = await useAsyncData("cta", async() =>
+  queryContent("/cta").findOne()
 );
 
 onMounted(async () => {

@@ -1,6 +1,6 @@
 <template>
   <!-- This example requires Tailwind CSS v2.0+ -->
-  <div class="relative px-4 pb-12 overflow-hidden bg-white">
+  <div class="relative px-4 py-12 overflow-hidden bg-white">
     <div v-if="hero" class="max-w-4xl mx-auto">
       <div class="flex flex-col">
         <main
@@ -24,19 +24,6 @@
             </div>
           </div>
         </main>
-        <div class="overflow-hidden rounded-xl h-[500px] mt-12">
-          <!-- <img
-            class="object-cover object-left w-full h-full border rounded-xl"
-            :src="hero.image"
-            alt=""
-          /> -->
-          <!-- <no-ssr> -->
-            <!-- <Tiptap /> -->
-          <!-- </no-ssr> -->
-          <client-only>
-            <TiptapNew/>
-          </client-only>
-        </div>
 
         <div class="max-w-lg mx-auto mt-4 text-center">
           The Text Editor from TipTap comes with image uploads to <span class="font-bold">Cloudinary</span> and <span class="font-bold">YouTube</span> video embeds. Use Headings, Code Block and Highlight to make your writing stand out. With built-in authentication, you can start blogging right away.
