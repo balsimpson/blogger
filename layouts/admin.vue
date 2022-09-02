@@ -5,7 +5,7 @@
         <li>
           <NuxtLink
             to="/admin"
-            class="inline-flex items-center w-full px-4 py-2 mt-1 mb-4 space-x-2 text-base transition duration-200 ease-in-out transform bg-black border rounded-lg text-stone-400 border-stone-700 hover:bg-stone-700 focus:shadow-outline "
+            class="inline-flex items-center w-full px-4 py-2 mt-1 space-x-2 text-base transition duration-200 ease-in-out transform bg-black border rounded-lg text-stone-400 border-stone-700 hover:bg-stone-700 focus:shadow-outline "
           >
             <IconGridAlt />
             <span> Dashboard</span>
@@ -20,12 +20,25 @@
             <span class="ml-4">Blog</span>
           </NuxtLink>
         </li>
+        <li>
+          <NuxtLink
+            to="/admin/blog/compose"
+            class="inline-flex items-center w-full px-4 py-2 mt-12 space-x-2 text-base font-bold text-teal-600 transition duration-200 ease-in-out transform border border-teal-700 rounded-lg hover:bg-stone-700 focus:shadow-outline "
+          >
+            <IconPlus />
+            <span class="ml-3">Add Blog Post</span>
+          </NuxtLink>
+        </li>
 
-        <div class="py-2 my-2 mt-6 text-xs text-gray-500 border-b border-stone-700">Edit Homepage</div>
+        <!-- <div
+          class="py-2 my-2 mt-6 text-xs text-gray-500 border-b border-stone-700"
+        >
+          Edit Homepage
+        </div>
         <li class="mb-3">
           <NuxtLink
             to="/admin/edit/hero"
-            class="inline-flex items-center w-full space-x-2 text-base font-bold transition duration-200 ease-in-out transform rounded-lg text-stone-500 border-stone-700 bg-gblack hover:text-teal-600 focus:shadow-outline"
+            class="inline-flex items-center w-full space-x-2 text-base font-bold transition duration-200 ease-in-out transform rounded-lg text-stone-500 border-stone-700 bg-gblack hover:text-teal-600 focus:shadow-outline "
           >
             <IconCube />
             <span class="ml-4">Hero</span>
@@ -34,12 +47,12 @@
         <li>
           <NuxtLink
             to="/admin/edit/features"
-            class="inline-flex items-center w-full space-x-2 text-base font-bold transition duration-200 ease-in-out transform rounded-lg text-stone-500 border-stone-700 bg-gblack hover:text-teal-600 focus:shadow-outline"
+            class="inline-flex items-center w-full space-x-2 text-base font-bold transition duration-200 ease-in-out transform rounded-lg text-stone-500 border-stone-700 bg-gblack hover:text-teal-600 focus:shadow-outline "
           >
             <IconCube />
             <span class="ml-4">Features</span>
           </NuxtLink>
-        </li>
+        </li> -->
       </template>
       <template #footer>
         <a
@@ -60,7 +73,9 @@
       </template>
     </NavSidebar>
 
-    <div class="w-full h-screen mx-auto overflow-y-scroll bg-stone-300">
+    <div
+      class="w-full h-screen mx-auto overflow-y-scroll dark:bg-zinc-800 bg-stone-300 "
+    >
       <!-- Main Content -->
       <slot />
     </div>
@@ -75,7 +90,8 @@ import {
   IconMenu,
   IconX,
   IconLogOut,
-  IconCube
+  IconCube,
+  IconPlus
 } from "@iconify-prerendered/vue-bx";
 const isSidebarActive = ref(false);
 const router = useRouter();
@@ -96,7 +112,7 @@ const signOut = async () => {
 } */
 .router-link-active {
   font-weight: bold;
-  color: #059669;
+  color: #16928a;
   text-decoration: none;
 }
 /* a.router-link-active {

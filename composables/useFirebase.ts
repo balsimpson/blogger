@@ -5,7 +5,7 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 
-import { addDoc, collection, getFirestore, getDocs, getDoc, doc, query, onSnapshot, writeBatch, deleteDoc, updateDoc, orderBy, where, DocumentData, Query } from "firebase/firestore"
+import { addDoc, collection, getFirestore, getDocs, getDoc, doc, query, onSnapshot, writeBatch, deleteDoc, updateDoc, orderBy, where, limit, DocumentData, Query } from "firebase/firestore"
 
 export const createUser = async (email: string, password: string) => {
   const auth = getAuth();
@@ -145,20 +145,20 @@ export const getDocsFromFirestore = async (collectionName: string) => {
 * Get documents from a collection
 * @param {String} collectionName - name of the collection
 * @param {String} order - the property to order by
+* @param {String} count - number of items to fetch
 * @returns {Array} array of items
-* @example getDocsFromFirestore('products', 'published_at')
+* @example getOrderedDocsFromFirestore('posts', 'published_at', 3)
 */
-export const getOrderedDocsFromFirestore = async (collectionName: string, order: string) => {
+export const getOrderedDocsFromFirestore = async (collectionName: string, order: string = "published_at", count: number) => {
   try {
     const db = getFirestore();
-    // const q = query(collection(db, collectionName), orderBy("release_date", "desc"));
     let items = [];
     let q: Query<DocumentData>;
 
-    if (order) {
-      q = query(collection(db, collectionName), orderBy(order, "desc"));
+    if (count) {
+      q = query(collection(db, collectionName), orderBy(order, "desc"), limit(count));
     } else {
-      q = query(collection(db, collectionName));
+      q = query(collection(db, collectionName), orderBy(order, "desc"));
     }
 
     let res = await getDocs(q);
@@ -212,6 +212,32 @@ export const getDocFromFirestoreWithSlug = async (collectionName: string, slug: 
       item.id = doc.id;
     });
     return item
+  } catch (error) {
+    console.log('getDocFromFirestore-error', error);
+    return error;
+  }
+}
+
+/**
+* Get a single document from a collection where slug
+* @param {String} collectionName - collection name
+* @param {String} tag - tag name
+* @example getDocsMatchingTag('posts', 'nuxt-3')
+*/
+export const getDocsMatchingTag = async (collectionName: string, tag: string) => {
+  try {
+    const db = getFirestore();
+    const q = query(collection(db, collectionName), where("tags", "array-contains", tag));
+    const querySnapshot = await getDocs(q);
+    let items = [];
+    querySnapshot.forEach((doc) => {
+      let item = doc.data();
+      item.id = doc.id;
+      // doc.data() is never undefined for query doc snapshots
+      // console.log(doc.id, " => ", doc.data());
+      items.push(item)
+    });
+    return items
   } catch (error) {
     console.log('getDocFromFirestore-error', error);
     return error;

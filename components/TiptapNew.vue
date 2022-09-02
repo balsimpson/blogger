@@ -1,11 +1,14 @@
 <template>
   <!-- <editor-content :editor="editor" /> -->
-  <div v-if="editor" class="flex flex-col w-full h-full rounded-none sm:rounded-lg">
+  <div
+    v-if="editor"
+    class="flex flex-col w-full h-full rounded-none sm:rounded-lg"
+  >
     <div
-      class="sticky top-0 z-20 flex justify-between text-neutral-500 focus:outline-none bg-stone-600"
+      class="sticky top-0 z-20 flex justify-between text-neutral-500 focus:outline-none toolbar "
     >
       <div class="flex flex-wrap items-center p-4">
-        <div class="flex flex-wrap items-center ">
+        <div class="flex flex-wrap items-center">
           <IconHeadingH1
             @click="editor.chain().focus().toggleHeading({ level: 1 }).run()"
             class="w-8 h-8 cursor-pointer hover:text-teal-500"
@@ -18,7 +21,7 @@
 
           <IconHeadingH2
             @click="editor.chain().focus().toggleHeading({ level: 2 }).run()"
-            class="w-8 h-8 cursor-pointer hover:text-teal-500 "
+            class="w-8 h-8 cursor-pointer hover:text-teal-500"
             :class="[
               editor.isActive('heading', { level: 2 })
                 ? 'is-active text-teal-500'
@@ -28,7 +31,7 @@
 
           <IconHeadingH3
             @click="editor.chain().focus().toggleHeading({ level: 3 }).run()"
-            class="w-8 h-8 cursor-pointer hover:text-teal-500 "
+            class="w-8 h-8 cursor-pointer hover:text-teal-500"
             :class="[
               editor.isActive('heading', { level: 3 })
                 ? 'is-active text-teal-500'
@@ -38,7 +41,7 @@
 
           <IconBold
             @click="editor.chain().focus().toggleBold().run()"
-            class="w-8 cursor-pointer hover:text-teal-500"
+            class="w-6 cursor-pointer hover:text-teal-500"
             :class="[
               editor.isActive('bold')
                 ? 'is-active text-teal-500'
@@ -48,7 +51,7 @@
 
           <IconItalic
             @click="editor.chain().focus().toggleItalic().run()"
-            class="w-8 cursor-pointer hover:text-teal-500"
+            class="w-6 cursor-pointer hover:text-teal-500"
             :class="[
               editor.isActive('italic')
                 ? 'is-active text-teal-500'
@@ -58,7 +61,7 @@
 
           <IconQuote
             @click="editor.chain().focus().toggleBlockquote().run()"
-            class="w-8 cursor-pointer hover:text-teal-500"
+            class="w-6 cursor-pointer hover:text-teal-500"
             :class="[
               editor.isActive('blockquote')
                 ? 'is-active text-teal-500'
@@ -66,7 +69,7 @@
             ]"
           />
 
-          <IconCode
+          <!-- <IconCode
             @click="editor.chain().focus().toggleCode().run()"
             class="w-8 cursor-pointer hover:text-teal-500"
             :class="[
@@ -74,7 +77,7 @@
                 ? 'is-active text-teal-500'
                 : 'text-neutral-400',
             ]"
-          />
+          /> -->
 
           <IconCodeBlock
             @click="editor.chain().focus().toggleCodeBlock().run()"
@@ -122,17 +125,17 @@
                 : 'text-neutral-400',
             ]"
           />
-  
+
           <IconYoutube
             @click="showAddYTLink = !showAddYTLink"
-            class="relative w-8 h-8 cursor-pointer hover:text-teal-500 "
+            class="relative w-8 h-8 cursor-pointer hover:text-teal-500"
             :class="[
               showAddYTLink ? 'is-active text-teal-500' : 'text-neutral-400',
             ]"
           />
-  
+
           <label
-            class="flex flex-col items-center w-8 transition-colors cursor-pointer"
+            class="flex flex-col items-center w-8 transition-colors cursor-pointer "
           >
             <IconImageAdd
               :class="[
@@ -213,7 +216,7 @@
       <div
         v-if="showAddLink"
         @keydown.esc="showAddLink = !showAddLink"
-        class="absolute top-0 z-10 w-full p-2 pb-4 bg-white shadow-xl"
+        class="absolute top-0 z-10 w-full p-2 pb-4 bg-white border shadow-xl dark:bg-stone-800 border-stone-700 "
         tabindex="0"
       >
         <div class="relative px-2">
@@ -241,7 +244,7 @@
 
     <div class="relative">
       <bubble-menu
-        class="flex items-center px-2 py-1 space-x-2 bg-black border rounded shadow border-stone-300 "
+        class="flex items-center px-2 py-1 space-x-2 bg-black border rounded shadow border-stone-300 dark:border-stone-700 "
         :editor="editor"
         :tippy-options="{ duration: 100 }"
         v-if="editor"
@@ -329,9 +332,7 @@ import {
   IconCode,
 } from "@iconify-prerendered/vue-gridicons";
 
-import {
-  IconTypeH1,
-} from "@iconify-prerendered/vue-bi";
+import { IconTypeH1 } from "@iconify-prerendered/vue-bi";
 
 import {
   IconHighlight,
@@ -417,7 +418,7 @@ const editor = useEditor({
   editorProps: {
     attributes: {
       class:
-        "prose prose-sm sm:prose lg:prose-lg xl:prose-2xl focus:outline-none p-5 overflow-y-scroll",
+        "prose prose-sm sm:prose lg:prose-lg xl:prose-2xl focus:outline-none p-5 overflow-y-scroll dark:bg-stone-800",
     },
   },
   content: props.content,
@@ -504,23 +505,63 @@ const addLink = (url) => {
   max-width: 100%;
   /* min-height: 60vh; */
   background: #ffffff;
+  color: #303030;
   /* height: 100%; */
   /* max-width: 100%; */
   /* padding: 1em; */
-  border-left: 1px solid #6f6f6f;
-  border-right: 1px solid #6f6f6f;
-  border-bottom: 1px solid #6f6f6f;
+  border-left: 1px solid #b6b6b6;
+  border-right: 1px solid #b6b6b6;
+  border-bottom: 1px solid #b6b6b6;
   /* background: #d6d6d6; */
   border-radius: 0 0 10px 10px;
   transition: color 0.3s ease-in-out;
 }
 
+@media (prefers-color-scheme: dark) {
+  .ProseMirror {
+    background: #303030;
+    color: #adb5bd;
+    border-left: 1px solid #3e3e3e;
+    border-right: 1px solid #3e3e3e;
+    border-bottom: 1px solid #3e3e3e;
+  }
+}
+
 .toolbar {
   /* border-radius: 8px 8px 0 0; */
-  border-left: 1px solid #6f6f6f;
-  border-right: 1px solid #6f6f6f;
-  border-top: 1px solid #6f6f6f;
-  background: #6f6565;
+  border-left: 1px solid #b6b6b6;
+  border-right: 1px solid #b6b6b6;
+  border-top: 1px solid #b6b6b6;
+  background: #ececec;
+}
+
+@media (prefers-color-scheme: dark) {
+  .toolbar {
+    background: #212121;
+    border-left: 1px solid #3e3e3e;
+    border-right: 1px solid #3e3e3e;
+    border-top: 1px solid #3e3e3e;
+  }
+}
+
+.prose :where(h1):not(:where([class~="not-prose"] *)) {
+  color: #424242;
+  font-weight: 800;
+  font-size: 2.25em;
+  margin-top: 0;
+  margin-bottom: 0.8888889em;
+  line-height: 1.1111111;
+}
+
+@media (prefers-color-scheme: dark) {
+  .prose :where(h1):not(:where([class~="not-prose"] *)) {
+    color: rgb(194, 194, 194);
+    font-weight: 800;
+    font-size: 2.25em;
+    margin-top: 0;
+    margin-bottom: 0.8888889em;
+    line-height: 1.1111111;
+  }
 }
 
 /* Placeholder (at the top) */
@@ -536,9 +577,41 @@ const addLink = (url) => {
 .ProseMirror h1.is-empty::before {
   content: attr(data-placeholder);
   float: left;
-  color: #ced4da;
+  color: #d2d2d2;
   pointer-events: none;
   height: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  .ProseMirror h1.is-empty::before {
+    color: #676767;
+  }
+}
+
+.prose :where(a):not(:where([class~="not-prose"] *)) {
+  color: rgb(28, 113, 174);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+@media (prefers-color-scheme: dark) {
+  .prose :where(a):not(:where([class~="not-prose"] *)) {
+    color: rgb(28, 113, 174);
+    text-decoration: none;
+    font-weight: 500;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .prose :where(h2):not(:where([class~="not-prose"] *)) {
+    color: #adb5bd;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .prose :where(h3):not(:where([class~="not-prose"] *)) {
+    color: #adb5bd;
+  }
 }
 
 .ProseMirror .prose {
@@ -566,7 +639,8 @@ hr {
 }
 
 .prose :where(pre):not(:where([class~="not-prose"] *)) {
-    background-color: rgb(45, 45, 45);
+  background-color: #000000;
+  color: #adb5bd;
 }
 
 .prose code {
@@ -578,6 +652,14 @@ hr {
   background-color: #e7e7e7;
   padding-left: 4px;
   padding-right: 4px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .prose code {
+    border: 1px solid #575757;
+    color: #e19428;
+    background-color: #575757;
+  }
 }
 
 .prose pre code {
@@ -594,5 +676,4 @@ hr {
 .prose :where(code):not(:where([class~="not-prose"] *))::after {
   content: "";
 }
-
 </style>

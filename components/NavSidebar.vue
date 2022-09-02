@@ -14,7 +14,7 @@
             <!-- sidebar items -->
             <div class="h-auto overflow-y-scroll">
               <nav class="space-y-6 bg-black">
-                <ul class="">
+                <ul class="space-y-3">
                   <slot name="items" />
                 </ul>
               </nav>
@@ -45,10 +45,11 @@
       :class="[isSidebarActive ? 'translate-x-0' : '-translate-x-full']"
       id="mobile-nav"
     >
-      <div class="absolute -right-10 top-4">
+      <div class="absolute top-0 -right-10">
         <button
           @click="isSidebarActive = !isSidebarActive"
-          class="flex items-center w-full h-full py-1 pl-5 pr-2 text-white bg-black rounded-full "
+          class="flex items-center w-full h-full py-1 pl-5 pr-2 rounded-full "
+          :class="[isSidebarActive ? 'text-white bg-black': 'text-black', $colorMode.value == 'dark' ? 'bg-white': 'bg-transparent']"
         >
           <span class="sr-only">Toggle navigation</span>
           <IconX v-if="isSidebarActive" />
@@ -67,7 +68,7 @@
         <div class="flex flex-col justify-between h-full pt-20 text-white">
           <!-- sidebar items -->
           <div class="h-auto overflow-y-scroll">
-            <nav class="space-y-6 bg-black">
+            <nav class="bg-black ">
               <ul class="space-y-3">
                   <slot name="items" />
                 </ul>

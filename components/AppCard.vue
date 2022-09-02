@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col h-full bg-white border rounded-lg">
+  <div class="flex flex-col h-full bg-white border rounded-lg dark:bg-stone-800 dark:text-stone-400 dark:border-stone-700">
     <img
       v-if="image"
       :src="image"
@@ -8,14 +8,14 @@
     />
     <div class="flex-grow p-4 px-6 mt-6">
       <NuxtLink :to="'/blog/' + slug">
-        <div class="text-xl font-bold leading-5">{{ title }}</div>
+        <div class="text-xl font-bold leading-5 dark:text-stone-300">{{ title }}</div>
       </NuxtLink>
       <div class="mt-4 ">{{ description }}</div>
     </div>
-    <div class="p-4 border-t">
+    <div class="p-4 border-t dark:border-stone-600">
       <div class="text-xs text-stone-400">{{ date }}</div>
       <div v-if="tags" class="mt-2 space-x-1 text-xs text-stone-400">
-        <TypeChip v-for="tag in tags" :title="tag" />
+        <TypeChip @clicked="redirectToTag(tag)" v-for="tag in tags" :title="tag" />
       </div>
     </div>
   </div>
@@ -30,4 +30,7 @@ const props = defineProps([
   "image",
   "slug",
 ]);
+const redirectToTag = (tag) => {
+  navigateTo("/blog/tag/" + tag)
+}
 </script>

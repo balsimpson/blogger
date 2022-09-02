@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col h-screen sm:p-4">
+  <div class="flex flex-col h-screen mt-4 sm:mt-0 sm:p-4">
     <div class="flex-grow w-full mx-auto overflow-y-auto">
       <TiptapNew @update="docUpdated" />
     </div>
@@ -8,19 +8,33 @@
       <div class="flex justify-between space-x-8">
         <div
           @click.prevent="saveDoc('draft')"
-          class="inline-flex px-4 py-1 text-teal-500 border-2 border-teal-500 rounded "
-          :class="[postDetails && postDetails.title ? '' : 'opacity-50 pointer-events-none']"
+          class="inline-flex px-4 py-1 text-teal-500 border-2 border-teal-500 rounded  "
+          :class="[
+            postDetails && postDetails.title
+              ? ''
+              : 'opacity-50 pointer-events-none',
+          ]"
         >
           <IconArchiveIn />
-          <span class="ml-3" >Save Draft</span>
+          <span class="ml-3">Save Draft</span>
         </div>
         <button
           @click.prevent="saveDoc('published')"
-          class="inline-flex px-4 py-1 font-bold tracking-wide text-teal-800 transition bg-teal-500 border-2 border-teal-500 rounded cursor-pointer hover:bg-white hover:text-teal-500 "
-          :class="[postDetails && postDetails.title ? '' : 'opacity-50 pointer-events-none']"
+          class="inline-flex px-4 py-1 font-bold tracking-wide text-teal-800 transition bg-teal-500 border-2 border-teal-500 rounded cursor-pointer  hover:bg-white hover:text-teal-500 "
+          :class="[
+            postDetails && postDetails.title
+              ? ''
+              : 'opacity-50 pointer-events-none',
+          ]"
         >
           <IconCloudUpload />
-          <span class="ml-3" :class="[publishBtnText == 'Publishing...' ? 'pointer-events-none': '']">{{ publishBtnText }}</span>
+          <span
+            class="ml-3"
+            :class="[
+              publishBtnText == 'Publishing...' ? 'pointer-events-none' : '',
+            ]"
+            >{{ publishBtnText }}</span
+          >
         </button>
       </div>
     </div>
@@ -71,26 +85,22 @@ const saveDoc = async (status) => {
       image,
       slug,
       status,
-      content: {
-        type: "doc",
-        content: editorPost.value,
-      },
+      content: editorPost.value,
       tags: postTags.value,
       published_at: serverTimestamp(),
     };
-  
+
+    console.log(data);
     let res = await addDocToFirestore("posts", data);
-  
-    if (res) {
-      toast.error("Post failed to save! - " + res);
-    } else {
-      toast.success(data.title + " was saved!");
-    }
     console.log(res);
+
+    if (res.document) {
+      toast.success(data.title + " was saved!");
+    } else {
+      toast.error("Post failed to save! - " + res);
+    }
     publishBtnText.value = "publish";
-    
   }
-  
 };
 
 const addTags = (tags) => {

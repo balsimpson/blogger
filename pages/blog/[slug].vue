@@ -13,7 +13,9 @@
     <!-- <div v-if="post.lastUpdatedAt" class="text-cyan-600">
       {{ convertDate(post.lastPublishedAt) }}
     </div> -->
-    <div v-html="postHtml" class="prose"></div>
+    <article v-html="postHtml" class="prose">
+      
+    </article>
   </div>
 </template>
 

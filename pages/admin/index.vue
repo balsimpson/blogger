@@ -1,36 +1,30 @@
 <template>
   <div class="sm:p-6">
     <!-- hero -->
-    <div class="p-6 sm:p-0">
-      <div class="mt-12 text-xl font-bold">Hero</div>
+    <div class="overflow-hidden border rounded  bg-stone-200 dark:border-stone-700 dark:text-stone-400 dark:bg-zinc-700">
+      <div class="p-6">
+      <div class="text-xl font-bold ">Hero</div>
       <div>
         To edit this component, change the contents of
         <code>~/content/hero.md</code>
       </div>
     </div>
     <AppHero :hero="hero"/>
-
-    <!-- articles -->
-    <div>
-      <div class="mt-12 font-bold">Articles</div>
-      <div>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas obcaecati
-        illum aperiam doloremque sequi? Necessitatibus maiores fugit magni
-        consequatur harum!
+    </div>
+    
+    <!-- cta -->
+    <div class="mt-12 overflow-hidden border rounded bg-stone-200 dark:border-stone-700 dark:text-stone-400 dark:bg-zinc-700">
+      
+      <div class="p-6">
+        <div class="text-xl font-bold">CTA</div>
+        <div>
+          To edit this component, change the contents of
+          <code>~/content/cta.md</code>
+        </div>
       </div>
-      <div>Articles list</div>
+      <AppCta :cta="cta"/>
     </div>
 
-    <!-- poems -->
-    <div>
-      <div class="mt-12 font-bold">Poems</div>
-      <div>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas obcaecati
-        illum aperiam doloremque sequi? Necessitatibus maiores fugit magni
-        consequatur harum!
-      </div>
-      <div>Poems list</div>
-    </div>
   </div>
 </template>
 
@@ -49,8 +43,12 @@ useHead({
   ],
 });
 
-const { pending, data: hero } = await useAsyncData("hero", async() =>
+const { data: hero } = await useAsyncData("hero", async() =>
   queryContent("/hero").findOne()
+);
+
+const { data: cta } = await useAsyncData("cta", async() =>
+  queryContent("/cta").findOne()
 );
 
 </script>

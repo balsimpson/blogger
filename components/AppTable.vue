@@ -3,15 +3,15 @@
     <table class="w-full whitespace-no-wrap table-auto">
       <thead class="w-full">
         <tr
-          class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b bg-gray-50 "
+          class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b bg-gray-50 dark:border-zinc-700 dark:bg-zinc-900"
         >
           <th class="px-4 py-3">Title</th>
           <th class="px-4 py-3">Status</th>
-          <th class="px-4 py-3">Featured</th>
+          <!-- <th class="px-4 py-3">Featured</th> -->
         </tr>
       </thead>
-      <tbody class="bg-white divide-y">
-        <tr v-for="item in items" class="text-gray-700">
+      <tbody class="bg-white divide-y dark:divide-zinc-800 dark:bg-zinc-700">
+        <tr v-for="item in items" class="text-gray-700 dark:text-gray-400">
           <!-- First Name -->
           <td class="px-4 py-3">
             <NuxtLink
@@ -28,7 +28,7 @@
                 <p class="font-semibold">
                   {{ item.title }}
                 </p>
-                <p class="text-xs text-gray-400 dark:text-gray-400">
+                <p class="text-xs text-gray-400 dark:text-stone-500">
                   {{ convertDate(item.published_at) }}
                 </p>
               </div>
@@ -36,13 +36,13 @@
             </NuxtLink>
           </td>
           <!-- Status -->
-          <td class="inline-flex px-4 py-3 text-xs">
+          <td class="inline-flex items-center h-full px-2 py-1 mt-2 mr-2 text-xs uppercase border rounded dark:border-teal-600 dark:text-teal-600">
             {{ item.status }}
           </td>
           <!-- Interested In -->
-          <td class="w-24 text-sm">
+          <!-- <td class="w-24 text-sm">
             {{ item.isFeatured }}
-          </td>
+          </td> -->
         </tr>
       </tbody>
     </table>

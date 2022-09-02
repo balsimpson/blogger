@@ -40,7 +40,6 @@ export const createSlug = (title, id) => {
       id
     )
   } else if (title) {
-    console.log('2');
     return (
       title
         .toLowerCase()
@@ -53,7 +52,7 @@ export const createSlug = (title, id) => {
 }
 
 export const getPostDetails = (data) => {
-  console.log("data", data)
+  // console.log("data", data)
   if (data && data.content) {
     let title = data.content.find(element => element.type == "heading");
     if (title && title.content) {

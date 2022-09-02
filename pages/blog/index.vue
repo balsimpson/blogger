@@ -1,13 +1,13 @@
 <template>
-  <div class="flex flex-col min-h-screen px-4 py-12 bg-stone-200">
+  <div class="flex flex-col min-h-screen px-4 py-12 bg-stone-200 dark:bg-stone-900">
     <div class="flex-grow w-full max-w-4xl px-4 mx-auto text-center">
       <h2
-        class="text-base font-semibold tracking-wide text-indigo-600 uppercase"
+        class="text-base font-semibold tracking-wide uppercase text-cyan-600"
       >
         {{ blog.subtitle }}
       </h2>
       <p
-        class="mt-2 text-3xl font-extrabold leading-8 tracking-tight text-gray-900 sm:text-4xl "
+        class="mt-2 text-3xl font-extrabold leading-8 tracking-tight text-gray-900 sm:text-4xl dark:text-stone-400"
       >
         {{ blog.title }}
       </p>

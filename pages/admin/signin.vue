@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center justify-center min-h-screen bg-white">
+  <div class="flex items-center justify-center min-h-screen bg-white dark:bg-stone-900">
     <div class="w-full max-w-md px-2 py-12 mx-auto bg-transparent sm:px-12">
       <div
         class="mt-6 text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-teal-400 to-teal-800 "
@@ -81,7 +81,6 @@
                   clip-rule="evenodd"
                 />
               </svg>
-
               {{ btnText }}
             </button>
           </div>

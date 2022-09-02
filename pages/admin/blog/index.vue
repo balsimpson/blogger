@@ -1,9 +1,6 @@
 <template>
   <div class="flex flex-col h-screen">
-    <div class="max-w-3xl p-6 mt-12 text-left">
-      
-
-      
+    <div class="max-w-4xl px-6 pt-4 text-right">
       <!-- <div class="text-5xl font-extrabold tracking-tight font-arvo">Welcome</div> -->
       <!-- a compose button with an icon -->
       <NuxtLink
@@ -14,8 +11,16 @@
         <span class="ml-3">Add Blog Post</span>
       </NuxtLink>
     </div>
-    <div class="flex-grow p-6">
-      <div>Posts</div>
+    <div class="flex-grow max-w-4xl sm:p-6">
+      <div class="flex justify-between mb-3">
+        <div class="text-xl font-bold dark:text-stone-400">Posts</div>
+        <div class="flex flex-wrap items-center space-x-2">
+          <div>Show</div>
+          <div class="px-2 text-sm font-semibold tracking-wide text-white rounded bg-stone-500">All</div>
+          <div class="px-2 text-sm font-semibold tracking-wide text-white rounded bg-stone-500">Published</div>
+          <div class="px-2 text-sm font-semibold tracking-wide text-white rounded bg-stone-500">Drafts</div>
+        </div>
+      </div>
 
       <AppTable :items="posts" />
       <!-- <pre>{{ postsHTML }}</pre> -->
@@ -89,9 +94,7 @@ import Youtube from "@tiptap/extension-youtube";
 import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
 import { lowlight } from "lowlight/lib/common.js";
 import { toHtml } from "hast-util-to-html";
-import {
-  IconPlus,
-} from "@iconify-prerendered/vue-bx";
+import { IconPlus } from "@iconify-prerendered/vue-bx";
 
 import {
   addDoc,

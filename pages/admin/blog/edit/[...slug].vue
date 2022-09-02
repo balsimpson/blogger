@@ -1,13 +1,18 @@
 <template>
   <div class="flex flex-col h-screen">
-    <div v-if="ogPost" class="flex flex-wrap items-end justify-end px-2 mt-4 space-x-4 text-xs md:mt-2">
-      <div v-if="ogPost.lastUpdatedAt" class="p-2">
+    <div
+      v-if="ogPost"
+      class="flex flex-wrap items-end justify-end px-2 mt-4 space-x-4 text-xs md:mt-2 "
+    >
+      <div v-if="ogPost.lastUpdatedAt" class="p-2 dark:text-stone-600">
         <div class="text-xs capitalize">last updated</div>
         <div class="font-bold">
           {{ convertDate(ogPost.lastUpdatedAt) }}
         </div>
       </div>
-      <div class="p-2 bg-white border rounded border-stone-400">
+      <div
+        class="p-2 bg-white border rounded border-stone-400 dark:bg-stone-700 dark:text-stone-500 "
+      >
         <div class="text-xs capitalize">published</div>
         <div class="font-bold">{{ convertDate(ogPost.published_at) }}</div>
       </div>
@@ -15,29 +20,30 @@
     <div v-if="$route.params.post" class="flex-grow m-2 overflow-y-scroll">
       <TiptapNew
         @update="updateDoc($event)"
-        :content="ogPost.content.content"
+        :content="ogPost.content"
         :uid="$route.params.post.uid"
       />
     </div>
 
     <div class="p-4">
-      <div class="px-2 text-xs font-bold">Add tags to your post</div>
+      <div class="px-2 text-xs font-bold dark:text-stone-500">Add tags to your post separated by commas</div>
       <TagInput
         :suggestions="tagsuggestions.items"
         :oldTags="ogPost.tags"
         @updated="addTags"
       />
       <div class="flex justify-between mt-2">
-        <button
-          class="inline-block px-3 py-1 text-sm font-bold tracking-wide uppercase transition duration-150 ease-in-out bg-transparent border-2 rounded text-stone-500 border-stone-400 w-min focus:outline-none hover:bg-transparent hover:text-teal-600 "
+        <NuxtLink
+          to="/admin/blog"
+          class="inline-block px-3 py-1 text-sm font-bold tracking-wide uppercase transition duration-150 ease-in-out bg-transparent border-2 rounded text-stone-500 dark:text-stone-600 border-stone-400 dark:border-stone-600 w-min focus:outline-none hover:bg-transparent hover:text-teal-600 hover:border-teal-600 dark:hover:border-teal-600 "
         >
           cancel
-        </button>
+        </NuxtLink>
         <div class="flex items-center space-x-3">
           <button
             v-if="!confirmDelete"
             @click.prevent="confirmDelete = !confirmDelete"
-            class="inline-flex items-center px-3 py-1 text-sm font-bold tracking-wide text-red-600 uppercase transition duration-150 ease-in-out bg-transparent border-2 border-red-600 rounded w-min focus:outline-none hover:bg-transparent hover:text-red-600 "
+            class="inline-flex items-center px-3 py-1 text-sm font-bold tracking-wide text-red-600 uppercase transition duration-150 ease-in-out bg-transparent border-2 border-red-600 rounded dark:border-red-400 dark:text-red-400 w-min focus:outline-none hover:bg-transparent hover:text-red-600 "
           >
             <IconTrash />
             <span class="ml-3">delete</span>
@@ -95,7 +101,7 @@ const updateDoc = async (data) => {
 };
 
 const saveDoc = async (data) => {
-  console.log("save", editorPost.value);
+  // console.log("save", editorPost.value);
   saveBtnText.value = "saving...";
   let doc = JSON.parse(data);
 
@@ -111,7 +117,7 @@ const saveDoc = async (data) => {
     lastUpdatedAt: serverTimestamp(),
   };
 
-  console.log("add", newData);
+  // console.log("add", newData);
 
   //   console.log(doc, ogPost.value);
   let res = await updateDocInFirestore("posts", ogPost.value.uid, newData);
@@ -121,7 +127,7 @@ const saveDoc = async (data) => {
   } else {
     toast.success(doc.title + " was saved!");
   }
-  console.log(res);
+  // console.log(res);
   saveBtnText.value = "save";
 };
 
