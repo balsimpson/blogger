@@ -1,7 +1,7 @@
 <template>
   <div class="min-h-screen py-0">
     <AppHero :hero="hero" />
-    <pre>{{$colorMode}}</pre>
+    <!-- <pre>{{$colorMode}}</pre> -->
     <!-- <AppDemoEditor /> -->
 
     <AppCta :cta="cta" />
@@ -70,11 +70,57 @@
 </template>
 
 <script setup>
-const posts = ref([]);
-// const hero = ref();
+const title = "Deploy Your Blog Online in 5 Minutes";
+
 const { pending, data: hero } = await useAsyncData("hero", async () =>
   queryContent("/hero").findOne()
 );
+useHead({
+  title,
+  meta: [
+    {
+      name: "description",
+      content: hero.value.description,
+    },
+    {
+      property: "og:title",
+      content: title,
+    },
+    {
+      hid: "og:description",
+      property: "og:description",
+      content: hero.value.description,
+    },
+    {
+      property: "og:image",
+      content: hero.value.image,
+    },
+    {
+      property: "og:url",
+      content: "https://tinkr.in/",
+    },
+    {
+      name: "twitter:card",
+      content: "summary_large_image",
+    },
+    {
+      name: "twitter:title",
+      content: title,
+    },
+    {
+      name: "twitter:description",
+      content: hero.value.description,
+    },
+    {
+      name: "twitter:image",
+      content: hero.value.image,
+    },
+  ],
+});
+
+const posts = ref([]);
+// const hero = ref();
+
 const { data: cta } = await useAsyncData("cta", async () =>
   queryContent("/cta").findOne()
 );
