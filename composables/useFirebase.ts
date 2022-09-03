@@ -5,7 +5,7 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 
-import { addDoc, collection, getFirestore, getDocs, getDoc, doc, query, onSnapshot, writeBatch, deleteDoc, updateDoc, orderBy, where, limit, DocumentData, Query } from "firebase/firestore"
+import { addDoc, collection, getFirestore, getDocs, getDoc, doc, query, onSnapshot, writeBatch, deleteDoc, updateDoc, orderBy, where, limit, DocumentData, Query, increment } from "firebase/firestore"
 
 export const createUser = async (email: string, password: string) => {
   const auth = getAuth();
@@ -211,6 +211,8 @@ export const getDocFromFirestoreWithSlug = async (collectionName: string, slug: 
       item = doc.data();
       item.id = doc.id;
     });
+
+
     return item
   } catch (error) {
     console.log('getDocFromFirestore-error', error);
@@ -289,3 +291,21 @@ export const batchWrite = async (collectionName: string, items: any[]) => {
   });
   await batch.commit();
 };
+
+export const incrementPageView = async (collectionName: string, slug: string) => {
+  const db = getFirestore();
+
+  const q = query(collection(db, collectionName), where("slug", "==", slug));
+  let item: DocumentData;
+  const querySnapshot = await getDocs(q);
+  querySnapshot.forEach((doc) => {
+    // doc.data() is never undefined for query doc snapshots
+    item = doc.data();
+    item.id = doc.id;
+  });
+
+  const docRef = doc(db, "posts", item.id);
+  let res = await updateDoc(docRef, { views: increment(1) })
+  // console.log(res);
+  return
+}

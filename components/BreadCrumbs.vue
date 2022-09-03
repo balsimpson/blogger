@@ -4,7 +4,7 @@
         <li class="inline-flex items-center">
           <NuxtLink
             to="/"
-            class="inline-flex items-center text-gray-700 hover:text-gray-900"
+            class="inline-flex items-center text-gray-700 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200"
           >
             Home
           </NuxtLink>
@@ -26,7 +26,7 @@
 
             <NuxtLink
               to="/blog"
-              class="ml-1 text-sm font-medium text-gray-700 hover:text-gray-900 md:ml-2 "
+              class="ml-1 text-sm font-medium dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200md:ml-2 "
             >
               Blog
             </NuxtLink>
