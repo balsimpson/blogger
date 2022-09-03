@@ -71,6 +71,8 @@
 
 <script setup>
 const title = "Deploy Your Blog Online in 5 Minutes";
+const image = "/siteImage.png";
+const description = "In just 5 minutes, have your own blog up and running. Built on Nuxt 3 and Tailwind CSS. With a rich text editor from TipTap and an admin panel with Firebase authetication."
 
 const { pending, data: hero } = await useAsyncData("hero", async () =>
   queryContent("/hero").findOne()
@@ -80,7 +82,7 @@ useHead({
   meta: [
     {
       name: "description",
-      content: hero.value.description,
+      content: description,
     },
     {
       property: "og:title",
@@ -89,11 +91,11 @@ useHead({
     {
       hid: "og:description",
       property: "og:description",
-      content: hero.value.description,
+      content: description,
     },
     {
       property: "og:image",
-      content: hero.value.image,
+      content: image,
     },
     {
       property: "og:url",
@@ -109,11 +111,11 @@ useHead({
     },
     {
       name: "twitter:description",
-      content: hero.value.description,
+      content: description,
     },
     {
       name: "twitter:image",
-      content: hero.value.image,
+      content: image,
     },
   ],
 });

@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full dark:bg-stone-900">
+  <div class="w-full min-h-screen dark:bg-stone-900">
     <div class="relative px-4 py-6 sm:px-6 lg:px-8">
       <nav
         class="relative flex flex-col items-center justify-between max-w-4xl mx-auto md:flex-row "
