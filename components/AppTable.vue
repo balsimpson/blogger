@@ -36,7 +36,9 @@
             </NuxtLink>
           </td>
           <!-- Status -->
-          <td class="inline-flex items-center h-full px-2 py-1 mt-2 mr-2 text-xs uppercase border rounded dark:border-teal-600 dark:text-teal-600">
+          <td class="inline-flex items-center h-full px-2 py-1 mt-2 mr-2 text-xs uppercase border rounded"
+          :class="[item.status == 'draft' ? 'border-cyan-600 text-cyan-600': 'text-teal-600 border-teal-600']"
+          >
             {{ item.status }}
           </td>
           <!-- Interested In -->

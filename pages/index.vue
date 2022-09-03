@@ -50,7 +50,7 @@
           >Browse All Posts</NuxtLink
         >
       </div>
-      <div class="grid max-w-4xl gap-4 p-6 mx-auto mt-12 sm:grid-cols-2">
+      <div class="grid max-w-4xl gap-4 p-2 mx-auto mt-12 sm:p-6 sm:grid-cols-2">
         <AppCard
           v-for="post in posts"
           :title="post.title"

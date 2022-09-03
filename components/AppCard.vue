@@ -14,7 +14,7 @@
     </div>
     <div class="p-4 border-t dark:border-stone-600">
       <div class="text-xs text-stone-400">{{ date }}</div>
-      <div v-if="tags" class="mt-2 space-x-1 text-xs text-stone-400">
+      <div v-if="tags" class="flex flex-wrap gap-1 mt-2 text-xs text-stone-400">
         <TypeChip @clicked="redirectToTag(tag)" v-for="tag in tags" :title="tag" />
       </div>
     </div>

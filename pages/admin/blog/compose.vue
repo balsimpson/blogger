@@ -6,9 +6,9 @@
     <div class="flex flex-col justify-center px-4 py-4">
       <TagInput :suggestions="tagsuggestions.items" @updated="addTags" />
       <div class="flex justify-between space-x-8">
-        <div
+        <button
           @click.prevent="saveDoc('draft')"
-          class="inline-flex px-4 py-1 text-teal-500 border-2 border-teal-500 rounded  "
+          class="inline-flex px-4 py-1 text-teal-500 border-2 border-teal-500 rounded "
           :class="[
             postDetails && postDetails.title
               ? ''
@@ -16,11 +16,11 @@
           ]"
         >
           <IconArchiveIn />
-          <span class="ml-3">Save Draft</span>
-        </div>
+          <span class="ml-3">{{draftBtnText}}</span>
+        </button>
         <button
           @click.prevent="saveDoc('published')"
-          class="inline-flex px-4 py-1 font-bold tracking-wide text-teal-800 transition bg-teal-500 border-2 border-teal-500 rounded cursor-pointer  hover:bg-white hover:text-teal-500 "
+          class="inline-flex px-4 py-1 font-bold tracking-wide text-teal-800 transition bg-teal-500 border-2 border-teal-500 rounded cursor-pointer hover:bg-white hover:text-teal-500 "
           :class="[
             postDetails && postDetails.title
               ? ''
@@ -68,6 +68,7 @@ const { data: tagsuggestions } = await useAsyncData("tags", () =>
 );
 const toast = useToast();
 const publishBtnText = ref("Publish");
+const draftBtnText = ref("Save Draft");
 
 const docUpdated = (doc) => {
   editorPost.value = doc;
@@ -76,8 +77,13 @@ const docUpdated = (doc) => {
 const saveDoc = async (status) => {
   const { title, description, image } = getPostDetails(editorPost.value);
 
-  if (title || image) {
+  if (status == "draft") {
+    draftBtnText.value = "saving...";
+  } else {
     publishBtnText.value = "Publishing...";
+  }
+
+  if (title || image) {
     const slug = createSlug(title);
     const data = {
       title,
@@ -90,16 +96,17 @@ const saveDoc = async (status) => {
       published_at: serverTimestamp(),
     };
 
-    console.log(data);
+    // console.log(data);
     let res = await addDocToFirestore("posts", data);
-    console.log(res);
+    // console.log(res);
 
-    if (res.document) {
+    if (res.type == "document") {
       toast.success(data.title + " was saved!");
     } else {
       toast.error("Post failed to save! - " + res);
     }
     publishBtnText.value = "publish";
+    draftBtnText.value = "save draft";
   }
 };
 

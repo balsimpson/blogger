@@ -14,7 +14,7 @@
       <p class="max-w-2xl mx-auto mt-4 mb-6 text-xl text-gray-500">
         {{ blog.description }}
       </p>
-      <div class="grid gap-4 sm:grid-cols-2">
+      <div class="grid gap-4 text-left sm:grid-cols-2">
         <AppCard
           v-for="post in posts"
           :title="post.title"

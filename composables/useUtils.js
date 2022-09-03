@@ -53,6 +53,7 @@ export const createSlug = (title, id) => {
 
 export const getPostDetails = (data) => {
   // console.log("data", data)
+
   if (data && data.content) {
     let title = data.content.find(element => element.type == "heading");
     if (title && title.content) {
@@ -61,7 +62,9 @@ export const getPostDetails = (data) => {
 
     let description = data.content.find(element => element.type == "paragraph");
     if (description && description.content) {
-      description = description?.content[0]?.text || "";
+      description = description?.content[0]?.text;
+    } else {
+      description = "";
     }
 
     let image = data.content.find(element => element.type == "image");
