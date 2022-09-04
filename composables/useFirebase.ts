@@ -142,10 +142,10 @@ export const getDocsFromFirestore = async (collectionName: string) => {
 }
 
 /**
-* Get documents from a collection
+* Get documents ordered from a collection
 * @param {String} collectionName - name of the collection
 * @param {String} order - the property to order by
-* @param {String} count - number of items to fetch
+* @param {String} count - limit number of items to fetch
 * @returns {Array} array of items
 * @example getOrderedDocsFromFirestore('posts', 'published_at', 3)
 */
@@ -170,6 +170,58 @@ export const getOrderedDocsFromFirestore = async (collectionName: string, order:
     return items;
   } catch (error) {
     console.log('firebase-error', error);
+    return error;
+  }
+}
+
+/**
+* Get documents ordered matching status from a collection
+* @param {String} collectionName - name of the collection
+* @param {String} status - status of doc - all | draft | published
+* @param {String} count - limit number of items to fetch
+* @param {String} order - the property to order by
+* @returns {Array} array of items
+* @example getDocsWithStatus('posts', 'published', 3, 'published_at')
+*/
+export const getDocsWithStatus = async (collectionName: string, status: string, count: number, order: string = "published_at" ) => {
+  try {
+    const db = getFirestore();
+    let items = [];
+    let q: Query<DocumentData>;
+
+    if (status == "published") {
+      if (count) {
+        q = query(collection(db, collectionName), orderBy(order, "desc"), where("status", "==", status), limit(count));
+      } else {
+        q = query(collection(db, collectionName), orderBy(order, "desc"), where("status", "==", status));
+      }
+    }
+
+    if (status == "draft") {
+      if (count) {
+        q = query(collection(db, collectionName), orderBy(order, "desc"), where("status", "==", status), limit(count));
+      } else {
+        q = query(collection(db, collectionName), orderBy(order, "desc"), where("status", "==", status));
+      }
+    }
+
+    if (status == "all") {
+      if (count) {
+        q = query(collection(db, collectionName), orderBy(order, "desc"), limit(count));
+      } else {
+        q = query(collection(db, collectionName), orderBy(order, "desc"));
+      }
+    }
+
+    let res = await getDocs(q);
+    res.forEach((doc) => {
+      let newdoc = doc.data();
+      newdoc.uid = doc.id;
+      items.push(newdoc);
+    });
+    return items;
+  } catch (error) {
+    console.log('getDocsWithStatus', error);
     return error;
   }
 }

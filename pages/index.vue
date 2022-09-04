@@ -28,25 +28,25 @@
       </div>
     </div> -->
 
-    <div class="py-12 mx-auto bg-cyan-800 dark:bg-stone-900">
+    <div class="py-12 mx-auto dark:bg-stone-900">
       <div class="w-full max-w-4xl px-4 mx-auto text-center">
         <h2
-          class="text-base font-semibold tracking-wide text-teal-300 uppercase"
+          class="text-base font-semibold tracking-wide uppercase text-cyan-600"
         >
           {{ blog.subtitle }}
         </h2>
         <p
-          class="mt-2 text-3xl font-extrabold leading-8 tracking-tight text-white sm:text-4xl "
+          class="mt-2 text-3xl font-extrabold leading-8 tracking-tight text-black sm:text-4xl "
         >
           {{ blog.title }}
         </p>
-        <p class="max-w-2xl mx-auto mt-4 mb-6 text-xl text-gray-200">
+        <p class="max-w-2xl mx-auto mt-4 mb-6 text-xl text-gray-500">
           {{ blog.description }}
         </p>
 
         <NuxtLink
           to="/blog"
-          class="px-4 py-2 font-bold text-white transition border-2 border-white rounded-full hover:bg-white hover:text-cyan-700 "
+          class="px-4 py-2 font-bold text-black transition border-2 border-black rounded-full hover:bg-cyan-700 hover:text-white "
           >Browse All Posts</NuxtLink
         >
       </div>
@@ -70,6 +70,8 @@
 </template>
 
 <script setup>
+import { getDocsWithStatus } from "~~/composables/useFirebase";
+
 const title = "Deploy Your Blog Online in 5 Minutes";
 const image = "/siteImage.png";
 const description = "In just 5 minutes, have your own blog up and running. Built on Nuxt 3 and Tailwind CSS. With a rich text editor from TipTap and an admin panel with Firebase authetication."
@@ -132,6 +134,6 @@ const { data: blog } = await useAsyncData("blog", async () =>
 
 onMounted(async () => {
   // hero.value = await getDocFromFirestore("content", "hero");
-  posts.value = await getOrderedDocsFromFirestore("posts", "published_at", 4);
+  posts.value = await getDocsWithStatus("posts", "published", 4);
 });
 </script>

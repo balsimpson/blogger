@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col min-h-screen px-4 py-12 bg-stone-200 dark:bg-stone-900">
+  <div class="flex flex-col min-h-screen py-12 sm:px-4 dark:bg-stone-900">
     <div class="flex-grow w-full max-w-4xl px-4 mx-auto text-center">
       <h2
         class="text-base font-semibold tracking-wide uppercase text-cyan-600"
@@ -36,6 +36,6 @@ const { data: blog } = await useAsyncData("blog", () =>
 
 const posts = ref([]);
 onMounted(async () => {
-  posts.value = await getOrderedDocsFromFirestore("posts", "published_at");
+  posts.value = await getDocsWithStatus("posts", "published");
 });
 </script>

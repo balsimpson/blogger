@@ -18,9 +18,9 @@
               v-html="hero.description"
             ></p>
             <div
-              class="flex justify-center mt-2"
+              class="flex justify-center"
             >
-              <div v-html="hero.button"></div>
+              <div v-html="hero.button" class="my-6"></div>
             </div>
           </div>
 
