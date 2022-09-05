@@ -2,11 +2,11 @@
   <div class="flex flex-col h-screen">
     <div
       v-if="ogPost"
-      class="flex flex-wrap items-end justify-end px-2 mt-4 space-x-4 text-xs  md:mt-2 "
+      class="flex flex-wrap items-end justify-end px-2 mt-4 space-x-4 text-xs md:mt-2 "
     >
       <div class="text-white">
         <ToggleSwitch
-          @change="updatePublishStatus($event)"
+          @toggled="updatePublishStatus($event)"
           checked="Publish"
           unchecked="Draft"
           :status="ogPost.status"
@@ -19,7 +19,7 @@
         </div>
       </div>
       <div
-        class="p-2 bg-white border rounded  border-stone-400 dark:bg-stone-700 dark:text-stone-500 "
+        class="p-2 bg-white border rounded border-stone-400 dark:bg-stone-700 dark:text-stone-500 "
       >
         <div class="text-xs capitalize">published</div>
         <div class="font-bold">{{ convertDate(ogPost.published_at) }}</div>
@@ -33,7 +33,7 @@
       />
     </div>
 
-    <div class="p-4">
+    <div class="w-full max-w-2xl p-4 mx-auto">
       <div class="px-2 text-xs font-bold dark:text-stone-500">
         Add tags to your post separated by commas
       </div>
@@ -42,40 +42,46 @@
         :oldTags="ogPost.tags"
         @updated="addTags"
       />
-      <div class="flex justify-between mt-2">
-        <NuxtLink
-          to="/admin/blog"
-          class="inline-block px-3 py-1 text-sm font-bold tracking-wide uppercase transition duration-150 ease-in-out bg-transparent border-2 rounded  text-stone-500 dark:text-stone-600 border-stone-400 dark:border-stone-600 w-min focus:outline-none hover:bg-transparent hover:text-teal-600 hover:border-teal-600 dark:hover:border-teal-600 "
-        >
-          cancel
-        </NuxtLink>
-        <div class="flex items-center space-x-3">
-          <button
-            v-if="!confirmDelete"
-            @click.prevent="confirmDelete = !confirmDelete"
-            class="inline-flex items-center px-3 py-1 text-sm font-bold tracking-wide text-red-600 uppercase transition duration-150 ease-in-out bg-transparent border-2 border-red-600 rounded  dark:border-red-400 dark:text-red-400 w-min focus:outline-none hover:bg-transparent hover:text-red-600 "
-          >
-            <IconTrash />
-            <span class="ml-3">delete</span>
-          </button>
-          <button
-            v-else
-            @click.prevent="deleteDoc($route.params.post)"
-            class="inline-block px-3 py-1 text-sm font-bold tracking-wide text-red-600 uppercase transition duration-150 ease-in-out bg-transparent border-2 border-red-600 rounded  w-min focus:outline-none hover:bg-transparent hover:text-red-600 "
-          >
-            sure?
-          </button>
 
-          <button
-            @click.prevent="saveDoc($route.params.post)"
-            class="inline-flex items-center px-3 py-1 text-sm font-bold tracking-wide text-white uppercase transition duration-150 ease-in-out bg-teal-600 border-2 border-teal-600 rounded  w-min focus:outline-none hover:bg-transparent hover:text-teal-600 "
-            :class="[saveBtnText == 'save' ? '' : 'pointer-events-none']"
+      <div class="flex flex-col items-center sm:flex-row">
+        <div class="flex flex-wrap justify-between w-full mb-2 sm:mb-0">
+          <!-- cancel button -->
+          <NuxtLink
+            to="/admin/blog"
+            class="inline-flex px-3 py-1 text-sm font-bold tracking-wide uppercase transition duration-150 ease-in-out bg-transparent border-2 rounded text-stone-500 dark:text-stone-600 border-stone-400 dark:border-stone-600 focus:outline-none hover:bg-transparent hover:text-teal-600 hover:border-teal-600 dark:hover:border-teal-600 "
           >
-            <IconSave />
-            <span class="ml-3">{{ saveBtnText }}</span>
-          </button>
+            cancel
+          </NuxtLink>
+          <!-- delete button -->
+          <div class="flex flex-col items-center space-x-3">
+            <button
+              v-if="!confirmDelete"
+              @click.prevent="confirmDelete = !confirmDelete"
+              class="inline-flex items-center px-3 py-1 text-sm font-bold tracking-wide text-red-600 uppercase transition duration-150 ease-in-out bg-transparent border-2 border-red-600 rounded dark:border-red-400 dark:text-red-400 w-min focus:outline-none hover:bg-transparent hover:text-red-600 "
+            >
+              <IconTrash />
+              <span class="ml-3">delete</span>
+            </button>
+            <button
+              v-else
+              @click.prevent="deleteDoc($route.params.post)"
+              class="inline-block px-3 py-1 text-sm font-bold tracking-wide text-red-600 uppercase transition duration-150 ease-in-out bg-transparent border-2 border-red-600 rounded w-min focus:outline-none hover:bg-transparent hover:text-red-600 "
+            >
+              sure?
+            </button>
+          </div>
         </div>
+        
+        <button
+          @click.prevent="saveDoc($route.params.post)"
+          class="inline-flex items-center justify-center w-full px-3 py-1 text-sm font-bold tracking-wide text-white uppercase transition duration-150 ease-in-out bg-teal-600 border-2 border-teal-600 rounded sm:w-min focus:outline-none hover:bg-transparent hover:text-teal-600 sm:ml-3"
+          :class="[saveBtnText == 'save' ? '' : 'pointer-events-none']"
+        >
+          <IconSave />
+          <span class="ml-3">{{ saveBtnText }}</span>
+        </button>
       </div>
+      
     </div>
   </div>
 </template>
@@ -112,10 +118,10 @@ const updateDoc = async (data) => {
   editorPost.value = { type: "doc", content: data.content };
 };
 
-const updatePublishStatus = async (data) => {
+const updatePublishStatus = async (val) => {
   // let doc = JSON.parse(data);
-  console.log(data);
-  postPublishStatus.value = data;
+  console.log(val);
+  postPublishStatus.value = val;
 };
 
 const saveDoc = async (data) => {
@@ -132,6 +138,7 @@ const saveDoc = async (data) => {
     slug,
     content: editorPost.value,
     tags: postTags.value,
+    status: postPublishStatus.value,
     lastUpdatedAt: serverTimestamp(),
   };
 

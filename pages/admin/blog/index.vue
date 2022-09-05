@@ -1,11 +1,11 @@
 <template>
-  <div class="flex flex-col h-screen">
+  <div class="flex flex-col h-screen p-2">
     <div class="max-w-4xl px-6 pt-4 text-right">
       <!-- <div class="text-5xl font-extrabold tracking-tight font-arvo">Welcome</div> -->
       <!-- a compose button with an icon -->
       <NuxtLink
         to="/admin/blog/compose"
-        class="inline-flex items-center h-10 px-5 text-indigo-100 transition-colors duration-150 bg-teal-700 rounded-lg focus:shadow-outline hover:bg-teal-800 "
+        class="inline-flex items-center h-10 px-5 text-indigo-100 transition-colors duration-150 rounded-lg bg-cyan-700 focus:shadow-outline hover:bg-cyan-800 "
       >
         <IconPlus />
         <span class="ml-3">Add Blog Post</span>

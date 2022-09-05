@@ -23,7 +23,7 @@
         <li>
           <NuxtLink
             to="/admin/blog/compose"
-            class="inline-flex items-center w-full px-4 py-2 mt-12 space-x-2 text-base font-bold text-teal-600 transition duration-200 ease-in-out transform border border-teal-700 rounded-lg hover:bg-stone-700 focus:shadow-outline "
+            class="inline-flex items-center w-full px-4 py-2 mt-12 space-x-2 text-base font-bold transition duration-200 ease-in-out transform border rounded-lg text-cyan-600 border-cyan-700 hover:bg-stone-700 focus:shadow-outline "
           >
             <IconPlus />
             <span class="ml-3">Add Blog Post</span>
