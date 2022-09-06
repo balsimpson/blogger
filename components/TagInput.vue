@@ -1,6 +1,6 @@
 <template>
   <div class="max-w-3xl">
-    <div class="flex flex-wrap items-start justify-start">
+    <div class="flex flex-wrap items-center justify-start">
       <div v-for="(tag, index) in tags" :key="tag" class="space-x-2">
         <div
           class="flex items-center h-5 p-1 m-1 border-2 border-teal-600 rounded-lg "
@@ -27,12 +27,13 @@
         ref="newtagInput"
         type="text"
         placeholder="Add a Tag"
-        class="w-20 m-1 text-xs font-bold text-center text-teal-600 bg-transparent border-2 rounded-full focus:outline-none border-stone-400 placeholder-stone-500 focus-within:border-teal-600 "
+        class="w-20 m-1 text-xs font-bold text-center text-teal-600 bg-transparent border-2 rounded-full focus:outline-none border-stone-600 placeholder-stone-500 focus-within:border-teal-600 "
         v-model="newtag"
         @keydown="addTag"
       />
+      <div class="text-[12px] text-red-400 text-center">{{ newtagMsg }}</div>
     </div>
-    <div class="h-12 max-w-xl pl-1 text-center tag-info">
+    <div class="max-w-xl pl-1 text-center ">
       <div
         v-show="suggestedTags.length && newtag.length"
         class="flex items-center justify-start space-x-2"
@@ -46,17 +47,17 @@
             inline-flex
             text-[12px]
             px-3
-            text-gray-400
+            text-gray-500
             border
             rounded-full
-            border-gray-400
+            border-gray-500
             mt-2 hover:bg-teal-600 hover:text-teal-100
           "
         >
           {{ tag }}
         </div>
       </div>
-      <span class="text-[12px] text-gray-400 text-center">{{ newtagMsg }}</span>
+      
     </div>
   </div>
 </template>

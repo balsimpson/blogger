@@ -91,7 +91,6 @@ useHead({
       content: title,
     },
     {
-      hid: "og:description",
       property: "og:description",
       content: description,
     },

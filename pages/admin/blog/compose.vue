@@ -1,10 +1,12 @@
 <template>
   <div class="flex flex-col h-screen mt-4 sm:mt-0 sm:p-4">
-    <div class="flex-grow w-full mx-auto overflow-y-auto">
+    <TagInput :suggestions="tagsuggestions.items" @updated="addTags" />
+    <!-- <AppAutocomplete :options="tagsuggestions.items"/> -->
+    <div class="flex-grow w-full mx-auto mt-1 overflow-y-auto">
       <Tiptap @update="docUpdated" />
     </div>
     <div class="flex flex-col justify-center px-4 py-4">
-      <TagInput :suggestions="tagsuggestions.items" @updated="addTags" />
+      
       <div class="flex justify-between space-x-8">
         <button
           @click.prevent="saveDoc('draft')"
