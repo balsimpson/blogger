@@ -26,9 +26,9 @@
         </main>
         
         <div class="max-w-2xl mx-auto text-center">
-          <Tiptap class="text-left"/>
-          <!-- <img v-if="$colorMode.value == 'dark'" :src="hero.image_dark" alt="" class="object-contain w-full max-w-2xl mx-auto">
-          <img v-else :src="hero.image" alt="" class="object-contain w-full max-w-2xl mx-auto"> -->
+          <!-- <Tiptap class="text-left"/> -->
+          <img v-if="$colorMode.value == 'dark'" :src="hero.image_dark" alt="" class="object-contain w-full max-w-2xl mx-auto">
+          <img v-else :src="hero.image" alt="" class="object-contain w-full max-w-2xl mx-auto">
           <div v-html="hero.editor_description" class="mt-4 dark:text-stone-400">
           </div>
         </div>
