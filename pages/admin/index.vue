@@ -1,7 +1,7 @@
 <template>
   <div class="sm:p-6">
     <!-- hero -->
-    <div class="overflow-hidden border rounded  bg-stone-200 dark:border-stone-700 dark:text-stone-400 dark:bg-zinc-700">
+    <div class="overflow-hidden border rounded bg-stone-200 dark:border-stone-700 dark:text-stone-400 dark:bg-zinc-700">
       <div class="p-6">
       <div class="text-xl font-bold ">Hero</div>
       <div>
@@ -9,7 +9,7 @@
         <code>~/content/hero.md</code>
       </div>
     </div>
-    <AppHero :hero="hero"/>
+    <SectionHero :hero="hero" class="pt-4"/>
     </div>
     
     <!-- cta -->

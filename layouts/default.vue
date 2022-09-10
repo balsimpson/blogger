@@ -2,7 +2,7 @@
   <div class="w-full min-h-screen dark:bg-stone-900">
     <div class="relative px-4 py-6 sm:px-6 lg:px-8">
       <nav
-        class="relative flex flex-col items-center justify-between max-w-4xl mx-auto md:flex-row "
+        class="relative flex flex-col items-center justify-between max-w-3xl mx-auto md:flex-row "
         aria-label="Global"
       >
         <div
@@ -35,7 +35,7 @@
           >
           <a
             href="https://github.com/balsimpson/blogger"
-            class="inline-flex items-center space-x-2 font-bold text-gray-500 hover:text-gray-900 "
+            class="inline-flex items-center space-x-2 font-bold text-gray-500 hover:text-gray-900 dark:hover:text-gray-300 "
             target="_blank"
             ><IconGithub /> <span>GitHub</span></a
           >

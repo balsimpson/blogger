@@ -21,6 +21,7 @@
     "@iconify-prerendered/vue-fa6-regular": "^0.10.1658815514",
     "@iconify-prerendered/vue-fa6-solid": "^0.10.1658815533",
     "@iconify-prerendered/vue-gridicons": "^0.10.1656182208",
+    "@iconify-prerendered/vue-logos": "^0.11.1662097923",
     "@iconify-prerendered/vue-material-symbols": "^0.10.1660285568",
     "@nuxtjs/color-mode": "^3.1.4",
     "@tiptap/extension-bubble-menu": "^2.0.0-beta.61",

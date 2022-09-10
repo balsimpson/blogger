@@ -1,84 +1,23 @@
 <template>
-  <div class="min-h-screen py-0">
-    <AppHero :hero="hero" />
-    <!-- <pre>{{$colorMode}}</pre> -->
-    <!-- <AppDemoEditor /> -->
-
-    <AppCta :cta="cta" />
-
-    <!-- <div class="w-full py-12 mx-auto bg-sky-800">
-      <div
-        class="flex flex-col items-center justify-center w-full max-w-4xl px-4 mx-auto text-center "
-      >
-        <h2
-          class="text-base font-semibold tracking-wide text-teal-300 uppercase"
-        >
-          Admin Panel
-        </h2>
-        <p
-          class="mt-2 text-3xl font-extrabold leading-8 tracking-tight text-white sm:text-4xl "
-        >
-          Easily Add New Posts
-        </p>
-        <p class="max-w-2xl mx-auto mt-4 mb-6 text-xl text-gray-200">
-          There are many variations of passages of Lorem Ipsum available but the
-          majority have suffered alteration in some form.
-        </p>
-        <img src="/demo_admin_image.png" alt="" class="rounded-lg" />
-      </div>
-    </div> -->
-
-    <div class="py-12 mx-auto dark:bg-stone-900">
-      <div class="w-full max-w-4xl px-4 mx-auto text-center">
-        <h2
-          class="text-base font-semibold tracking-wide uppercase text-cyan-600"
-        >
-          {{ blog.subtitle }}
-        </h2>
-        <p
-          class="mt-2 text-3xl font-extrabold leading-8 tracking-tight text-black sm:text-4xl "
-        >
-          {{ blog.title }}
-        </p>
-        <p class="max-w-2xl mx-auto mt-4 mb-6 text-xl text-gray-500">
-          {{ blog.description }}
-        </p>
-
-        <NuxtLink
-          to="/blog"
-          class="px-4 py-2 font-bold text-black transition border-2 border-black rounded-full hover:bg-cyan-700 hover:text-white "
-          >Browse All Posts</NuxtLink
-        >
-      </div>
-      <div class="grid max-w-4xl gap-4 p-2 mx-auto mt-12 sm:p-6 sm:grid-cols-2">
-        <AppCard
-          v-for="post in posts"
-          :title="post.title"
-          :description="post.description"
-          :image="post.image"
-          :tags="post.tags"
-          :date="convertDate(post.published_at)"
-          :slug="post.slug"
-        />
-      </div>
-    </div>
-
+  <div class="min-h-screen">
+    <SectionHero :hero="hero" />
+    <SectionAdmin />
+    <SectionBlog :blog="blog" :posts="posts"/>
     <AppFeatures />
-    <!-- <AppCarousel /> -->
+    <AppCta :cta="cta" />
     <AppFooter />
   </div>
 </template>
 
 <script setup>
 import { getDocsWithStatus } from "~~/composables/useFirebase";
+import AppDemoEditor1 from "~~/components/AppDemoEditor.vue";
 
 const title = "Deploy Your Blog Online in 5 Minutes";
 const image = "/siteImage.png";
 const description = "In just 5 minutes, have your own blog up and running. Built on Nuxt 3 and Tailwind CSS. With a rich text editor from TipTap and an admin panel with Firebase authetication."
+const ogUrl = "https://tinkr.in/"
 
-const { pending, data: hero } = await useAsyncData("hero", async () =>
-  queryContent("/hero").findOne()
-);
 useHead({
   title,
   meta: [
@@ -100,7 +39,7 @@ useHead({
     },
     {
       property: "og:url",
-      content: "https://tinkr.in/",
+      content: ogUrl,
     },
     {
       name: "twitter:card",
@@ -122,8 +61,10 @@ useHead({
 });
 
 const posts = ref([]);
-// const hero = ref();
 
+const { pending, data: hero } = await useAsyncData("hero", async () =>
+  queryContent("/hero").findOne()
+);
 const { data: cta } = await useAsyncData("cta", async () =>
   queryContent("/cta").findOne()
 );
@@ -132,7 +73,6 @@ const { data: blog } = await useAsyncData("blog", async () =>
 );
 
 onMounted(async () => {
-  // hero.value = await getDocFromFirestore("content", "hero");
   posts.value = await getDocsWithStatus("posts", "published", 4);
 });
 </script>

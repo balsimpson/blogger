@@ -475,7 +475,7 @@ const addLink = (url) => {
 .ProseMirror {
   height: inherit;
   max-width: 100%;
-  /* min-height: 60vh; */
+  min-height: 20vh;
   background: #ffffff;
   color: #303030;
   /* height: 100%; */
@@ -487,6 +487,21 @@ const addLink = (url) => {
   /* background: #d6d6d6; */
   border-radius: 0 0 10px 10px;
   transition: color 0.3s ease-in-out;
+}
+
+.prose h1 {
+  margin-top: 0.25em;
+  margin-bottom: 0.25em;
+}
+
+.prose h2 {
+  margin-top: 1em;
+  margin-bottom: 0.25em;
+}
+
+.prose h3 {
+  margin-top: 1em;
+  margin-bottom: 0.25em;
 }
 
 @media (prefers-color-scheme: dark) {

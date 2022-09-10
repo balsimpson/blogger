@@ -12,7 +12,8 @@
         >
           {{ editor.title }}
         </p>
-        <img src="/demo_editor_image.png" alt="" class="shadow">
+        <!-- <img src="/demo_editor_image.png" alt="" class="shadow"> -->
+        
       </div>
     </div>
       <div class="px-4 py-12 text-center bg-cyan-900">
