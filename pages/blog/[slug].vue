@@ -1,13 +1,17 @@
 <template>
   <div v-if="post" class="max-w-3xl p-5 mx-auto">
+
+    <Head>
+      <Title>ROAST - {{ post.title }}</Title>
+    </Head>
     <BreadCrumbs />
 
     <div class="mb-4">
       <div class="flex space-x-3">
         <div v-if="post.published_at" class="pb-1 dark:text-zinc-400">
-        {{ convertDate(post.published_at) }}
-      </div>
-      <div v-if="post.views" class="text-cyan-500">{{post.views}} Views</div>
+          {{ convertDate(post.published_at) }}
+        </div>
+        <div v-if="post.views" class="text-cyan-500">{{post.views}} Views</div>
       </div>
       <div v-if="post.tags" class="space-x-1">
         <TypeChip @clicked="redirectToTag(tag)" v-for="tag in post.tags" :title="tag" />
@@ -17,7 +21,7 @@
       {{ convertDate(post.lastPublishedAt) }}
     </div> -->
     <article v-html="postHtml" class="prose dark:text-zinc-400 font-arvo">
-      
+
     </article>
   </div>
 </template>
@@ -93,7 +97,7 @@ onMounted(async () => {
   title.value = post.value.title;
   description.value = post.value.description;
   image.value = post.value.image;
-  
+
   postHtml.value = generateHTML(post.value.content, [
     StarterKit,
     Image,
@@ -104,7 +108,7 @@ onMounted(async () => {
 </script>
 
 <style>
-  article img {
-    border-radius: .25em;
-  }
+article img {
+  border-radius: .25em;
+}
 </style>
