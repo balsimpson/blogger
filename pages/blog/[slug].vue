@@ -2,7 +2,7 @@
   <div v-if="post" class="max-w-3xl p-5 mx-auto">
 
     <Head>
-      <Title>ROAST - {{ post.title }}</Title>
+      <Title>ROAST - {{ post.title }}</Title> -->
     </Head>
     <BreadCrumbs />
 
@@ -41,51 +41,51 @@ const image = ref("");
 const description = ref("")
 const ogUrl = ref("https://tinkr.in")
 
-useHead({
-  title,
-  meta: [
-    {
-      name: "description",
-      content: description,
-    },
-    {
-      property: "og:title",
-      content: title,
-    },
-    {
-      property: "og:description",
-      content: description,
-    },
-    {
-      property: "og:image",
-      content: image,
-    },
-    {
-      property: "og:url",
-      content: ogUrl,
-    },
-    {
-      name: "twitter:card",
-      content: "summary_large_image",
-    },
-    {
-      name: "twitter:title",
-      content: title,
-    },
-    {
-      name: "twitter:text:title",
-      content: title,
-    },
-    {
-      name: "twitter:description",
-      content: description,
-    },
-    {
-      name: "twitter:image",
-      content: image,
-    },
-  ],
-});
+// useHead({
+//   title,
+//   meta: [
+//     {
+//       name: "description",
+//       content: description,
+//     },
+//     {
+//       property: "og:title",
+//       content: title,
+//     },
+//     {
+//       property: "og:description",
+//       content: description,
+//     },
+//     {
+//       property: "og:image",
+//       content: image,
+//     },
+//     {
+//       property: "og:url",
+//       content: ogUrl,
+//     },
+//     {
+//       name: "twitter:card",
+//       content: "summary_large_image",
+//     },
+//     {
+//       name: "twitter:title",
+//       content: title,
+//     },
+//     {
+//       name: "twitter:text:title",
+//       content: title,
+//     },
+//     {
+//       name: "twitter:description",
+//       content: description,
+//     },
+//     {
+//       name: "twitter:image",
+//       content: image,
+//     },
+//   ],
+// });
 
 const redirectToTag = (tag) => {
   navigateTo("/blog/tag/" + tag)
