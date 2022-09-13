@@ -21,7 +21,7 @@
         >
           <a
             href="#"
-            class="flex items-start p-3 -m-3 rounded-lg hover:bg-stone-50"
+            class="flex items-start p-3 -m-3 transition border rounded-lg border-stone-500 hover:border-stone-50"
           >
             <IconNuxtIcon class="w-8 h-8 shrink-0" />
             <div class="ml-4">
@@ -34,7 +34,7 @@
 
           <a
             href="#"
-            class="flex items-start p-3 -m-3 rounded-lg hover:bg-stone-50"
+            class="flex items-start p-3 -m-3 transition border rounded-lg border-stone-500 hover:border-stone-50"
           >
             <IconFirebase class="w-8 h-8 shrink-0" />
             <div class="ml-4">
@@ -47,7 +47,7 @@
 
           <a
             href="#"
-            class="flex items-start p-3 -m-3 rounded-lg hover:bg-stone-50"
+            class="flex items-start p-3 -m-3 transition border rounded-lg border-stone-500 hover:border-stone-50"
           >
             <img src="/tailwind_logo.png" alt="" class="w-8 h-8 shrink-0" />
             <div class="ml-4">
@@ -60,7 +60,7 @@
 
           <a
             href="#"
-            class="flex items-start p-3 -m-3 rounded-lg hover:bg-stone-50"
+            class="flex items-start p-3 -m-3 transition border rounded-lg border-stone-500 hover:border-stone-50"
           >
             <!-- <img src="/tiptap_logo.jpeg" alt="" class="w-8 h-8" /> -->
             <svg

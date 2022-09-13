@@ -3,7 +3,7 @@
     <SectionHero :hero="hero" />
     <SectionAdmin />
     <SectionBlog :blog="blog" :posts="posts"/>
-    <AppFeatures />
+    <SectionFeatures />
     <AppCta :cta="cta" />
     <AppFooter />
   </div>
