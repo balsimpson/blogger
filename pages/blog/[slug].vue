@@ -35,7 +35,7 @@ const postHtml = ref();
 const title = ref("");
 const image = ref("");
 const description = ref("")
-const ogUrl = ref("")
+const ogUrl = ref("https://tinkr.in")
 
 useHead({
   title,
@@ -66,6 +66,10 @@ useHead({
     },
     {
       name: "twitter:title",
+      content: title,
+    },
+    {
+      name: "twitter:text:title",
       content: title,
     },
     {
