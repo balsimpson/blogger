@@ -38,6 +38,7 @@
             >{{ publishBtnText }}</span
           >
         </button>
+        <pre>{{postDetails}}</pre>
       </div>
     </div>
   </div>

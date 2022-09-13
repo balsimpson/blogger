@@ -52,7 +52,6 @@ export const createSlug = (title, id) => {
 }
 
 export const getPostDetails = (data) => {
-  // console.log("data", data)
 
   if (data && data.content) {
     let title = data.content.find(element => element.type == "heading");
@@ -61,8 +60,13 @@ export const getPostDetails = (data) => {
     }
 
     let description = data.content.find(element => element.type == "paragraph");
-    if (description && description.content) {
-      description = description?.content[0]?.text;
+    let txt = "";
+    if (description && description.content && description.content.length) {
+      description.content.map(d => {
+        txt += d.text;
+      })
+
+      description = txt;
     } else {
       description = "";
     }
