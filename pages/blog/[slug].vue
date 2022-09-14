@@ -2,7 +2,7 @@
   <div v-if="post" class="max-w-3xl p-5 mx-auto">
 
     <Head>
-      <Title>ROAST - {{ post.title }}</Title> -->
+      <Title>{{ post.title }}</Title> -->
     </Head>
     <BreadCrumbs />
 
@@ -23,6 +23,8 @@
     <article v-html="postHtml" class="prose dark:text-zinc-400 font-arvo">
 
     </article>
+
+    <AppFooter />
   </div>
 </template>
 

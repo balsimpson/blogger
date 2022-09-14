@@ -1,9 +1,9 @@
 <template>
   <div class="flex flex-col h-full border rounded-lg border-cyan-500 dark:bg-stone-800 dark:text-stone-400 dark:border-stone-700">
-    <img
+    <NuxtImg
       v-if="image"
       :src="image"
-      alt=""
+      :alt="title"
       class="object-cover border-b rounded-t-lg h-44"
     />
     <div class="flex-grow p-2 sm:p-4">

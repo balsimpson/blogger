@@ -31,7 +31,7 @@ export default defineNuxtConfig({
     exposeConfig: true
   },
   modules: [
-    '@nuxt/content', '@nuxtjs/color-mode'
+    '@nuxt/content', '@nuxtjs/color-mode', '@nuxt/image-edge',
   ],
   colorMode: {
     preference: 'system', // default value of $colorMode.preference
