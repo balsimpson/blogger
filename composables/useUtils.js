@@ -57,6 +57,8 @@ export const getPostDetails = (data) => {
     let title = data.content.find(element => element.type == "heading");
     if (title && title.content) {
       title = title?.content[0]?.text || "";
+    } else {
+      title = "";
     }
 
     let description = data.content.find(element => element.type == "paragraph");
