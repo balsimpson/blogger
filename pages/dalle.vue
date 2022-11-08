@@ -51,6 +51,53 @@ definePageMeta({
   layout: false
 })
 
+const title = "Dall-E - Generate unique images from text";
+const image = "/warhol.png";
+const description = "DALL·E is a new AI system that can create realistic images and art from a description in natural language."
+const ogUrl = "https://tinkr.in/dalle/"
+
+useHead({
+  title,
+  meta: [
+    {
+      name: "description",
+      content: description,
+    },
+    {
+      property: "og:title",
+      content: title,
+    },
+    {
+      property: "og:description",
+      content: description,
+    },
+    {
+      property: "og:image",
+      content: image,
+    },
+    {
+      property: "og:url",
+      content: ogUrl,
+    },
+    {
+      name: "twitter:card",
+      content: "summary_large_image",
+    },
+    {
+      name: "twitter:title",
+      content: title,
+    },
+    {
+      name: "twitter:description",
+      content: description,
+    },
+    {
+      name: "twitter:image",
+      content: image,
+    },
+  ],
+});
+
 const config = useRuntimeConfig();
 const prompt = ref("")
 const configuration = new Configuration({
