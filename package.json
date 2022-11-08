@@ -42,6 +42,7 @@
     "firebase": "^9.9.3",
     "hast-util-to-html": "^8.0.3",
     "lowlight": "^2.7.0",
+    "openai": "^3.1.0",
     "vue-toastification": "^2.0.0-rc.5"
   },
   "name": "blogger",
