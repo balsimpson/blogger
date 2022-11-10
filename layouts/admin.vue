@@ -72,9 +72,9 @@
           <div class="flex items-center">
             <IconLogOut />
             <div class="ml-3">
-              <div class="text-xs text-stone-500">
-                {{ userCookie.email }}
-              </div>
+              <!-- <div v-if="userCookie" class="text-xs text-stone-500">
+                {{ userCookie?.email }}
+              </div> -->
               <p class="text-sm font-medium text-neutral-200">Sign out</p>
             </div>
           </div>
@@ -91,7 +91,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import {
   IconGridAlt,
   IconTrash,
