@@ -51,7 +51,7 @@ definePageMeta({
   layout: false
 })
 
-const title = "Dall-E - Generate unique images from text";
+const title = "Dall.E - Generate unique images from text";
 const image = "/warhol.png";
 const description = "DALL·E is a new AI system that can create realistic images and art from a description in natural language."
 const ogUrl = "https://tinkr.in/dalle/"
@@ -158,7 +158,7 @@ const getImage = async () => {
 }
 
 onMounted(async () => {
-  generatedImgs.value = await getOrderedDocsFromFirestore("dalle", "created_at");
+  // generatedImgs.value = await getOrderedDocsFromFirestore("dalle", "created_at");
 })
 
 </script>

@@ -1,3 +1,5 @@
+// const plugin = require('tailwindcss/plugin')
+const colors = require('tailwindcss/colors')
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: "class",
@@ -12,6 +14,13 @@ module.exports = {
     "./plugins/**/*.{js,ts}",
   ],
   theme: {
+    colors: {
+      transparent: 'transparent',
+      current: 'currentColor',
+      stone: colors.stone,
+      teal: colors.teal,
+      amber: colors.amber,
+    },
     extend: {
       fontFamily: {
         arvo: ["Arvo", "serif"],
@@ -19,5 +28,8 @@ module.exports = {
        },
     },
   },
-  plugins: [require('@tailwindcss/typography'),],
+  plugins: [
+    require('@tailwindcss/typography'),
+    require('./assets/js/components')
+  ],
 }

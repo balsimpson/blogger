@@ -1,6 +1,7 @@
 <template>
-  <div class="w-full min-h-screen bg-black">
-    <nav class="w-full py-6 mx-auto text-center text-zinc-400">
+  <div class="w-full min-h-screen bg-stone-900">
+    
+    <nav class="w-full py-6 mx-auto text-center text-stone-400">
       <div>
         <span class="text-2xl font-bold"><span class="font-light">film</span><span class="text-amber-500">fight</span>
           <div class="px-4 mt-3 text-base font-normal">Pit movies or TV shows against each other. Who will win?
