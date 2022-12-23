@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full min-h-screen dark:bg-stone-900">
+  <div class="w-full min-h-screen dark dark:bg-stone-900 dark:text-stone-300">
     <div class="relative px-4 py-6 sm:px-6 lg:px-8">
       <nav
         class="relative flex flex-col items-center justify-between max-w-3xl mx-auto md:flex-row "
@@ -25,17 +25,17 @@
 
           <NuxtLink
             to="/blog"
-            class="block px-1 text-base font-bold transition rounded-md text-cyan-600 hover:underline decoration-wavy "
+            class="block px-1 text-base font-bold transition rounded-md text-cyan-600 dark:text-cyan-300 hover:underline decoration-wavy "
             >Blog</NuxtLink
           >
           <NuxtLink
             to="/admin"
-            class="block px-1 text-base font-bold transition rounded-md text-cyan-600 hover:underline decoration-wavy "
+            class="block px-1 text-base font-bold transition rounded-md text-cyan-600 dark:text-cyan-300 hover:underline decoration-wavy "
             >Admin</NuxtLink
           >
           <a
             href="https://github.com/balsimpson/blogger"
-            class="inline-flex items-center space-x-2 font-bold text-gray-500 hover:text-gray-900 dark:hover:text-gray-300 "
+            class="inline-flex items-center space-x-2 font-bold text-gray-500 hover:text-gray-900 dark:hover:text-gray-300"
             target="_blank"
             ><IconGithub /> <span>GitHub</span></a
           >
